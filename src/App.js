@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import {get_idocData} from './stub-idoc';
 
 function App() {
+  const [idocNum, setIdocNum] = useState("");
+
+  const handleChange = (event) =>{
+    setIdocNum(event.target.value);
+  }
+
+  const handleSubmit = (event) =>{
+    console.log(get_idocData(idocNum));
+    document.getElementById("jsonData").innerHTML = JSON.stringify(get_idocData(idocNum))
+    event.preventDefault();
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Use IDOC numbers: A00147, A00367, A01054</p>
+      <form onSubmit={handleSubmit}>
+        <label>
+          IDOC number:
+          <input type="text" onChange={handleChange}/>
+        </label>
+        <input type="submit" value="Submit"/>
+      </form>
+      <div id="jsonData"></div>
     </div>
   );
 }
