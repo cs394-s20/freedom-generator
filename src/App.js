@@ -19,15 +19,17 @@ function App() {
 
   return (
     <div className="App">
-      <p>Use IDOC numbers: A00147, A00367, A01054</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          IDOC number:
-          <input type="text" onChange={handleChange}/>
-        </label>
-        <input type="submit" value="Submit"/>
-      </form>
-      <div id="jsonData"></div>
+      <div className="idocForm">
+        <p>Use IDOC numbers: A00147, A00367, A01054</p>
+        <form onSubmit={handleSubmit}>
+          <label>
+            IDOC number:
+            <input type="text" onChange={handleChange}/>
+          </label>
+          <input type="submit" value="Submit"/>
+        </form>
+        <div id="jsonData"></div>
+      </div>
     </div>
   );
 }
