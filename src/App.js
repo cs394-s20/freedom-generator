@@ -7,7 +7,7 @@ import { TextField, Button } from '@material-ui/core';
 
 function App() {
   console.log(process.env.REACT_APP_API_URL);
-  // const [idocNum, setIdocNum] = useState("");
+  const [idocNum, setIdocNum] = useState("");
 
 
   const { register, handleSubmit, errors } = useForm();
@@ -16,9 +16,9 @@ function App() {
     console.log(data);
   };
 
-  // const handleChange = (event) =>{
-  //   setIdocNum(event.target.value);
-  // }
+  const handleChange = (event) =>{
+    setIdocNum(event.target.value);
+  }
 
   // const handleSubmit = (event) =>{
   //   console.log(get_idocData(idocNum));
