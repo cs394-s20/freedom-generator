@@ -1,4 +1,16 @@
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+
+
+
 export function get_idocData(idocNum){
+    return JSON.parse(httpGet(process.env.REACT_APP_API_URL + "?idoc=" + idocNum));
     let data;
 
     switch (idocNum) {
