@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import './App.css';
 import {get_idocData} from './stub-idoc';
 
+
 function App() {
+  console.log(process.env.REACT_APP_API_URL);
   const [idocNum, setIdocNum] = useState("");
 
   const handleChange = (event) =>{
