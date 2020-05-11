@@ -11,7 +11,7 @@ function check_eligibility(idocNum){
     return outcome;
 };
 
-function format_eligibility(data, outcome){
+function format_eligibility(outcome){
     var i = 0;
     while (i < outcome.length) {
         print(outcome[i])
@@ -19,10 +19,10 @@ function format_eligibility(data, outcome){
     }
 };
 
-function eligibility(idocNum){
+function return_eligibility(idocNum){
     let data = get_idocData(idocNum);
     let outcome = check_eligibility(idocNum);
-    return data.name + "may be eligible for:" + outcome
+    return data.name + "may be eligible for:" + format_eligibility(outcome);
 };
 
-export default {check_eligibility, format_eligibility}
+export default return_eligibility;

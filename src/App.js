@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import {get_idocData} from './Components/01_Atoms/stub-idoc';
-import check_eligibility from './Components/01_Atoms/check-eligibility;'
+import {return_eligibility} from './Components/01_Atoms/check-eligibility;'
 
 function App() {
   const [idocNum, setIdocNum] = useState("");
-  const eligibility;
 
   const handleChange = (event) =>{
     setIdocNum(event.target.value);
@@ -15,7 +14,11 @@ function App() {
     console.log(get_idocData(idocNum));
     document.getElementById("jsonData").innerHTML = JSON.stringify(get_idocData(idocNum))
     event.preventDefault();
-    eligibility = check_eligibility(idocNum);
+  }
+
+  const printEligibility = (idocNum) =>{
+    if (handleSubmit)
+      return_eligibility(idocNum)
   }
 
   return (
@@ -29,7 +32,7 @@ function App() {
         <input type="submit" value="Submit"/>
       </form>
       <div id="jsonData"></div>
-      
+      <printEligibility></printEligibility>
     </div>
   );
 }
