@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import {get_idocData} from './stub-idoc';
+import {get_idocData} from './Components/01_Atoms/stub-idoc';
 
 function App() {
   const [idocNum, setIdocNum] = useState("");
