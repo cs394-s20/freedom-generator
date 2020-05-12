@@ -28,6 +28,7 @@
 
 .idocForm {
   background-color: #2D3142;
+  width: 50%;
   border-radius: 10px;
   margin-top: 20%;
   padding: 20px;
@@ -36,11 +37,18 @@
 }
 
 .criteria {
-  text-align: right;
+  display: flex;
+  flex-direction: column;
   background-color: #4F5D75;
   border-radius: 5px;
   padding: 5%;
   margin-bottom: 5%;
+}
+
+.criterion {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .App-link {
