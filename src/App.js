@@ -3,7 +3,7 @@ import './App.css';
 import {get_idocData} from './stub-idoc';
 import { useForm } from 'react-hook-form';
 import { TextField, Button } from '@material-ui/core';
-
+import { white } from 'color-name';
 
 function App() {
   console.log(process.env.REACT_APP_API_URL);
@@ -35,7 +35,15 @@ function App() {
           { errors.IDOC_Number && <p>IDOC Number is required.</p> }
           <br />
           <br />
-          <Button type="submit" variant="contained" color="primary">Submit</Button>
+          <div className="criteria">
+            <h5>Medical Furlough</h5>
+            <h5>Over 55 years old</h5>
+            <h5>12 months or less left on sentence</h5>
+            <h5>Served 25% of prison term</h5>
+            <h5>Convicted of class 2, 3, or 4 felony offense</h5>
+            <h5>Not convicted of exclusive event</h5>
+          </div>
+          <Button type="submit" variant="contained" >Submit</Button>
         </form>
         <div id="jsonData"></div>
       </div>
