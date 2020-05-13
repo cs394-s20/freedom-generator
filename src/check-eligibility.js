@@ -1,5 +1,18 @@
 import {get_idocData} from './stub-idoc';
 
+function getRidofQuote(str){
+    var i;
+    var fixed = "";
+    for (i=0;i<str.length;i++){
+        if (str[i] === '"'){
+        }
+        else{
+            fixed += str[i]
+        }
+    }
+    return fixed;
+}
+
 function age(data){
     var dob = JSON.stringify(data.dob);
     var parsedDOB = dob.split("/");
@@ -9,10 +22,10 @@ function age(data){
     var year = date.getFullYear();
     var yrsOld = 0;
     
-    if (month > parseInt(parsedDOB[0],10)) {
+    if (month > parseInt(getRidofQuote(parsedDOB[0]),10)) {
         yrsOld++;
     }
-    else if (month === parseInt(parsedDOB[0], 10)){
+    else if (month === parseInt(getRidofQuote(parsedDOB[0]), 10)){
         if (day>=parsedDOB[1]) {
             yrsOld++;
         }
@@ -28,17 +41,24 @@ function sentenceRemaining(data){
     var parsedDischarge = discharge.split("/");
     var date = new Date();
     var day = date.getDay();
-    var month = date.getMonth();
+    var month = date.getMonth()+1;
     var year = date.getFullYear();
     var yrsLeft = 0;
+    var months = 0;
     
-    if (month > parseInt(parsedDischarge[0],10)) yrsLeft--;
-    else if (month === parseInt(parsedDischarge[0],10)){
-        if (day>=parseInt(parsedDischarge[1],10)) {
-            yrsLeft--;
-        }
+    if (month > parseInt(getRidofQuote(parsedDischarge[0]),10)) {
+        months = month - parseInt(getRidofQuote(parsedDischarge[0]),10); 
+        yrsLeft--;
     }
-    yrsLeft += Math.abs(year-parseInt(parsedDischarge[2],10));
+    else if (month < parseInt(getRidofQuote(parsedDischarge[0]),10)){
+        months = 12-month + parseInt(getRidofQuote(parsedDischarge[0]),10);
+        yrsLeft--;
+    }
+    else if (month === parseInt(getRidofQuote(parsedDischarge[0]),10)){
+        yrsLeft--;
+        months = 11;
+    }
+    yrsLeft += Math.abs(year-parseInt(parsedDischarge[2],10)) + months/12 ;
     console.log("Years left: " + yrsLeft)
     return yrsLeft;
 }
@@ -48,17 +68,19 @@ function sentenceServed(data){
     var parsedStart = start.split("/");
     var date = new Date();
     var day = date.getDay();
-    var month = date.getMonth();
+    var month = date.getMonth()+1;
     var year = date.getFullYear();
     var yrsServed = 0;
+    var monthsServed = 0;
     
-    if (month > parseInt(parsedStart[0],10)) yrsServed++;
-    else if (month === parseInt(parsedStart[0],10)){
-        if (day>=parseInt(parsedStart[1],10)) {
-            yrsServed++;
-        }
+    if (month > parseInt(getRidofQuote(parsedStart[0]),10)) {
+        monthsServed = month-parseInt(getRidofQuote(parsedStart[0]),10);
     }
-    yrsServed += year-parseInt(parsedStart[2],10);
+    else if (month < parseInt(getRidofQuote(parsedStart[0]),10)){
+        yrsServed--;
+        monthsServed = 12-month+parseInt(getRidofQuote(parsedStart[0]),10);   
+    }
+    yrsServed += year-parseInt(parsedStart[2],10) + monthsServed/12;
     console.log("Served " + yrsServed + " years")
     return yrsServed;
 }
@@ -68,9 +90,13 @@ function sexCrime(data){
     var parsedCrime = crime.split(" ");
     var i;
     for (i = 0; i < parsedCrime.length; i++) {
-        if (parsedCrime[i] === "SEX") {
-            console.log("Is a sex offender")
-            return true;
+        var arr = parsedCrime[i].split("/")
+        let j = 0;
+        for (j=0;j<arr.length;j++){
+            if (arr[j] === "SEX") {
+                console.log("Is a sex offender")
+                return true;
+            }
         }
     }
     console.log("Is NOT a sex offender")
@@ -89,10 +115,14 @@ function holdingOffense(data){
     var parsedCrime = offense.split(" ");
     var i;
     for (i = 0; i < parsedCrime.length; i++){
-        var item = parsedCrime[i];
-        if (item === "ABUSE" || item==="AGG" || item ==="ARMED" || item ==="ARSON" || item ==="ASSAULT" || item==="BATTERY" || item==="BURGLARY" || item==="CANNABIS" || item==="CRIM" || item==="DOM" || item==="ENDANGERED" || item==="FORCE" || item==="HARM" || item==="HATE" || item==="HOME" || item==="INJURE" || item==="INJURY" || item==="KIDNAP" || item==="KIDNAPING" || item==="KILL" || item==="MANSL" || item==="MANSLAUGHTER" || item==="MURDER" || item==="MUTILATION" || item==="RAPE" || item==="ROBBERY" || item==="SUBS" || item==="SUBSTANCE" || item==="WEAPON"){
-            console.log("Violates holding offense")
-            return false;
+        var itemArr = parsedCrime[i].split("/");
+        let j = 0;
+        for (j = 0; j < itemArr.length;j++){
+            var item = itemArr[j];
+            if (item === "ABUSE" || item==="AGG" || item ==="ARMED" || item ==="ARSON" || item ==="ASSAULT" || item==="BATTERY" || item==="BURGLARY" || item==="CANNABIS" || item==="CRIM" || item==="DOM" || item==="ENDANGERED" || item==="FORCE" || item==="HARM" || item==="HATE" || item==="HOME" || item==="INJURE" || item==="INJURY" || item==="KIDNAP" || item==="KIDNAPING" || item==="KILL" || item==="MANSL" || item==="MANSLAUGHTER" || item==="MURDER" || item==="MUTILATION" || item==="RAPE" || item==="ROBBERY" || item==="SUBS" || item==="SUBSTANCE" || item==="WEAPON"){
+                console.log("Violates holding offense")
+                return false;
+            }
         }
     }
     console.log("Does not violate holding offenses")
@@ -100,7 +130,6 @@ function holdingOffense(data){
 }
 
 function check_eligibility(idocNum){
-    console.log("Ran check_eligibility")
     let data = get_idocData(idocNum)
     if (data === "Invalid IDOC number input") return
     let outcome = [];
@@ -115,7 +144,7 @@ function check_eligibility(idocNum){
     //release for home detention
     if (age(data) >= 55){
         if (sentenceRemaining(data)<=1){
-            if (sentenceServed(data) >= 0.25*data.sentence_date){
+            if (sentenceServed(data) >= 0.25*(data.sentence_years + data.sentence_months/12)){
                 if (sexCrime(data) === false){
                     outcome.push(" Home Detention")
                 }

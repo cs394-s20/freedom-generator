@@ -13,7 +13,7 @@ export function get_idocData(idocNum){
                 admission_type: "Discharged & recommitted",
                 parent_institution: "Dixon",
                 msr_date: "10/6/2033",
-                discharge_date: "10/6/2036",
+                discharge_date: "10/6/2021",
                 custody_date: "11/26/1982",
                 sentence_date: "2/15/1983",
                 crime_class: "Class X",
