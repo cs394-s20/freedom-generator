@@ -11,7 +11,7 @@ import { white } from 'color-name';
 
 function App() {
   console.log(process.env.REACT_APP_API_URL);
-  const [idocNum, setIdocNum] = useState("");
+  // const [idocNum, setIdocNum] = useState("");
 
   // Select icon based on return (innocent until proven guilty, unless they were already guilty..?)
   const [passed, setPassed] = useState([]);
@@ -24,21 +24,16 @@ function App() {
 
 
   const { register, handleSubmit, errors } = useForm();
+
   // callback function for check eligibility.
   const [submitted, setSubmitted] = useState('');
+  
   const onSubmit = data => {
     console.log(data);
-    setSubmitted('True');
-    handleCriteriaChange(101);
-  };
-
-  const handleChange = (event) =>{
-    setIdocNum(event.target.value);
-  }
-
-
-  const handleSubmit = (event) =>{
-    event.preventDefault();
+    // setSubmitted('True');
+    // handleCriteriaChange(101);
+    // data.preventDefault();
+    var idocNum = data["IDOC_Number"];
     console.log(get_idocData(idocNum));
     document.getElementById("jsonData").innerHTML = JSON.stringify(get_idocData(idocNum))
     //check eligibility
@@ -46,15 +41,39 @@ function App() {
     if (eligibility) {
       document.getElementById("eligibility").innerHTML = eligibility
     }
-  }
+  };
 
+  // const handleChange = (event) =>{
+  //   setIdocNum(event.target.value);
+  // }
 
+  // const handleSubmit = (event) =>{
+  //   event.preventDefault();
+  //   console.log(get_idocData(idocNum));
+  //   document.getElementById("jsonData").innerHTML = JSON.stringify(get_idocData(idocNum))
+  //   //check eligibility
+  //   var eligibility = return_eligibility(idocNum)
+  //   if (eligibility) {
+  //     document.getElementById("eligibility").innerHTML = eligibility
+  //   }
+  // }
 
   return (
     <div className="App">
       <div className="idocForm">
         <p>Use IDOC numbers: A00147, A00367, A01054</p>
         <form onSubmit={handleSubmit(onSubmit)}>
+        {/* <form onSubmit={(event) => {
+          event.preventDefault();
+          console.log(get_idocData(idocNum));
+          document.getElementById("jsonData").innerHTML = JSON.stringify(get_idocData(idocNum))
+          //check eligibility
+          var eligibility = return_eligibility(idocNum)
+          if (eligibility) {
+            document.getElementById("eligibility").innerHTML = eligibility
+          }
+        }}> */}
+
           <TextField label="IDOC Number" name="IDOC_Number" inputRef={register({required: true})} />
           { errors.IDOC_Number && <p>IDOC Number is required.</p> }
           <br />
