@@ -66,15 +66,19 @@ function sexCrime(data){
 function crimeClass(data){
     var crime = data.crime_class;
     var parsedCrime = crime.split(" ");
-    return parsedCrime[1]
+    return parsedCrime[1];
 }
 
 function holdingOffense(data){
     var offense = data.holding_offense;
-    var parsedCrime = offense.split("/");
+    var parsedCrime = offense.split(" ");
     for (i = 0; i < parsedCrime.length; i++){
-        if (i == "ARMED ROBBERY" || "INTENT TO KILL" || "INJURE" || "INJURY" || "BOD HARM" || "BODILY HARM" || "GREAT BODILY HARM" || "FORCE" || "WEAPON" || "HARM" || "")
+        item = parsedCrime[i];
+        if (item== "ABUSE" || item=="AGG" || item =="ARMED" || item =="ARSON" || item =="ASSAULT" || item=="BATTERY" || item=="BURGLARY" || item=="CANNABIS" || item=="CRIM" || item=="DOM" || item=="ENDANGERED" || item=="FORCE" || item=="HARM" || item=="HATE" || item=="HOME" || item=="INJURE" || item=="INJURY" || item=="KIDNAP" || item=="KIDNAPING" || item=="KILL" || item=="MANSL" || item=="MANSLAUGHTER" || item=="MURDER" || item=="MUTILATION" || item=="RAPE" || item=="ROBBERY" || item=="SUBS" || item=="SUBSTANCE" || item=="WEAPON"){
+            return false;
+        }
     }
+    return true;
 }
 
 function check_eligibility(idocNum){
@@ -101,9 +105,16 @@ function check_eligibility(idocNum){
 
     //electronic monitoring or home detention program
     if (crimeClass(data) == 2 || crimeClass(data)==3 || crimeClass(data)==4){
-
+        if (holdingOffense(data) == true){
+            outcome.push("Electric Monitoring");
+            for (i=0; i < outcome.length; i++){
+                if (outcome[i] == ("Home Detention")) return
+            }
+            outcome.push("Home Detention")
+        }
     }
 
+    //nothing to implement for 180 Days of Good Conduct
 
     return outcome;
 };
