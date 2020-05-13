@@ -64,7 +64,8 @@ function sentenceRemaining(data){
 }
 
 function sentenceServed(data){
-    var start = JSON.stringify(data.sentence_date);
+    var start = JSON.stringify(data.custody_date);
+    console.log(start);
     var parsedStart = start.split("/");
     var date = new Date();
     var day = date.getDay();

@@ -76,6 +76,7 @@ def getIdocProfile(idoc):
     longestSent = {}
     length = [0,0]
     for sentence in sentences:
+        print(sentence)
         tmp = sentence['sentence'].split()
         years = int(tmp[0])
         months = int(tmp[2])
