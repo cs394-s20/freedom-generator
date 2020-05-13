@@ -181,7 +181,7 @@ function return_eligibility(idocNum){
         outcome = "None"
     }
 
-    return data.name + " may be eligible for: " + outcome;
+    return data.name + " may be eligible to petition for: " + outcome;
 };
 
 export default return_eligibility;
