@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import {get_idocData} from './stub-idoc';
+import return_eligibility from './check-eligibility';
 import { useForm } from 'react-hook-form';
 import { TextField, Button } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -35,11 +36,19 @@ function App() {
     setIdocNum(event.target.value);
   }
 
-  // const handleSubmit = (event) =>{
-  //   console.log(get_idocData(idocNum));
-  //   document.getElementById("jsonData").innerHTML = JSON.stringify(get_idocData(idocNum))
-  //   //event.preventDefault();
-  // }
+
+  const handleSubmit = (event) =>{
+    event.preventDefault();
+    console.log(get_idocData(idocNum));
+    document.getElementById("jsonData").innerHTML = JSON.stringify(get_idocData(idocNum))
+    //check eligibility
+    var eligibility = return_eligibility(idocNum)
+    if (eligibility) {
+      document.getElementById("eligibility").innerHTML = eligibility
+    }
+  }
+
+
 
   return (
     <div className="App">
@@ -77,6 +86,7 @@ function App() {
           <Button type="submit" variant="contained" >Submit</Button>
         </form>
         <div id="jsonData"></div>
+        <div id="eligibility"></div>
       </div>
     </div>
   );
