@@ -1,7 +1,5 @@
 .App {
   display: flex;
-  align-content: center;
-  align-items: center;
   justify-content: center;
   text-align: center;
 }
@@ -29,11 +27,29 @@
 }
 
 .idocForm {
-  background-color: gray;
+  background-color: #2D3142;
+  width: 50%;
   border-radius: 10px;
-  margin-top: 200px;
+  margin-top: 20%;
   padding: 20px;
   padding-bottom: 30px;
+  color: white;
+}
+
+.criteria {
+  display: flex;
+  flex-direction: column;
+  background-color: #4F5D75;
+  border-radius: 5px;
+  padding: 5%;
+  margin-bottom: 5%;
+  text-align: left;
+}
+
+.criterion {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .App-link {
