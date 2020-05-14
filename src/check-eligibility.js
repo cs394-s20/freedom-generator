@@ -132,8 +132,9 @@ function holdingOffense(data){
 
 function check_eligibility(idocNum){
     let data = get_idocData(idocNum)
-    if (data === "Invalid IDOC number input") return
+    if (data === "Invalid IDOC number input") return [];
     let outcome = [];
+    if (data.sentence_years === 'LIFE') return [];
     //outcome is an array of what this person may be eligible for
 
     //release for medical furlough
