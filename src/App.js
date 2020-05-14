@@ -31,14 +31,17 @@ function App() {
   const [submitted, setSubmitted] = useState('');
 
   const onSubmit = data => {
+    console.log("data:");
     console.log(data);
     setSubmitted('True');
     // handleCriteriaChange(101);
     // data.preventDefault();
     var idocNum = data["IDOC_Number"];
+    var medical_furlough = data["medical_furlough"];
     console.log(get_idocData(idocNum));
+    console.log(medical_furlough)
     //check eligibility
-    var eligibility = return_eligibility(idocNum)
+    var eligibility = return_eligibility(idocNum, medical_furlough)
     setPassed(eligibility)
     if (eligibility) {
       document.getElementById("eligibility").innerHTML = eligibility
@@ -71,14 +74,14 @@ function App() {
                 label="IDOC Number &nbsp;"
                 labelPlacement="start"
               />
-              {errors.IDOC_Number && <p>IDOC Number is required.</p>}
+              {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
             </Grid>
           </Grid>
 
           <Grid container justify="center">
             <Grid item>
               <FormControlLabel
-                control={<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />}
+                control={<Checkbox name="medical_furlough" inputRef={register} inputProps={{ 'aria-label': 'Checkbox A' }} />}
                 label={popup}
                 labelPlacement="start"
               />
@@ -86,7 +89,6 @@ function App() {
           </Grid>
 
 
-          {errors.IDOC_Number && <p>IDOC Number is required.</p>}
           <br />
           <br />
           <Button type="submit" variant="contained" >Submit</Button>
@@ -96,7 +98,7 @@ function App() {
             <div className="criteria">
               <div className="criterion">Medical furlough
               
-                {passed.includes(" Medical Furlow") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+                {passed.includes(" Medical Furlough") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
               <div className="criterion">Release for home detention
                 {passed.includes(" Home Detention") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
