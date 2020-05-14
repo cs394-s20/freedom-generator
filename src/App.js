@@ -3,7 +3,7 @@ import './App.css';
 import { get_idocData } from './stub-idoc';
 import return_eligibility from './check-eligibility';
 import { useForm } from 'react-hook-form';
-import { TextField, Button, Checkbox} from '@material-ui/core';
+import { TextField, Button, Checkbox, Grid, FormControlLabel} from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
@@ -50,16 +50,26 @@ function App() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
 
-          {/* Please make this into a row */}
-          <p>IDOC number:</p>
-          <TextField label="IDOC Number" name="IDOC_Number" inputRef={register({ required: true })} />
-          {/* end row */}
-
-          {/* Please make this into a row */}
-          <p>Eligible for medical furlough?</p>
-          <InfoIcon/>
-          <Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }}/>
-          {/* end row */}
+        <Grid container justify="center">
+            <Grid item>
+              <FormControlLabel 
+                control={<TextField name="IDOC_Number" inputRef={register({ required: true })} />}
+                label="IDOC Number &nbsp;"
+                labelPlacement="start"
+              />
+              {errors.IDOC_Number && <p>IDOC Number is required.</p>}
+            </Grid>
+          </Grid>
+          
+          <Grid container justify="center">
+            <Grid item>
+              <FormControlLabel 
+                control={<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }}/>}
+                label={<span>Eligible for medical furlough?<InfoIcon/></span>}
+                labelPlacement="start"
+              />
+            </Grid>
+          </Grid>
 
 
           {errors.IDOC_Number && <p>IDOC Number is required.</p>}
