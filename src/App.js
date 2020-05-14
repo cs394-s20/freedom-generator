@@ -35,9 +35,9 @@ function App() {
     // data.preventDefault();
     var idocNum = data["IDOC_Number"];
     console.log(get_idocData(idocNum));
-    document.getElementById("jsonData").innerHTML = JSON.stringify(get_idocData(idocNum))
     //check eligibility
     var eligibility = return_eligibility(idocNum)
+    setPassed(eligibility)
     if (eligibility) {
       document.getElementById("eligibility").innerHTML = eligibility
     }
@@ -51,27 +51,27 @@ function App() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField label="IDOC Number" name="IDOC_Number" inputRef={register({required: true})} />
           { errors.IDOC_Number && <p>IDOC Number is required.</p> }
+          <div class = "search">
+            <Button type="submit" variant="contained" >Submit</Button>
+          </div>
           <br />
           <br />
+          <div id="eligibility"></div>
           {submitted && 
             <div className="criteria">
               <div className="criterion">Medical furlough
               {/* Here, we check the "passed" array to see if this particular test was passed.
                   If the given id exists in that array, we set the icon accordingly */}
-                {passed.includes(101) ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
+                {passed.includes(" Medical Furlow") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
               </div>
               <div className="criterion">Release for home detention
-                {passed.includes(102) ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
+                {passed.includes(" Home Detention") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
               </div>
-              <div className="criterion">Convicted of class 2, 3, or 4 felony offense
-                {passed.includes(105) ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
+              <div className="criterion">Electric Monitoring
+                {passed.includes(" Electric Monitoring") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
               </div>
             </div>}
-          
-          <Button type="submit" variant="contained" >Submit</Button>
         </form>
-        <div id="jsonData"></div>
-        <div id="eligibility"></div>
       </div>
     </div>
   );

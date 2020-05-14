@@ -159,10 +159,10 @@ function check_eligibility(idocNum){
             outcome.push(" Electric Monitoring");
             var i;
             for (i=0; i < outcome.length; i++){
-                if (outcome[i] === ("Home Detention")) break;
+                if (outcome[i] === (" Home Detention")) break;
             }
             if (i === outcome.length) {
-                outcome.push(" Home Detention ");
+                outcome.push(" Home Detention");
             }
         }
     }
