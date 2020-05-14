@@ -50,13 +50,16 @@ function App() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
 
-          <p>Use IDOC numbers: A00147, A00367, A01054</p>
+          {/* Please make this into a row */}
+          <p>IDOC number</p>
           <TextField label="IDOC Number" name="IDOC_Number" inputRef={register({ required: true })} />
+          {/* end row */}
 
-
-          <p>Are you eligible for medical furlough?</p>
+          {/* Please make this into a row */}
+          <p>Eligible for medical furlough?</p>
           <InfoIcon/>
           <Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }}/>
+          {/* end row */}
 
 
           {errors.IDOC_Number && <p>IDOC Number is required.</p>}
