@@ -51,7 +51,7 @@ function App() {
         <form onSubmit={handleSubmit(onSubmit)}>
 
           {/* Please make this into a row */}
-          <p>IDOC number</p>
+          <p>IDOC number:</p>
           <TextField label="IDOC Number" name="IDOC_Number" inputRef={register({ required: true })} />
           {/* end row */}
 
