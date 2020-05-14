@@ -53,7 +53,7 @@ function App() {
         <a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-at-higher-risk.html" target="_blank" data-tip data-for='popup'> <InfoIcon className="infoIcon" /> </a>
       </div>
       <ReactTooltip id='popup' type='error'>
-        <span>Click to see people who are higher at risk for severe illness</span>
+        <span>Click to see who qualifies as eligible.</span>
       </ReactTooltip>
     </React.Fragment>
   )
