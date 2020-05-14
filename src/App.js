@@ -49,20 +49,19 @@ function App() {
       <div className="idocForm">
         <p>Use IDOC numbers: A00147, A00367, A01054</p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextField label="IDOC Number" name="IDOC_Number" inputRef={register({required: true})} />
-          { errors.IDOC_Number && <p>IDOC Number is required.</p> }
-          <div class = "search">
-            <Button type="submit" variant="contained" >Submit</Button>
+          <div className= "search">
+            <TextField label="IDOC Number" name="IDOC_Number" style={{width:'50%', marginLeft: '25%'}} inputRef={register({required: true})} />
+            { errors.IDOC_Number && <p>IDOC Number is required.</p> }
+            <Button type="submit" variant="contained" style={{width:'50%', marginLeft: '25%', marginTop: '2%'}} >Import Data</Button>
           </div>
           <br />
           <br />
-          <div id="eligibility"></div>
           {submitted && 
             <div className="criteria">
               <div className="criterion">Medical furlough
               {/* Here, we check the "passed" array to see if this particular test was passed.
                   If the given id exists in that array, we set the icon accordingly */}
-                {passed.includes(" Medical Furlow") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
+                {passed.includes(" Medical Furlough") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
               </div>
               <div className="criterion">Release for home detention
                 {passed.includes(" Home Detention") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
@@ -72,6 +71,7 @@ function App() {
               </div>
             </div>}
         </form>
+        <div id="eligibility"></div>
       </div>
     </div>
   );
