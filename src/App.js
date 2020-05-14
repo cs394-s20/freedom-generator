@@ -3,7 +3,7 @@ import './App.css';
 import { get_idocData } from './stub-idoc';
 import return_eligibility from './check-eligibility';
 import { useForm } from 'react-hook-form';
-import { TextField, Button, Checkbox, Grid, FormControlLabel} from '@material-ui/core';
+import { TextField, Button, Checkbox, Grid, FormControlLabel } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
@@ -50,7 +50,7 @@ function App() {
     <React.Fragment>
       <div className="infoIconWrapper">
         Eligible for medical furlough?
-        <a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-at-higher-risk.html" target="_blank" data-tip data-for='popup'> <InfoIcon className="infoIcon"/> </a>
+        <a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-at-higher-risk.html" target="_blank" data-tip data-for='popup'> <InfoIcon className="infoIcon" /> </a>
       </div>
       <ReactTooltip id='popup' type='error'>
         <span>Click to see people who are higher at risk for severe illness</span>
@@ -63,11 +63,10 @@ function App() {
       <div className="idocForm">
 
         <form onSubmit={handleSubmit(onSubmit)}>
-{/* <<<<<<< HEAD */}
 
-        <Grid container justify="center">
+          <Grid container justify="center">
             <Grid item>
-              <FormControlLabel 
+              <FormControlLabel
                 control={<TextField name="IDOC_Number" inputRef={register({ required: true })} />}
                 label="IDOC Number &nbsp;"
                 labelPlacement="start"
@@ -75,11 +74,11 @@ function App() {
               {errors.IDOC_Number && <p>IDOC Number is required.</p>}
             </Grid>
           </Grid>
-          
+
           <Grid container justify="center">
             <Grid item>
-              <FormControlLabel 
-                control={<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }}/>}
+              <FormControlLabel
+                control={<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />}
                 label={popup}
                 labelPlacement="start"
               />
@@ -90,54 +89,23 @@ function App() {
           {errors.IDOC_Number && <p>IDOC Number is required.</p>}
           <br />
           <br />
+          <Button type="submit" variant="contained" >Submit</Button>
+
+          <div id="eligibility"></div>
           {submitted &&
-// =======
-//           <TextField label="IDOC Number" name="IDOC_Number" inputRef={register({required: true})} />
-//           { errors.IDOC_Number && <p>IDOC Number is required.</p> }
-//           <div class = "search">
-//             <Button type="submit" variant="contained" >Submit</Button>
-//           </div>
-//           <br />
-//           <br />
-//           <div id="eligibility"></div>
-//           {submitted && 
-// >>>>>>> master
             <div className="criteria">
               <div className="criterion">Medical furlough
-              {/* Here, we check the "passed" array to see if this particular test was passed.
-                  If the given id exists in that array, we set the icon accordingly */}
-// <<<<<<< HEAD
-//                 {passed.includes(101) ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-//               </div>
-//               <div className="criterion">Over 55 years old
-//                 {passed.includes(102) ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-//               </div>
-//               <div className="criterion">12 months or less left on sentence
-//                 {passed.includes(103) ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-//               </div>
-//               <div className="criterion">Served 25% of prison term
-//                 {passed.includes(104) ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-//               </div>
-//               <div className="criterion">Convicted of class 2, 3, or 4 felony offense
-//                 {passed.includes(105) ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-//               </div>
-//               <div className="criterion">Not convicted of excluded event
-//                 {passed.includes(106) ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-//               </div>
-//             </div>}
-
-//           <Button type="submit" variant="contained" >Submit</Button>
-// =======
-                {passed.includes(" Medical Furlow") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
+              
+                {passed.includes(" Medical Furlow") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
               <div className="criterion">Release for home detention
-                {passed.includes(" Home Detention") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
+                {passed.includes(" Home Detention") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
               <div className="criterion">Electric Monitoring
-                {passed.includes(" Electric Monitoring") ? <CheckCircleIcon style={{ color: green[500] }}/> : <CloseRoundedIcon style={{ color: red[500] }}/> }
+                {passed.includes(" Electric Monitoring") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
             </div>}
-{/* >>>>>>> master */}
+
         </form>
       </div>
     </div>
