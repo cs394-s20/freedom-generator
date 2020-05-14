@@ -9,6 +9,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { green, red } from '@material-ui/core/colors';
 import { white } from 'color-name';
+import ReactTooltip from "react-tooltip";
 
 function App() {
   console.log(process.env.REACT_APP_API_URL);
@@ -44,6 +45,17 @@ function App() {
     }
   };
 
+  let popup = (
+    <React.Fragment>
+      <div className="infoIconWrapper">
+        Eligible for medical furlough?
+        <a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-at-higher-risk.html" target="_blank" data-tip data-for='popup'> <InfoIcon className="infoIcon"/> </a>
+      </div>
+      <ReactTooltip id='popup' type='error'>
+        <span>Click to see people who are higher at risk for severe illness</span>
+      </ReactTooltip>
+    </React.Fragment>
+  )
   return (
     <div className="App">
       <div className="idocForm">
@@ -65,7 +77,7 @@ function App() {
             <Grid item>
               <FormControlLabel 
                 control={<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }}/>}
-                label={<span>Eligible for medical furlough?<InfoIcon/></span>}
+                label={popup}
                 labelPlacement="start"
               />
             </Grid>
