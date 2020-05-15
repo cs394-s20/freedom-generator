@@ -11,6 +11,9 @@ import { green, red } from '@material-ui/core/colors';
 import { white } from 'color-name';
 import ReactTooltip from "react-tooltip";
 
+
+
+
 function App() {
   console.log(process.env.REACT_APP_API_URL);
   // const [idocNum, setIdocNum] = useState("");
@@ -60,24 +63,22 @@ function App() {
       </ReactTooltip>
     </React.Fragment>
   )
-
   return (
     <div className="App">
       <div className="idocForm">
-
+        <h1>Freedom Generator</h1>
+        <h5>Enter IDOC number to check eligibility for release</h5>
         <form onSubmit={handleSubmit(onSubmit)}>
-
           <Grid container justify="center">
             <Grid item>
               <FormControlLabel
                 control={<TextField name="IDOC_Number" inputRef={register({ required: true })} />}
-                label="IDOC Number &nbsp;"
+                label="IDOC Number: &nbsp;"
                 labelPlacement="start"
               />
               {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
             </Grid>
           </Grid>
-
           <Grid container justify="center">
             <Grid item>
               <FormControlLabel
@@ -87,16 +88,10 @@ function App() {
               />
             </Grid>
           </Grid>
-
-
-          
-          
-          <Button type="submit" variant="contained" >Submit</Button>
+          <Button type="submit" variant="contained" >Import Data</Button>
           <br />
           <br />
           <br />
-
-          <div id="eligibility"></div>
           {submitted &&
             <div className="criteria">
               <div className="criterion">Medical furlough
@@ -106,12 +101,31 @@ function App() {
               <div className="criterion">Release for home detention
                 {passed.includes(" Home Detention") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
-              <div className="criterion">Electric Monitoring
+              <div className="sub-criterion">Over 55 years of age
+                {passed.includes(" Over 55 years of age") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+              </div>
+              <div className="sub-criterion">Less than 12 months left on sentence
+                {passed.includes(" Less than 12 months left on sentence") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+              </div>
+              <div className="sub-criterion">Served at least 25% of prison term
+                {passed.includes(" Served at least 25% of prison term") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+              </div>
+              <div className="sub-criterion">Not an excluded offense
+                {passed.includes(" Not a excluded offense") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+              </div>
+              <div className="criterion">Electronic Monitoring
                 {passed.includes(" Electric Monitoring") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
+              <div className="sub-criterion">Convicted of Class 2, 3, or 4 felony offense
+                {passed.includes(" Convicted of Class 2, 3, or 4 felony offense") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+              </div>
+              <div className="sub-criterion">Not an excluded offense
+                {passed.includes(" Not an excluded offense Electronic") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+              </div>
+              
             </div>}
-
         </form>
+        <div id="eligibility"></div>
       </div>
     </div>
   );
