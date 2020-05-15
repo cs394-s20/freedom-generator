@@ -89,9 +89,12 @@ function App() {
           </Grid>
 
 
-          <br />
-          <br />
+          
+          
           <Button type="submit" variant="contained" >Submit</Button>
+          <br />
+          <br />
+          <br />
 
           <div id="eligibility"></div>
           {submitted &&
