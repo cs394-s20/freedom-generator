@@ -150,9 +150,13 @@ function check_eligibility(idocNum, medical_furlough){
 
     //release for home detention
     if (age(data) >= 55){
+        outcome.push(" Over 55 years of age")
         if (sentenceRemaining(data)<=1){
+            outcome.push(" Less than 12 months left on sentence")
             if (sentenceServed(data) >= 0.25*(data.sentence_years + data.sentence_months/12)){
+                outcome.push(" Served at least 25% of prison term")
                 if (sexCrime(data) === false){
+                    outcome.push(" Not a excluded offense")
                     outcome.push(" Home Detention")
                 }
             }
@@ -161,7 +165,9 @@ function check_eligibility(idocNum, medical_furlough){
 
     //electronic monitoring or home detention program
     if (crimeClass(data) === 2 || crimeClass(data)===3 || crimeClass(data)===4){
+        outcome.push(" Convicted of Class 2, 3, or 4 felony offense")
         if (holdingOffense(data) === true){
+            outcome.push(" Not an excluded offense Electronic")
             outcome.push(" Electric Monitoring");
             var i;
             for (i=0; i < outcome.length; i++){

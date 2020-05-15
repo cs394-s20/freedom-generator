@@ -59,6 +59,13 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
+  font-weight: bold;
+}
+.sub-criterion {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 
 .App-link {
