@@ -11,6 +11,9 @@ import { green, red } from '@material-ui/core/colors';
 import { white } from 'color-name';
 import ReactTooltip from "react-tooltip";
 
+
+
+
 function App() {
   console.log(process.env.REACT_APP_API_URL);
   // const [idocNum, setIdocNum] = useState("");
@@ -70,7 +73,7 @@ function App() {
             <Grid item>
               <FormControlLabel
                 control={<TextField name="IDOC_Number" inputRef={register({ required: true })} />}
-                label="IDOC Number &nbsp;"
+                label="IDOC Number: &nbsp;"
                 labelPlacement="start"
               />
               {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}

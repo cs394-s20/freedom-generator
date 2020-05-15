@@ -54,7 +54,12 @@
   margin-bottom: 2%;
   text-align: left;
 }
-
+.test {
+  color: #FFFF !important;
+}
+.MuiInputBase-input{
+  color: white !important;
+}
 .criterion {
   display: flex;
   justify-content: space-between;
