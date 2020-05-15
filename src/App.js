@@ -47,7 +47,10 @@ function App() {
     var eligibility = return_eligibility(idocNum, medical_furlough)
     setPassed(eligibility)
     if (eligibility) {
-      document.getElementById("eligibility").innerHTML = eligibility
+      if (eligibility.includes(" Home Detention" || eligibility.includes(" Electric Monitoring") || eligibility.includes(" Medical Furlough"))) {
+        document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0,2) + ' is eligible to petition for release.';
+      }
+      else {document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0,2) + ' is not eligible to petition for release.'}
     }
   };
 
