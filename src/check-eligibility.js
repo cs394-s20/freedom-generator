@@ -130,10 +130,11 @@ function holdingOffense(data){
     return true;
 }
 
-function check_eligibility(idocNum){
+function check_eligibility(idocNum, medical_furlough){
     let data = get_idocData(idocNum)
-    if (data === "Invalid IDOC number input") return
+    if (data === "Invalid IDOC number input") return [];
     let outcome = [];
+    if (data.sentence_years === 'LIFE') return [];
     //outcome is an array of what this person may be eligible for
 
     //release for medical furlough
@@ -141,6 +142,11 @@ function check_eligibility(idocNum){
     // if (age(data) >= 65){
     //     //if have any of these medical conditions https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-at-higher-risk.html
     // }
+
+    // if they check that they're eligible for medical furlough
+    if (medical_furlough){
+        outcome.push(" Medical Furlough")
+    }
 
     //release for home detention
     if (age(data) >= 55){
@@ -173,15 +179,15 @@ function check_eligibility(idocNum){
 };
 
 
-function return_eligibility(idocNum){
+function return_eligibility(idocNum, medical_furlough){
     let data = get_idocData(idocNum);
     if (data === "Invalid IDOC number input") return
-    let outcome = check_eligibility(idocNum);
+    let outcome = check_eligibility(idocNum, medical_furlough);
     if (outcome.length === 0){
         outcome = "None"
     }
 
-    return data.name + " may be eligible for: " + outcome;
+    return data.name + " may be eligible to petition for: " + outcome;
 };
 
 export default return_eligibility;

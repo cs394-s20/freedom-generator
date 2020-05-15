@@ -51,7 +51,7 @@
   background-color: #4F5D75;
   border-radius: 5px;
   padding: 5%;
-
+  margin-bottom: 2%;
   text-align: left;
 }
 
@@ -76,4 +76,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.infoIconWrapper{
+  display: flex;
+  align-items: center;
+}
+.infoIcon{
+  margin: 5px 0 0 5px;
+  color: white;
+}
+
+.search{
+  margin-left: 10px;
+  margin-top: 5px;
+
+}
+
+.error{
+  color: red;
 }
