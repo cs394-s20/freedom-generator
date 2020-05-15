@@ -60,13 +60,12 @@ function App() {
       </ReactTooltip>
     </React.Fragment>
   )
-
   return (
     <div className="App">
       <div className="idocForm">
-
+        <h1>Freedom Generator</h1>
+        <h5>Enter IDOC number to check eligibility for release</h5>
         <form onSubmit={handleSubmit(onSubmit)}>
-
           <Grid container justify="center">
             <Grid item>
               <FormControlLabel
@@ -77,7 +76,6 @@ function App() {
               {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
             </Grid>
           </Grid>
-
           <Grid container justify="center">
             <Grid item>
               <FormControlLabel
@@ -87,16 +85,10 @@ function App() {
               />
             </Grid>
           </Grid>
-
-
-          
-          
-          <Button type="submit" variant="contained" >Submit</Button>
+          <Button type="submit" variant="contained" >Import Data</Button>
           <br />
           <br />
           <br />
-
-          <div id="eligibility"></div>
           {submitted &&
             <div className="criteria">
               <div className="criterion">Medical furlough
@@ -110,7 +102,6 @@ function App() {
                 {passed.includes(" Electric Monitoring") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
             </div>}
-
         </form>
         <div id="eligibility"></div>
       </div>
