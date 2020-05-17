@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import { get_idocData } from './stub-idoc';
 import return_eligibility from './check-eligibility';
-import { useForm } from 'react-hook-form';
-import { TextField, Button, Checkbox, Grid, FormControlLabel } from '@material-ui/core';
+import { useForm, Controller } from 'react-hook-form';
+import { TextField, Button, Checkbox, Grid, FormControlLabel, Typography, Select, MenuItem } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
@@ -46,9 +46,9 @@ function Home() {
     setPassed(eligibility)
     if (eligibility) {
       if (eligibility.includes(" Home Detention" || eligibility.includes(" Electric Monitoring") || eligibility.includes(" Medical Furlough"))) {
-        document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0,2) + ' is eligible to petition for release.';
+        document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is eligible to petition for release.';
       }
-      else {document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0,2) + ' is not eligible to petition for release.'}
+      else { document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is not eligible to petition for release.' }
     }
   };
 
@@ -96,7 +96,7 @@ function Home() {
           {submitted &&
             <div className="criteria">
               <div className="criterion">Medical furlough
-              
+
                 {passed.includes(" Medical Furlough") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
               <div className="criterion">Release for home detention
@@ -123,7 +123,7 @@ function Home() {
               <div className="sub-criterion">Not an excluded offense
                 {passed.includes(" Not an excluded offense Electronic") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
-              
+
             </div>}
         </form>
         {/* add by zhu, will be deleted */}
@@ -137,7 +137,7 @@ function Home() {
 
 
 function EmailForm() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
   const onSubmit = data => {
     console.log(data);
   }
@@ -148,24 +148,93 @@ function EmailForm() {
         <h1>Freedom Generator</h1>
         <h5>Email Form</h5>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container justify="center">
-            <Grid item>
-              <FormControlLabel
-                control={<TextField name="emailAddress" inputRef={register({ required: true,
-                                                                  pattern: {
-                                                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                                                    message: "invalid",
-                                                                  } })} />}
-                label="Email Address: &nbsp;"
-                labelPlacement="start"
-              />
-              {errors.emailAddress && errors.emailAddress.type === "required" && <p className="error">Email address is required.</p>}
-              {errors.emailAddress && errors.emailAddress.type === "pattern" && <p className="error">Invalid Email Address.</p>}
+          <Grid
+            container
+            justify="flex-start"
+            direction="column"
+            alignItems="flex-start"
+            spacing={3}>
+            <Grid
+              item
+              container
+              direction="row"
+              spacing={3}
+            >
+              <Grid item xs={6}>
+                <Typography>
+                  Email Address:
+              </Typography>
+              </Grid>
+              <Grid item>
+                <TextField
+                  name="emailAddress"
+                  size="small"
+                  variant="outlined"
+                  inputRef={register({
+                    required: true,
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "invalid",
+                    }
+                  })}
+                />
+                {errors.emailAddress && errors.emailAddress.type === "required" && <p className="error">Email address is required.</p>}
+                {errors.emailAddress && errors.emailAddress.type === "pattern" && <p className="error">Invalid Email Address.</p>}
+              </Grid>
             </Grid>
+            <Grid
+              item
+              container
+              direction="row"
+              spacing={3}
+            >
+              <Grid item xs={6}>
+                <Typography>
+                  What shelter will you provide for this individual?
+              </Typography>
+              </Grid>
+              <Grid item>
+                <TextField
+                  name="shelter"
+                  multiline={true}
+                  inputRef={register({
+                    required: true
+                  })}
+                  rows={4}
+                  variant="outlined"
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              container
+              direction="row"
+              spacing={3}
+            >
+              <Grid item xs={6}>
+                <Typography>
+                  What is your relationship to this individual?
+              </Typography>
+              </Grid>
+              <Grid item>
+                <Controller 
+                  as={
+                    <Select>
+                      <MenuItem value="Mother">Mother</MenuItem>
+                      <MenuItem value="Father">Father</MenuItem>
+                    </Select>
+                  }
+                  control={control}
+                  name="relationship"
+                   />
+                
+              </Grid>
+            </Grid>
+
           </Grid>
           <br />
           <br />
-          <Button type="submit" variant="contained" >Submit</Button>
+          <Button type="submit" variant="contained" >Preview Email</Button>
         </form>
       </div>
     </div>
@@ -178,7 +247,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/email"  component={EmailForm} />
+        <Route path="/email" component={EmailForm} />
       </Switch>
     </Router>
   );
