@@ -95,8 +95,8 @@ export default function Home() {
 
                 {passed.includes(" Medical Furlough") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
-              <div className="criterion">Release for home detention
-                {passed.includes(" Home Detention") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+              <div className="criterion">Electronic Monitoring or Home Detention
+                {passed.includes(" EM or HD 1") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
               <div className="sub-criterion">Over 55 years of age
                 {passed.includes(" Over 55 years of age") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
@@ -110,8 +110,8 @@ export default function Home() {
               <div className="sub-criterion">Not an excluded offense
                 {passed.includes(" Not a excluded offense") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
-              <div className="criterion">Electronic Monitoring
-                {passed.includes(" Electric Monitoring") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
+              <div className="criterion">Electronic Monitoring or Home Detention
+                {passed.includes(" EM or HD 2") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
               <div className="sub-criterion">Convicted of Class 2, 3, or 4 felony offense
                 {passed.includes(" Convicted of Class 2, 3, or 4 felony offense") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
