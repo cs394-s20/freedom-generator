@@ -109,3 +109,17 @@
 .error{
   color: red;
 }
+
+
+/* add by zhu */
+
+.emailForm {
+  background-color: #2D3142;
+  width: 50%;
+  border-radius: 10px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  padding: 20px;
+  padding-bottom: 20px;
+  color: white;
+}
