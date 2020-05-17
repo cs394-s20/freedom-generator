@@ -137,7 +137,11 @@ function Home() {
 
 
 function EmailForm() {
-  const { register, handleSubmit, errors, control } = useForm();
+  const defaultValues = {
+    relationship: "",
+
+  };
+  const { register, handleSubmit, errors, control } = useForm({defaultValues});
   const onSubmit = data => {
     console.log(data);
   }
@@ -218,19 +222,40 @@ function EmailForm() {
               </Grid>
               <Grid item>
                 <Controller 
-                  as={
-                    <Select>
-                      <MenuItem value="Mother">Mother</MenuItem>
-                      <MenuItem value="Father">Father</MenuItem>
-                    </Select>
+                  as = {
+                  <Select>
+                    <MenuItem value="Mother">Mother</MenuItem>
+                    <MenuItem value="Father">Father</MenuItem>
+                  </Select>
                   }
-                  control={control}
                   name="relationship"
-                   />
-                
+                  control={control}
+                />
               </Grid>
             </Grid>
-
+            <Grid
+              item
+              container
+              direction="row"
+              spacing={3}
+            >
+              <Grid item xs={6}>
+                <Typography>
+                  What can you say to vouch for this person's character?
+              </Typography>
+              </Grid>
+              <Grid item>
+                <TextField
+                  name="character"
+                  multiline={true}
+                  inputRef={register({
+                    required: true
+                  })}
+                  rows={4}
+                  variant="outlined"
+                />
+              </Grid>
+            </Grid>
           </Grid>
           <br />
           <br />
