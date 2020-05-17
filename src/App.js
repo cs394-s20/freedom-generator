@@ -10,11 +10,9 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { green, red } from '@material-ui/core/colors';
 import { white } from 'color-name';
 import ReactTooltip from "react-tooltip";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
-
-
-
-function App() {
+function Home() {
   console.log(process.env.REACT_APP_API_URL);
   // const [idocNum, setIdocNum] = useState("");
 
@@ -128,9 +126,61 @@ function App() {
               
             </div>}
         </form>
+        {/* add by zhu, will be deleted */}
+        {/* or window.location.href */}
+        <Button onClick={() => { window.open('/email') }}>test Button</Button>
         <div id="eligibility"></div>
       </div>
     </div>
+  );
+}
+
+
+function EmailForm() {
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = data => {
+    console.log(data);
+  }
+
+  return (
+    <div className="App">
+      <div className="idocForm">
+        <h1>Freedom Generator</h1>
+        <h5>Email Form</h5>
+        <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container justify="center">
+            <Grid item>
+              <FormControlLabel
+                control={<TextField name="emailAddress" inputRef={register({ required: true,
+                                                                  pattern: {
+                                                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                                                    message: "invalid",
+                                                                  } })} />}
+                label="Email Address: &nbsp;"
+                labelPlacement="start"
+              />
+              {errors.emailAddress && errors.emailAddress.type === "required" && <p className="error">Email address is required.</p>}
+              {errors.emailAddress && errors.emailAddress.type === "pattern" && <p className="error">Invalid Email Address.</p>}
+            </Grid>
+          </Grid>
+          <br />
+          <br />
+          <Button type="submit" variant="contained" >Submit</Button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/email"  component={EmailForm} />
+      </Switch>
+    </Router>
   );
 }
 
