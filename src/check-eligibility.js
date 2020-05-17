@@ -143,12 +143,12 @@ function check_eligibility(idocNum, medical_furlough){
     //     //if have any of these medical conditions https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-at-higher-risk.html
     // }
 
-    // if they check that they're eligible for medical furlough
+    // if they check that they're eligible for medical furlough 730 ILCS 5/3-11-1(a)(2)
     if (medical_furlough){
         outcome.push(" Medical Furlough")
     }
 
-    //release for home detention
+    //electronic monitoring or home detention 730 ILCS 5/5-8A-3(d)
     if (age(data) >= 55){
         outcome.push(" Over 55 years of age")
         if (sentenceRemaining(data)<=1){
@@ -163,7 +163,7 @@ function check_eligibility(idocNum, medical_furlough){
         }
     }
 
-    //electronic monitoring or home detention program
+    //electronic monitoring or home detention 730 ILCS 5/5-8A-3(e)
     if (crimeClass(data) === 2 || crimeClass(data)===3 || crimeClass(data)===4){
         outcome.push(" Convicted of Class 2, 3, or 4 felony offense")
         if (holdingOffense(data) === true){
