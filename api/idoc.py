@@ -6,10 +6,19 @@ URL = "https://www.idoc.state.il.us/subsections/search/ISinms2.asp?idoc="
 def getIdocProfile(idoc):
     out = {}
     html = BeautifulSoup(requests.post(URL + str(idoc)).content, 'html.parser')
-
+    if "Inmate NOT found" in html.text:
+        out["found"] = False
+        return out
+    else:
+        out["found"] = True
     name_tag = html.find('font', attrs={'size':'4'})
-    name = [text.replace(' ', '') for text in name_tag.text.split('-')[1].split(',')]
+    name = [text.replace(' ', '') for text in name_tag.text.split(' - ')[1].split(',')]
     out["name"] = name[0] + ", " + name[1]
+
+    physicalProfTable = None
+    admissionInfoTable = None
+    sentencingTable = None
+    institutionTable = None
 
     tables = html.find_all('table', attrs={'width':'390'})
     for table in tables:
@@ -21,7 +30,7 @@ def getIdocProfile(idoc):
             sentencingTable = table
         if "Parent Institution" in table.text:
             institutionTable = table
-            print(institutionTable)
+            
 
 
 
@@ -45,6 +54,8 @@ def getIdocProfile(idoc):
         vals = row.find_all('td')
         if 'Parent Institution' in vals[0].text:
             out["parent_institution"] = " ".join(vals[1].text.split())
+    if sentencingTable is None:
+        return out
     rows = sentencingTable.find_all('tr')
     i = 0
     sentences = []
@@ -74,30 +85,42 @@ def getIdocProfile(idoc):
     
 
     longestSent = {}
-    length = [0,0]
+    length = [-1,-1]
     for sentence in sentences:
-        print(sentence)
+        
         tmp = sentence['sentence'].split()
-        if 'LIFE' in tmp[0]:
+        if len(tmp) == 0:
+            pass
+        elif 'DEATH' in tmp[0]:
+            length = ["DEATH", 0]
+            longestSent = sentence
+            break
+        elif 'LIFE' in tmp[0]:
             length = ['LIFE', 0]
             longestSent = sentence
             break
-        years = int(tmp[0])
-        months = int(tmp[2])
-        if years > length[0]:
-            length = [years, months]
-            longestSent = sentence
-        elif years == length[0]:
-            if months > length[1]:
+        elif 'SDP' in tmp[0]:
+            if length[0] == -1:
+                length = ['SDP', 0]
+                longestSent = sentence
+            
+        else:
+            years = int(tmp[0])
+            months = int(tmp[2])
+            if not isinstance(length[0], int) or years > length[0]:
                 length = [years, months]
                 longestSent = sentence
+            elif years == length[0]:
+                if months > length[1]:
+                    length = [years, months]
+                    longestSent = sentence
 
     out["crime_class"] = "Class " + longestSent['class']
     out["holding_offense"] = " ".join(longestSent['offense'].split())
     out["sentence_years"] = length[0]
     out["sentence_months"] = length[1]
     out["custody_date"] = longestSent['custody_date']
-    print(out)
+    
 
     #next_table = name_tag.find_parent('table').next_sibling()
     #rows=next_table.find_all('tr')
