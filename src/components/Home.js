@@ -41,7 +41,7 @@ export default function Home() {
     var eligibility = return_eligibility(idocNum, medical_furlough)
     setPassed(eligibility)
     if (eligibility) {
-      if (eligibility.includes(" EM or HD 1" || eligibility.includes(" EM or HD 2") || eligibility.includes(" Medical Furlough"))) {
+      if (eligibility.includes(" EM or HD 1") || eligibility.includes(" EM or HD 2") || eligibility.includes(" Medical Furlough")) {
         document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is eligible to petition for release.';
       }
       else { document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is not eligible to petition for release.' }
