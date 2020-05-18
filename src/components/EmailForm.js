@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Button, Grid, Typography, Select, MenuItem } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { white, green, red } from '@material-ui/core/colors';
+import Modal from './Modal/Modal.js'
 
 const styles = {
   root: {
@@ -23,11 +24,26 @@ function EmailForm(props) {
 
   };
   const { register, handleSubmit, errors, control } = useForm({defaultValues});
+  const { classes } = props;
+  const [modalOpen, setModalOpen] = useState(false); // state that checks if modal is open or not
+  const [data, setData] = useState(null);
+
   const onSubmit = data => {
     data.idocData = location.state;
+
+    // modal for email preview
+    setData(data);
+    setModalOpen(true);
+
     console.log(data);
   }
-  const { classes } = props;
+
+  // create modal component
+  let modal;
+  if (modalOpen){
+    console.log(data)
+    modal = (<Modal setModalOpen={setModalOpen} data={data}/>);
+  }
 
   return (
     <div className="App">
@@ -152,6 +168,7 @@ function EmailForm(props) {
           <br />
           <br />
           <Button type="submit" variant="contained" color="primary">Preview Email</Button>
+          {modal}
         </form>
       </div>
     </div>

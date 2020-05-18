@@ -1,0 +1,28 @@
+.modal{
+    background-color: white;
+    height: 300px;
+    width: 500px;
+    position: fixed;
+    top: 25%;
+    left: 37%;
+    border-radius: 15px;
+    border: 1px solid lightgray;
+    justify-content: flex-start;
+    padding-left: 20px;
+
+    &__close{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.x{
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+p{
+    text-align: left;
+}
