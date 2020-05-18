@@ -69,9 +69,10 @@ export default function Home() {
           <Grid container justify="center">
             <Grid item>
               <FormControlLabel
-                control={<TextField name="IDOC_Number" inputRef={register({ required: true })} />}
+                control={<TextField InputProps={{style:{ background: 'white', paddingLeft:10 }}}name="IDOC_Number" inputRef={register({ required: true })} />}
                 label="IDOC Number: &nbsp;"
                 labelPlacement="start"
+                Props={{style:{ color:"white" }}}
               />
               {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
             </Grid>
@@ -120,14 +121,12 @@ export default function Home() {
                 {passed.includes(" Not an excluded offense Electronic") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
             </div>}
-            {submitted && <Link to={{pathname:"/email", state:passed}}>
-                <Typography>Petition for release</Typography>
-              </Link>}
+            <div id="eligibility"></div>
+            {submitted && //&& <Link to={{pathname:"/email", state:passed}}>
+                <Button type="submit" variant="contained" color="primary" onClick={() => { window.open('/email') }}>Draft Petition</Button>
+              //</Link>}
+            }
         </form>
-        {/* add by zhu, will be deleted */}
-        {/* or window.location.href */}
-        <Button onClick={() => { window.open('/email') }}>test Button</Button>
-        <div id="eligibility"></div>
       </div>
     </div>
   );

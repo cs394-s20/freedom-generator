@@ -1,9 +1,22 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { TextField, Button, Grid, Typography, Select, MenuItem } from '@material-ui/core';
+import { Button, Grid, Typography, Select, MenuItem } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { white, green, red } from '@material-ui/core/colors';
 
-export default function EmailForm(props) {
+const styles = {
+  root: {
+    background: "white",
+  },
+  input: {
+    padding:-10
+  }
+};
+
+function EmailForm(props) {
   let location = useLocation();
   const defaultValues = {
     relationship: "",
@@ -14,13 +27,15 @@ export default function EmailForm(props) {
     data.idocData = location.state;
     console.log(data);
   }
+  const { classes } = props;
 
   return (
     <div className="App">
-      <div className="idocForm">
+      <div className="emailForm">
         <h1>Freedom Generator</h1>
-        <h5>Email Form</h5>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <div></div>
+        <form class="formEmail" onSubmit={handleSubmit(onSubmit)}>
+          <h3>Email Form</h3>
           <Grid
             container
             justify="flex-start"
@@ -40,6 +55,7 @@ export default function EmailForm(props) {
               </Grid>
               <Grid item>
                 <TextField
+                  className={classes.root}
                   name="emailAddress"
                   size="small"
                   variant="outlined"
@@ -50,6 +66,10 @@ export default function EmailForm(props) {
                       message: "invalid",
                     }
                   })}
+                  InputProps={{
+                    className: classes.input
+                    //style:{ background: 'black' }
+                  }}
                 />
                 {errors.emailAddress && errors.emailAddress.type === "required" && <p className="error">Email address is required.</p>}
                 {errors.emailAddress && errors.emailAddress.type === "pattern" && <p className="error">Invalid Email Address.</p>}
@@ -69,6 +89,7 @@ export default function EmailForm(props) {
               <Grid item>
                 <TextField
                   name="shelter"
+                  className={classes.root}
                   multiline={true}
                   inputRef={register({
                     required: true
@@ -99,6 +120,7 @@ export default function EmailForm(props) {
                   }
                   name="relationship"
                   control={control}
+                  className={classes.root}
                 />
               </Grid>
             </Grid>
@@ -116,6 +138,7 @@ export default function EmailForm(props) {
               <Grid item>
                 <TextField
                   name="character"
+                  className={classes.root}
                   multiline={true}
                   inputRef={register({
                     required: true
@@ -128,9 +151,15 @@ export default function EmailForm(props) {
           </Grid>
           <br />
           <br />
-          <Button type="submit" variant="contained" >Preview Email</Button>
+          <Button type="submit" variant="contained" color="primary">Preview Email</Button>
         </form>
       </div>
     </div>
   );
 }
+
+EmailForm.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(EmailForm);
