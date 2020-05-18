@@ -34,8 +34,8 @@ function EmailForm(props) {
       <div className="emailForm">
         <h1>Freedom Generator</h1>
         <div></div>
-        <h3>Email Form</h3>
         <form class="formEmail" onSubmit={handleSubmit(onSubmit)}>
+          <h3>Email Form</h3>
           <Grid
             container
             justify="flex-start"
@@ -151,7 +151,7 @@ function EmailForm(props) {
           </Grid>
           <br />
           <br />
-          <Button type="submit" variant="contained" >Preview Email</Button>
+          <Button type="submit" variant="contained" color="primary">Preview Email</Button>
         </form>
       </div>
     </div>

@@ -127,10 +127,20 @@
 }
 
 .formEmail {
-  background-color: #4F5D75;
+  background-color: #b2c8d9;
   margin-bottom: 20px;
   padding: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
   border-radius: 10px;
+  color: #2D3142;
+}
+
+h3{
+  margin-top: -5px;
+  margin-bottom: 40px;
+  font-size: x-large;
+  font-weight: 500;
+  color: #2D3142;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
