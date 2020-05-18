@@ -17,7 +17,7 @@ export default function EmailForm(props) {
 
   return (
     <div className="App">
-      <div className="idocForm">
+      <div className="emailForm">
         <h1>Freedom Generator</h1>
         <h5>Email Form</h5>
         <form onSubmit={handleSubmit(onSubmit)}>

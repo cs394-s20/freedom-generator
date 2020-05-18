@@ -124,9 +124,6 @@ export default function Home() {
                 <Typography>Petition for release</Typography>
               </Link>}
         </form>
-        {/* add by zhu, will be deleted */}
-        {/* or window.location.href */}
-        <Button onClick={() => { window.open('/email') }}>test Button</Button>
         <div id="eligibility"></div>
       </div>
     </div>
