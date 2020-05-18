@@ -122,10 +122,10 @@ export default function Home() {
               </div>
             </div>}
             <div id="eligibility"></div>
-            {submitted && //&& <Link to={{pathname:"/email", state:passed}}>
+            {/* {submitted && //&& <Link to={{pathname:"/email", state:passed}}>
                 <Button type="submit" variant="contained" color="primary" onClick={() => { window.open('/email') }}>Draft Petition</Button>
               //</Link>}
-            }
+            } */}
         </form>
       </div>
     </div>
