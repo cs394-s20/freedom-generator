@@ -27,25 +27,31 @@ export default function Home() {
 
   // callback function for check eligibility.
   const [submitted, setSubmitted] = useState('');
+  const [loading, setLoading] = useState('');
 
   const onSubmit = data => {
     console.log("data:");
     console.log(data);
-    setSubmitted('True');
-    // handleCriteriaChange(101);
-    // data.preventDefault();
-    var idocNum = data["IDOC_Number"];
-    var medical_furlough = data["medical_furlough"];
-    console.log(medical_furlough)
-    //check eligibility
-    var eligibility = return_eligibility(idocNum, medical_furlough)
-    setPassed(eligibility)
-    if (eligibility) {
-      if (eligibility.includes(" EM or HD 1") || eligibility.includes(" EM or HD 2") || eligibility.includes(" Medical Furlough")) {
-        document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is eligible to petition for release.';
+    console.log("Loading is: ");
+    console.log(loading);
+    setTimeout(function(){
+      setSubmitted('True');
+      // handleCriteriaChange(101);
+      // data.preventDefault();
+      var idocNum = data["IDOC_Number"];
+      var medical_furlough = data["medical_furlough"];
+      console.log(medical_furlough)
+      //check eligibility
+      var eligibility = return_eligibility(idocNum, medical_furlough)
+      setPassed(eligibility)
+      if (eligibility) {
+        if (eligibility.includes(" EM or HD 1") || eligibility.includes(" EM or HD 2") || eligibility.includes(" Medical Furlough")) {
+          document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is eligible to petition for release.';
+        }
+        else { document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is not eligible to petition for release.' }
       }
-      else { document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is not eligible to petition for release.' }
-    }
+      setLoading("");
+    },1);
   };
 
 
@@ -86,9 +92,10 @@ export default function Home() {
               />
             </Grid>
           </Grid>
-          <Button type="submit" variant="contained" >Import Data</Button>
+          <Button type="submit" variant="contained" onClick={()=> setLoading("Loading...")}>Import Data</Button>
           <br />
           <br />
+          <div id="Loading">{loading}</div>
           <br />
           {submitted &&
             <div className="criteria">
