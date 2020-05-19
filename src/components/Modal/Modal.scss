@@ -1,14 +1,17 @@
 .modal{
     background-color: white;
-    height: 300px;
-    width: 500px;
+    height: 350px;
+    // width: 550px;
+    width: 44%;
     position: fixed;
     top: 25%;
-    left: 37%;
+    left: 27%;
+
     border-radius: 15px;
-    border: 1px solid lightgray;
+    border: 1px solid grey;
     justify-content: flex-start;
     padding-left: 20px;
+    box-shadow: 3px 3px grey;
 
     &__close{
         width: 100%;
@@ -25,4 +28,7 @@
 
 p{
     text-align: left;
+}
+.export-button{
+    
 }
