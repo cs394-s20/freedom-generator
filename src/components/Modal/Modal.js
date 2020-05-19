@@ -13,7 +13,8 @@ function Modal(props){
             <p><strong>Shelter: </strong>{props.data.shelter}</p>
             <p><strong>Relationship: </strong>{props.data.relationship}</p>
             <p><strong>Character: </strong>{props.data.character}</p>
-
+            <br/>
+            <br/>
             <Button variant="contained" color="secondary" className="export-button">Export</Button>
         </div>
     )
