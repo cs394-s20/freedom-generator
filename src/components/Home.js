@@ -28,23 +28,35 @@ export default function Home() {
   // callback function for check eligibility.
   const [submitted, setSubmitted] = useState('');
 
-  const onSubmit = data => {
-    console.log("data:");
-    console.log(data);
-    setSubmitted('True');
-    // handleCriteriaChange(101);
-    // data.preventDefault();
+  const [loading, setLoading] = useState(false);
+  const [loadingtext,setLoadingtext] = useState('');
+  const [outcome, setOutcome] = useState('');
+
+
+  function AfterLoading(data) {
     var idocNum = data["IDOC_Number"];
     var medical_furlough = data["medical_furlough"];
-    console.log(medical_furlough)
-    //check eligibility
     var eligibility = return_eligibility(idocNum, medical_furlough)
     setPassed(eligibility)
     if (eligibility) {
       if (eligibility.includes(" EM or HD 1") || eligibility.includes(" EM or HD 2") || eligibility.includes(" Medical Furlough")) {
-        document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is eligible to petition for release.';
+        setOutcome(eligibility.split(' ').slice(0, 2) + ' is eligible to petition for release.');
       }
-      else { document.getElementById("eligibility").innerHTML = eligibility.split(' ').slice(0, 2) + ' is not eligible to petition for release.' }
+      else { setOutcome(eligibility.split(' ').slice(0, 2) + ' is not eligible to petition for release.') }
+    }
+    setSubmitted('True');
+    setLoadingtext("");
+  }
+
+  const onSubmit = data => {
+    setLoading(true);
+    console.log("data:");
+    console.log(data);
+    if (loading === true){
+      setLoadingtext("Loading...");
+      setTimeout(function(){
+        AfterLoading(data)
+      }, 1);
     }
   };
 
@@ -86,8 +98,10 @@ export default function Home() {
               />
             </Grid>
           </Grid>
-          <Button type="submit" variant="contained" >Import Data</Button>
+          <Button type="submit" variant="contained" onClick={() => setLoading(true)}>Import Data</Button>
           <br />
+          <br />
+          <div id = "Loading">{loadingtext}</div>
           <br />
           <br />
           {submitted &&
@@ -121,9 +135,11 @@ export default function Home() {
                 {passed.includes(" Not an excluded offense Electronic") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
             </div>}
-            <div id="eligibility"></div>
-            {submitted && //&& <Link to={{pathname:"/email", state:passed}}>
+            {submitted &&
+              <div>
+                <p id="outcome">{outcome}</p>
                 <Button type="submit" variant="contained" color="primary" onClick={() => { window.open('/email') }}>Draft Petition</Button>
+              </div>
               //</Link>}
             }
         </form>
