@@ -7,7 +7,10 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { green, red } from '@material-ui/core/colors';
 import ReactTooltip from "react-tooltip";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {get_idocData} from '../stub-idoc';
+import ReleaseMechanism from './ReleaseMechanism';
+import Mechanisms from '../Mechanisms';
 
 export default function Home() {
   console.log(process.env.REACT_APP_API_URL);
@@ -31,7 +34,16 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [loadingtext,setLoadingtext] = useState('');
   const [outcome, setOutcome] = useState('');
+  const [computeData, setComputeData] = useState({});
 
+  var mechanisms = <div></div>;
+  if (computeData.data) {
+    mechanisms = computeData.data.map((rm) => {
+      return (
+        <ReleaseMechanism isPassed={rm.passed} condition={rm.conditions} description={rm.text}/>
+      )
+    });
+  }
 
   function AfterLoading(data) {
     var idocNum = data["IDOC_Number"];
@@ -50,6 +62,10 @@ export default function Home() {
 
   const onSubmit = data => {
     setLoading(true);
+    var apiData = get_idocData(data["IDOC_Number"]);
+    apiData.highRisk = data["medical_furlough"];
+    setComputeData({data: Mechanisms.compute(apiData)});
+    console.log(computeData);
     console.log("data:");
     console.log(data);
     if (loading === true){
@@ -104,7 +120,7 @@ export default function Home() {
           <div id = "Loading">{loadingtext}</div>
           <br />
           <br />
-          {submitted &&
+          {/* {submitted &&
             <div className="criteria">
               <div className="criterion">Medical furlough
 
@@ -134,7 +150,11 @@ export default function Home() {
               <div className="sub-criterion">Not an excluded offense
                 {passed.includes(" Not an excluded offense Electronic") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
               </div>
-            </div>}
+            </div>
+            } */}
+            {computeData==null && 
+              mechanisms
+            }
             {submitted &&
               <div>
                 <p id="outcome">{outcome}</p>
