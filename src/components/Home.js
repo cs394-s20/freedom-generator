@@ -34,16 +34,17 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [loadingtext,setLoadingtext] = useState('');
   const [outcome, setOutcome] = useState('');
-  const [computeData, setComputeData] = useState({});
-
+  const [computeData, setComputeData] = useState(null);
+  console.log(computeData);
   var mechanisms = <div></div>;
-  if (computeData.data) {
+  if (computeData != null) {
     mechanisms = computeData.data.map((rm) => {
       return (
-        <ReleaseMechanism isPassed={rm.passed} condition={rm.conditions} description={rm.text}/>
+        <ReleaseMechanism isPassed={rm.passed} conditions={rm.conditions} description={rm.text}/>
       )
     });
   }
+  
 
   function AfterLoading(data) {
     var idocNum = data["IDOC_Number"];
@@ -64,6 +65,7 @@ export default function Home() {
     setLoading(true);
     var apiData = get_idocData(data["IDOC_Number"]);
     apiData.highRisk = data["medical_furlough"];
+    console.log(Mechanisms.compute(apiData));
     setComputeData({data: Mechanisms.compute(apiData)});
     console.log(computeData);
     console.log("data:");
@@ -71,7 +73,8 @@ export default function Home() {
     if (loading === true){
       setLoadingtext("Loading...");
       setTimeout(function(){
-        AfterLoading(data)
+        AfterLoading(data);
+        console.log(computeData);
       }, 1);
     }
   };
@@ -152,7 +155,7 @@ export default function Home() {
               </div>
             </div>
             } */}
-            {computeData==null && 
+            {computeData!=null && 
               mechanisms
             }
             {submitted &&

@@ -146,6 +146,7 @@ export default class ConditionChecker {
             passed: data.highRisk,
             text: 'At a high risk for illness'
         }
+        return out;
     }
 
 

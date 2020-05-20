@@ -18,7 +18,7 @@ export default function ReleaseMechanism(props) {
     const conditions = props.conditions;
     const description = props.description;
     const isPassed = props.isPassed;
-    const conditionLists = conditions.map((condition,index) => {
+    var conditionLists = conditions.map((condition,index) => {
         return (
             <div>
                 <ConditionList condition={condition} />
