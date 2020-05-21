@@ -14,11 +14,8 @@ import Mechanisms from '../Mechanisms';
 
 export default function Home() {
   const { register, handleSubmit, errors } = useForm();
-
   const [loading, setLoading] = useState(false);
-  const [outcome, setOutcome] = useState('');
   const [computeData, setComputeData] = useState(null);
-  
 
   var mechanisms = <div></div>;
   if (computeData != null) {
@@ -28,20 +25,6 @@ export default function Home() {
         <ReleaseMechanism isPassed={rm.passed} conditions={rm.conditions} description={rm.text}/>
       )
     });
-  }
-  
-
-  function AfterLoading(data) {
-    var idocNum = data["IDOC_Number"];
-    var medical_furlough = data["medical_furlough"];
-    var eligibility = return_eligibility(idocNum, medical_furlough)
-
-    if (eligibility) {
-      if (eligibility.includes(" EM or HD 1") || eligibility.includes(" EM or HD 2") || eligibility.includes(" Medical Furlough")) {
-        setOutcome(eligibility.split(' ').slice(0, 2) + ' is eligible to petition for release.');
-      }
-      else { setOutcome(eligibility.split(' ').slice(0, 2) + ' is not eligible to petition for release.') }
-    }
   }
 
   const onSubmit = formData => {
@@ -106,7 +89,6 @@ export default function Home() {
             }
             {computeData!=null &&
               <div>
-                <p id="outcome">{outcome}</p>
                 <Link to="/email">
                   <Button type="submit" variant="contained" color="primary">Draft Petition</Button>
                 </Link>
