@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { green, red } from '@material-ui/core/colors';
@@ -6,9 +6,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from '@material-ui/core';
 
 function ConditionList(props) {
-    const conditions = props.condition.map((c) => {
+    const conditions = props.condition.map((c, index) => {
         return(
-            <div className="sub-criterion">{c.text}
+            <div key={index} className="sub-criterion">{c.text}
                 {c.passed ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
             </div>
         )
@@ -27,7 +27,7 @@ export default function ReleaseMechanism(props) {
 
     var conditionLists = conditions.map((condition,index) => {
         return (
-            <div>
+            <div key={index}>
                 <ConditionList condition={condition} />
                 {(index<conditions.length-1) && 
                 'or'

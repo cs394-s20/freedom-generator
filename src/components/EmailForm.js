@@ -5,7 +5,6 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { white, green, red } from '@material-ui/core/colors';
 import Modal from './Modal/Modal.js'
 
 const styles = {

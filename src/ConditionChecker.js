@@ -37,7 +37,6 @@ function sentenceRemaining(data){
     var discharge = JSON.stringify(data.discharge_date);
     var parsedDischarge = discharge.split("/");
     var date = new Date();
-    var day = date.getDay();
     var month = date.getMonth()+1;
     var year = date.getFullYear();
     var yrsLeft = 0;
@@ -63,7 +62,6 @@ function sentenceServed(data){
     var start = JSON.stringify(data.custody_date);
     var parsedStart = start.split("/");
     var date = new Date();
-    var day = date.getDay();
     var month = date.getMonth()+1;
     var year = date.getFullYear();
     var yrsServed = 0;

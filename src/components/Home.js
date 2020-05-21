@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import return_eligibility from '../check-eligibility';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { TextField, Button, Checkbox, Grid, FormControlLabel, Typography } from '@material-ui/core';
+import { TextField, Button, Checkbox, Grid, FormControlLabel } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-import { green, red } from '@material-ui/core/colors';
 import ReactTooltip from "react-tooltip";
 import { Link } from 'react-router-dom';
 import {get_idocData} from '../stub-idoc';
@@ -19,10 +15,10 @@ export default function Home() {
 
   var mechanisms = <div></div>;
   if (computeData != null) {
-    mechanisms = computeData.data.map((rm) => {
+    mechanisms = computeData.data.map((rm, index) => {
       
       return (
-        <ReleaseMechanism isPassed={rm.passed} conditions={rm.conditions} description={rm.text}/>
+        <ReleaseMechanism key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text}/>
       )
     });
   }

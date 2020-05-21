@@ -42,7 +42,7 @@ export default class Mechanisms {
                         break;
                     }
                 }
-                if (out.passed == true) {
+                if (out.passed === true) {
                     break;
                 }
             }
