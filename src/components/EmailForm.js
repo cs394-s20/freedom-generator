@@ -19,6 +19,7 @@ const styles = {
 
 function EmailForm(props) {
   let location = useLocation();
+  // console.log(location);
   const defaultValues = {
     relationship: "",
 
@@ -42,7 +43,7 @@ function EmailForm(props) {
   // create modal component
   let modal;
   if (modalOpen) {
-    console.log(data)
+    // console.log(data)
     document.getElementById("overlay").style.opacity = 0.7;
     modal = (<Modal setModalOpen={setModalOpen} data={data} />);
   }

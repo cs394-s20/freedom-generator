@@ -7,7 +7,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { green, red } from '@material-ui/core/colors';
 import ReactTooltip from "react-tooltip";
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Home() {
   console.log(process.env.REACT_APP_API_URL);
@@ -32,6 +32,9 @@ export default function Home() {
   const [loadingtext,setLoadingtext] = useState('');
   const [outcome, setOutcome] = useState('');
 
+  // add by zhu
+  const [idocData, setIdocData] = useState(null);
+
 
   function AfterLoading(data) {
     var idocNum = data["IDOC_Number"];
@@ -46,6 +49,9 @@ export default function Home() {
     }
     setSubmitted('True');
     setLoadingtext("");
+
+    // add by zhu
+    setIdocData(data);
   }
 
   const onSubmit = data => {
@@ -138,7 +144,8 @@ export default function Home() {
             {submitted &&
               <div>
                 <p id="outcome">{outcome}</p>
-                <Button type="submit" variant="contained" color="primary" onClick={() => { window.open('/email') }}>Draft Petition</Button>
+                {/* <Button type="submit" variant="contained" color="primary" onClick={() => { window.open('/email'); }}>Draft Petition</Button> */}
+                <Button type="submit" variant="contained" color="primary"><Link to={{pathname:"/email", state:idocData}}>Draft Petition</Link></Button>
               </div>
               //</Link>}
             }
