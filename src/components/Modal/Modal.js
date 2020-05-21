@@ -36,6 +36,7 @@ function Modal(props){
             <div className="modal__close">
                 <span className="x" onClick={()=>props.setModalOpen(false)}>x</span>
             </div>
+            <div className="title">Email Draft</div>
             <TextField
                 id="previewEmailTextField"
                 multiline
