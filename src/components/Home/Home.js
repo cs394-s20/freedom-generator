@@ -85,7 +85,10 @@ export default function Home() {
             }
             {computeData!=null &&
               <div>
-                <Link to="/email">
+                <Link to={{
+                  pathname: "/email",
+                  state: computeData
+                }}>
                   <Button type="submit" variant="contained" color="primary">Draft Petition</Button>
                 </Link>
               </div>
