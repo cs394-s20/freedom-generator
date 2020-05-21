@@ -41,7 +41,7 @@ function EmailForm(props) {
     document.getElementById("overlay").style.opacity = 1;
 
   }
-  
+
   return (
     <div>
       <div id="overlay">
@@ -80,24 +80,6 @@ function EmailForm(props) {
                     />
                   </Grid>
                 </Grid>
-                {/* <Typography>
-                      What is your relationship to this individual?
-              </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Controller
-                      as={
-                        <Select>
-                          <MenuItem value="Mother">Mother</MenuItem>
-                          <MenuItem value="Father">Father</MenuItem>
-                        </Select>
-                      }
-                      name="relationship"
-                      control={control}
-                      className="input"
-                    />
-                  </Grid>
-                 */}
                 <Grid
                   item
                   container
@@ -106,7 +88,7 @@ function EmailForm(props) {
                 >
                   <Grid item xs={7}>
                     <Typography>
-                      What is you relation to the inmate?
+                      What is your relation to the inmate? (Eg. mother, father, sister, etc.)
               </Typography>
                   </Grid>
                   <Grid item xs={5}>
@@ -121,6 +103,22 @@ function EmailForm(props) {
                       variant="outlined"
                     />
                   </Grid>
+                  {/* <Grid item>
+                    <Controller
+                      as={
+                        <Select>
+                          <MenuItem value="Mother">Mother</MenuItem>
+                          <MenuItem value="Father">Father</MenuItem>
+                          <MenuItem value="Sister">Sister</MenuItem>
+                          <MenuItem value="Brother">Brother</MenuItem>
+                          <MenuItem value="Brother">Friend</MenuItem>
+                          <MenuItem value="Brother">Other</MenuItem>                          
+                        </Select>
+                      }
+                      name="relationship"
+                      control={control}
+                    />
+                  </Grid> */}
                 </Grid>
                 <Grid
                   item
@@ -130,7 +128,7 @@ function EmailForm(props) {
                 >
                   <Grid item xs={7}>
                     <Typography>
-                    Please write three reasons why [fill in prisoner name] should be considered for [Release mechanism] (e.g. institutional record, medical condition, family responsibilities). Please write in complete sentences.
+                      Please write three reasons why the inmate should be considered for release (e.g. institutional record, medical condition, family responsibilities). Please write in complete sentences.
               </Typography>
                   </Grid>
                   <Grid item xs={5}>
@@ -154,7 +152,7 @@ function EmailForm(props) {
                 >
                   <Grid item xs={7}>
                     <Typography>
-                      Who will the prisoner be staying with?
+                      Who will the inmate be staying with?
               </Typography>
                   </Grid>
                   <Grid item xs={5}>
@@ -224,7 +222,7 @@ function EmailForm(props) {
                 >
                   <Grid item xs={7}>
                     <Typography>
-                    Please write 3 sentences on how [fill in prisoner name]’s incarceration has affected family or a community. Also speak on how he/she will contribute positively upon release.
+                      Please write 3 sentences on how the inmate’s incarceration has affected their family or community. Please explain how he/she will contribute positively upon release.
               </Typography>
                   </Grid>
                   <Grid item xs={5}>
@@ -248,7 +246,7 @@ function EmailForm(props) {
                 >
                   <Grid item xs={7}>
                     <Typography>
-                    What email or phonenumber would you like to be contacted at?
+                      What email or phone number would you like to be contacted at?
               </Typography>
                   </Grid>
                   <Grid item xs={5}>
@@ -271,7 +269,7 @@ function EmailForm(props) {
                 >
                   <Grid item xs={7}>
                     <Typography>
-                      Will the prisoner recieve support in the form of 
+                      Please select which of the following areas of support will be provided to the inmate upon his/her release.
               </Typography>
                   </Grid>
                   <Grid item xs={5}>
@@ -279,13 +277,13 @@ function EmailForm(props) {
                       <div className="checklist__item">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
                         <label class="form-check-label" for="defaultCheck1">
-                        Assistance complying with parole requirements
+                          Assistance complying with parole requirements
                         </label>
                       </div>
                       <div className="checklist__item">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
                         <label class="form-check-label" for="defaultCheck1">
-                        Groceries
+                          Groceries
                         </label>
                       </div>
                       <div className="checklist__item">
@@ -311,7 +309,7 @@ function EmailForm(props) {
                 >
                   <Grid item xs={7}>
                     <Typography>
-                    For each support please list the contact information for who will provide.
+                      Please list the name and contact information for the people who will provide the above support. (Eg. John Doe, johndoe@gmail.com; Jane Doe, 555-555-5555)
               </Typography>
                   </Grid>
                   <Grid item xs={5}>
