@@ -4,9 +4,9 @@ import { TextField, Button, Checkbox, Grid, FormControlLabel } from '@material-u
 import InfoIcon from '@material-ui/icons/Info';
 import ReactTooltip from "react-tooltip";
 import { Link } from 'react-router-dom';
-import {get_idocData} from '../stub-idoc';
-import ReleaseMechanism from './ReleaseMechanism';
-import Mechanisms from '../Mechanisms';
+import {get_idocData} from '../../stub-idoc';
+import ReleaseMechanism from '../ReleaseMechanism';
+import Mechanisms from '../../Mechanisms';
 
 export default function Home() {
   const { register, handleSubmit, errors } = useForm();
@@ -49,7 +49,7 @@ export default function Home() {
     </React.Fragment>
   )
   return (
-    <div className="App">
+    <div className="Home Home--small">
       <div className="idocForm">
         <h1>Freedom Generator</h1>
         <h5>Enter IDOC number to check eligibility for release</h5>

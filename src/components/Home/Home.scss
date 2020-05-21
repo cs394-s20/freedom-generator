@@ -1,0 +1,62 @@
+.Home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+    &--small{
+      height: 100vh;
+    }
+  }
+  
+  .idocForm {
+    background-color: #2D3142;
+    width: 50%;
+    border-radius: 10px;
+    padding: 20px;
+    padding-bottom: 20px;
+    color: white;
+  }
+  
+  .criteria {
+    display: flex;
+    flex-direction: column;
+    background-color: #4F5D75;
+    border-radius: 5px;
+    padding: 5%;
+    margin-bottom: 2%;
+    text-align: left;
+    cursor: grab;
+  }
+  
+  
+  .criterion {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .sub-criterion {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+  
+  .infoIcon{
+    margin: 5px 0 0 5px;
+    color: white;
+  
+    &Wrapper{
+      display: flex;
+      align-items: center;
+    }
+  }
+
+#Loading{
+  font-size: large;
+}
+
+#outcome{
+  text-align: center;
+}
