@@ -5,7 +5,6 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { white, green, red } from '@material-ui/core/colors';
 import Modal from './Modal/Modal.js'
 
 const styles = {
@@ -19,7 +18,6 @@ const styles = {
 
 function EmailForm(props) {
   let location = useLocation();
-  // console.log(location);
   const defaultValues = {
     relationship: "",
 
@@ -43,7 +41,7 @@ function EmailForm(props) {
   // create modal component
   let modal;
   if (modalOpen) {
-    // console.log(data)
+    console.log(data)
     document.getElementById("overlay").style.opacity = 0.7;
     modal = (<Modal setModalOpen={setModalOpen} data={data} />);
   }
