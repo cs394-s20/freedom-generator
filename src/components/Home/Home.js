@@ -1,63 +1,39 @@
 import React, { useState } from 'react';
-import return_eligibility from '../../check-eligibility';
 import { useForm } from 'react-hook-form';
-import { TextField, Button, Checkbox, Grid, FormControlLabel, Typography } from '@material-ui/core';
+import { TextField, Button, Checkbox, Grid, FormControlLabel } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-import { green, red } from '@material-ui/core/colors';
 import ReactTooltip from "react-tooltip";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {get_idocData} from '../../stub-idoc';
+import ReleaseMechanism from '../ReleaseMechanism';
+import Mechanisms from '../../Mechanisms';
 
 export default function Home() {
-  console.log(process.env.REACT_APP_API_URL);
-  // const [idocNum, setIdocNum] = useState("");
-
-  // Select icon based on return (innocent until proven guilty, unless they were already guilty..?)
-  const [passed, setPassed] = useState([]);
-  // Add the id to the array of passed items if it doesn't exist but if it does exist remove it
-  const handleCriteriaChange = (id) => {
-    let result = passed.includes(id) ? passed.filter(test => test != id) : [...passed, id]
-    setPassed(result)
-    // change <CheckCircleIcon /> to <CloseRoundedIcon /> at "id"
-  }
-
-
   const { register, handleSubmit, errors } = useForm();
-
-  // callback function for check eligibility.
-  const [submitted, setSubmitted] = useState('');
-
   const [loading, setLoading] = useState(false);
-  const [loadingtext,setLoadingtext] = useState('');
-  const [outcome, setOutcome] = useState('');
+  const [computeData, setComputeData] = useState(null);
 
-
-  function AfterLoading(data) {
-    var idocNum = data["IDOC_Number"];
-    var medical_furlough = data["medical_furlough"];
-    var eligibility = return_eligibility(idocNum, medical_furlough)
-    setPassed(eligibility)
-    if (eligibility) {
-      if (eligibility.includes(" EM or HD 1") || eligibility.includes(" EM or HD 2") || eligibility.includes(" Medical Furlough")) {
-        setOutcome(eligibility.split(' ').slice(0, 2) + ' is eligible to petition for release.');
-      }
-      else { setOutcome(eligibility.split(' ').slice(0, 2) + ' is not eligible to petition for release.') }
-    }
-    setSubmitted('True');
-    setLoadingtext("");
+  var mechanisms = <div></div>;
+  if (computeData != null) {
+    mechanisms = computeData.data.map((rm, index) => {
+      
+      return (
+        <ReleaseMechanism key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text}/>
+      )
+    });
   }
 
-  const onSubmit = data => {
+  const onSubmit = formData => {
     setLoading(true);
-    console.log("data:");
-    console.log(data);
-    if (loading === true){
-      setLoadingtext("Loading...");
-      setTimeout(function(){
-        AfterLoading(data)
-      }, 1);
-    }
+    setComputeData(null);
+    get_idocData(formData["IDOC_Number"]).then(response => {
+      response.text().then(t => {
+        var data = JSON.parse(t);
+        data.highRisk = formData["medical_furlough"];
+        setComputeData({data: Mechanisms.compute(data)});
+        setLoading(false);
+      });
+    });
   };
 
 
@@ -101,46 +77,18 @@ export default function Home() {
           <Button type="submit" variant="contained" onClick={() => setLoading(true)}>Import Data</Button>
           <br />
           <br />
-          <div id = "Loading">{loadingtext}</div>
+            {loading && <div id = "Loading">Loading...</div>}
           <br />
           <br />
-          {submitted &&
-            <div className="criteria">
-              <div className="criterion">Medical furlough
-
-                {passed.includes(" Medical Furlough") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-              <div className="criterion">Electronic Monitoring or Home Detention
-                {passed.includes(" EM or HD 1") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-              <div className="sub-criterion">Over 55 years of age
-                {passed.includes(" Over 55 years of age") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-              <div className="sub-criterion">Less than 12 months left on sentence
-                {passed.includes(" Less than 12 months left on sentence") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-              <div className="sub-criterion">Served at least 25% of prison term
-                {passed.includes(" Served at least 25% of prison term") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-              <div className="sub-criterion">Not an excluded offense
-                {passed.includes(" Not a excluded offense") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-              <div className="criterion">Electronic Monitoring or Home Detention
-                {passed.includes(" EM or HD 2") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-              <div className="sub-criterion">Convicted of Class 2, 3, or 4 felony offense
-                {passed.includes(" Convicted of Class 2, 3, or 4 felony offense") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-              <div className="sub-criterion">Not an excluded offense
-                {passed.includes(" Not an excluded offense Electronic") ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
-              </div>
-            </div>}
-            {submitted &&
+            {computeData!=null && 
+              mechanisms
+            }
+            {computeData!=null &&
               <div>
-                <p id="outcome">{outcome}</p>
-                <Button type="submit" variant="contained" color="primary" onClick={() => { window.open('/email') }}>Draft Petition</Button>
+                <Link to="/email">
+                  <Button type="submit" variant="contained" color="primary">Draft Petition</Button>
+                </Link>
               </div>
-              //</Link>}
             }
         </form>
       </div>
