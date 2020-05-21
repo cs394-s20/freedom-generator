@@ -13,6 +13,9 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [computeData, setComputeData] = useState(null);
 
+  // add by Zhu
+  const [idocData, setIdocData] = useState(null);
+
   var mechanisms = <div></div>;
   if (computeData != null) {
     mechanisms = computeData.data.map((rm, index) => {
@@ -30,8 +33,10 @@ export default function Home() {
       response.text().then(t => {
         var data = JSON.parse(t);
         data.highRisk = formData["medical_furlough"];
+        data.IDOC_Number = formData["IDOC_Number"];
         setComputeData({data: Mechanisms.compute(data)});
         setLoading(false);
+        setIdocData(data);
       });
     });
   };
@@ -85,9 +90,11 @@ export default function Home() {
             }
             {computeData!=null &&
               <div>
-                <Link to="/email">
+                {/* modified by zhu */}
+                {/* <Link to="/email">
                   <Button type="submit" variant="contained" color="primary">Draft Petition</Button>
-                </Link>
+                </Link> */}
+                <Button type="submit" variant="contained" color="primary"><Link to={{pathname:"/email", state:idocData}}>Draft Petition</Link></Button>
               </div>
             }
         </form>
