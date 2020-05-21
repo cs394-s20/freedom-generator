@@ -12,7 +12,7 @@ function httpGet(theUrl)
 
 
 export function get_idocData(idocNum){
-    return JSON.parse(httpGet(process.env.REACT_APP_API_URL + "?idoc=" + idocNum));
+    return fetch(process.env.REACT_APP_API_URL + "?idoc=" + idocNum);
     let data;
 
     switch (idocNum) {

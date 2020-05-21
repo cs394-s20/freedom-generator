@@ -2,13 +2,13 @@ import ConditionChecker from './ConditionChecker';
 
 const MechanismList = [
     {
-        text: 'MedicalFurlough',
+        text: 'Medical furlough',
         conditions: [[
             ConditionChecker.eligibleForMedicalFurlough
         ]]
     },
     {
-        text: 'Home detention / EM',
+        text: 'Electronic Monitoring or Home Detention',
         conditions: [
             [
                 ConditionChecker.isOver55,
@@ -25,7 +25,6 @@ const MechanismList = [
 
 export default class Mechanisms {
     static compute(data) {
-        console.log(MechanismList)
         var out = MechanismList.map((mechanism) => {
             var out = {};
             out.text = mechanism.text;
@@ -36,9 +35,10 @@ export default class Mechanisms {
             });
             for (var i=0; i<out.conditions.length; i++) {
                 out.passed = true;
-                for (var j=0; j<out.conditions[i].length; i++) {
-                    if (!out.conditions[i].passed) {
+                for (var j=0; j<out.conditions[i].length; j++) {
+                    if (!out.conditions[i][j].passed) {
                         out.passed = false;
+                        
                         break;
                     }
                 }
@@ -48,7 +48,6 @@ export default class Mechanisms {
             }
             return out;
         });
-        console.log(out);
         return out;
     }
 }

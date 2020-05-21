@@ -30,7 +30,6 @@ function age(data){
     }
     yrsOld += year-parseInt(parsedDOB[2], 10);
 
-    console.log("Age is " + yrsOld)
     return yrsOld;
 }
 
@@ -57,13 +56,11 @@ function sentenceRemaining(data){
         months = 11;
     }
     yrsLeft += Math.abs(year-parseInt(parsedDischarge[2],10)) + months/12 ;
-    console.log("Years left: " + yrsLeft)
     return yrsLeft;
 }
 
 function sentenceServed(data){
     var start = JSON.stringify(data.custody_date);
-    console.log(start);
     var parsedStart = start.split("/");
     var date = new Date();
     var day = date.getDay();
@@ -80,14 +77,12 @@ function sentenceServed(data){
         monthsServed = 12-month+parseInt(getRidofQuote(parsedStart[0]),10);   
     }
     yrsServed += year-parseInt(parsedStart[2],10) + monthsServed/12;
-    console.log("Served " + yrsServed + " years")
     return yrsServed;
 }
 
 function crimeClass(data){
     var crime = JSON.stringify(data.crime_class);
     var parsedCrime = crime.split(" ");
-    console.log("Crime class: " + parsedCrime[1])
     return parseInt(parsedCrime[1]);
 }
 
