@@ -6,22 +6,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { white, green, red } from '@material-ui/core/colors';
-import Modal from './Modal/Modal.js'
-
-const styles = {
-  root: {
-    background: "white",
-  },
-  input: {
-    padding: -10
-  },
-  inputs: {
-    display: "grid",
-    width: "30%",
-    margin: "0",
-  }
-
-};
+import Modal from '../Modal/Modal.js';
+import '../../styles/styles.scss';
 
 function EmailForm(props) {
   let location = useLocation();
@@ -30,7 +16,6 @@ function EmailForm(props) {
 
   };
   const { register, handleSubmit, errors, control } = useForm({ defaultValues });
-  const { classes } = props;
   const [modalOpen, setModalOpen] = useState(false); // state that checks if modal is open or not
   const [data, setData] = useState(null);
 
@@ -57,15 +42,14 @@ function EmailForm(props) {
 
   }
   
-
   return (
     <div>
       <div id="overlay">
-        <div className="App">
-          <div className="emailForm">
+        <div className="Home">
+          <div className="emailFormBg">
             <h1>Freedom Generator</h1>
             <div></div>
-            <form class="formEmail" onSubmit={handleSubmit(onSubmit)}>
+            <form class="emailForm" onSubmit={handleSubmit(onSubmit)}>
               <h3>Email Form</h3>
               <Grid
                 container
@@ -84,19 +68,15 @@ function EmailForm(props) {
                       What is the name of the Warden you are addressing?
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
-                      className={classes.root}
+                      className="input"
                       name="wardenName"
                       size="small"
                       variant="outlined"
                       inputRef={register({
                         required: true,
                       })}
-                      InputProps={{
-                        className: classes.input
-                        //style:{ background: 'black' }
-                      }}
                     />
                   </Grid>
                 </Grid>
@@ -114,7 +94,7 @@ function EmailForm(props) {
                       }
                       name="relationship"
                       control={control}
-                      className={classes.root}
+                      className="input"
                     />
                   </Grid>
                  */}
@@ -129,10 +109,10 @@ function EmailForm(props) {
                       What is you relation to the inmate?
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
                       name="relation"
-                      className={classes.root}
+                      className="input"
                       multiline={true}
                       inputRef={register({
                         required: true
@@ -153,10 +133,10 @@ function EmailForm(props) {
                     Please write three reasons why [fill in prisoner name] should be considered for [Release mechanism] (e.g. institutional record, medical condition, family responsibilities). Please write in complete sentences.
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
                       name="reasonsWhy"
-                      className={classes.root}
+                      className="input"
                       multiline={true}
                       inputRef={register({
                         required: true
@@ -177,19 +157,15 @@ function EmailForm(props) {
                       Who will the prisoner be staying with?
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
-                      className={classes.root}
+                      className="input"
                       name="personName"
                       size="small"
                       variant="outlined"
                       inputRef={register({
                         required: true,
                       })}
-                      InputProps={{
-                        className: classes.input
-                        //style:{ background: 'black' }
-                      }}
                     />
                   </Grid>
                 </Grid>
@@ -204,19 +180,15 @@ function EmailForm(props) {
                       What is their phone number?
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
-                      className={classes.root}
+                      className="input"
                       name="personPhone"
                       size="small"
                       variant="outlined"
                       inputRef={register({
                         required: true,
                       })}
-                      InputProps={{
-                        className: classes.input
-                        //style:{ background: 'black' }
-                      }}
                     />
                   </Grid>
                 </Grid>
@@ -231,10 +203,10 @@ function EmailForm(props) {
                       What is the address of where the inmate will be staying?
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
                       name="relation"
-                      className={classes.root}
+                      className="input"
                       multiline={true}
                       inputRef={register({
                         required: true
@@ -255,10 +227,10 @@ function EmailForm(props) {
                     Please write 3 sentences on how [fill in prisoner name]’s incarceration has affected family or a community. Also speak on how he/she will contribute positively upon release.
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
                       name="community"
-                      className={classes.root}
+                      className="input"
                       multiline={true}
                       inputRef={register({
                         required: true
@@ -279,19 +251,15 @@ function EmailForm(props) {
                     What email or phonenumber would you like to be contacted at?
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
-                      className={classes.root}
+                      className="input"
                       name="contactInfo"
                       size="small"
                       variant="outlined"
                       inputRef={register({
                         required: true,
                       })}
-                      InputProps={{
-                        className: classes.input
-                        //style:{ background: 'black' }
-                      }}
                     />
                   </Grid>
                 </Grid>
@@ -306,25 +274,32 @@ function EmailForm(props) {
                       Will the prisoner recieve support in the form of 
               </Typography>
                   </Grid>
-                  <Grid item>
-                    <div className={classes.inputs}>
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
-                    <label class="form-check-label" for="defaultCheck1">
-                    Assistance complying with parole requirements
-                    </label>
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
-                    <label class="form-check-label" for="defaultCheck1">
-                    Groceries
-                    </label>
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
-                    <label class="form-check-label" for="defaultCheck1">
-                      Job placement
-                    </label>
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
-                    <label class="form-check-label" for="defaultCheck1">
-                      Job placement
-                    </label>
-                    assistance meeting medical needs
+                  <Grid item xs={5}>
+                    <div className="checklist">
+                      <div className="checklist__item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
+                        <label class="form-check-label" for="defaultCheck1">
+                        Assistance complying with parole requirements
+                        </label>
+                      </div>
+                      <div className="checklist__item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
+                        <label class="form-check-label" for="defaultCheck1">
+                        Groceries
+                        </label>
+                      </div>
+                      <div className="checklist__item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
+                        <label class="form-check-label" for="defaultCheck1">
+                          Job placement
+                        </label>
+                      </div>
+                      <div className="checklist__item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
+                        <label class="form-check-label" for="defaultCheck1">
+                          Assistance meeting medical needs
+                        </label>
+                      </div>
                     </div>
                   </Grid>
                 </Grid>
@@ -339,10 +314,10 @@ function EmailForm(props) {
                     For each support please list the contact information for who will provide.
               </Typography>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={5}>
                     <TextField
                       name="supportContactInfo"
-                      className={classes.root}
+                      className="input"
                       multiline={true}
                       inputRef={register({
                         required: true
@@ -370,4 +345,4 @@ EmailForm.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(EmailForm);
+export default EmailForm;

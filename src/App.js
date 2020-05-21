@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import './App.css';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Home from './components/Home';
-import CustomizedInputs from './components/EmailForm';
+import Home from './components/Home/Home.js';
+import CustomizedInputs from './components/EmailForm/EmailForm';
 
 function App() {
   return (

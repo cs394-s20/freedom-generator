@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import return_eligibility from '../check-eligibility';
+import return_eligibility from '../../check-eligibility';
 import { useForm } from 'react-hook-form';
 import { TextField, Button, Checkbox, Grid, FormControlLabel, Typography } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
@@ -73,7 +73,7 @@ export default function Home() {
     </React.Fragment>
   )
   return (
-    <div className="App">
+    <div className="Home Home--small">
       <div className="idocForm">
         <h1>Freedom Generator</h1>
         <h5>Enter IDOC number to check eligibility for release</h5>

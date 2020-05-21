@@ -1,0 +1,20 @@
+// This is for inputs, textareas, checkboxes, etc
+
+.input{
+    background-color: white;
+    width: 100%;
+}
+
+.checklist{
+    display: flex;
+    flex-direction: column;
+
+    &__item{
+        display: flex;
+
+        label{
+            text-align: left;
+            margin-left: 5px;
+        }
+    }
+}
