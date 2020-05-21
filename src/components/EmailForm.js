@@ -14,7 +14,13 @@ const styles = {
   },
   input: {
     padding: -10
+  },
+  inputs: {
+    display: "grid",
+    width: "30%",
+    margin: "0",
   }
+
 };
 
 function EmailForm(props) {
@@ -73,65 +79,28 @@ function EmailForm(props) {
                   direction="row"
                   spacing={3}
                 >
-                  <Grid item xs={6}>
+                  <Grid item xs={7}>
                     <Typography>
-                      Email Address:
+                      What is the name of the Warden you are addressing?
               </Typography>
                   </Grid>
                   <Grid item>
                     <TextField
                       className={classes.root}
-                      name="emailAddress"
+                      name="wardenName"
                       size="small"
                       variant="outlined"
                       inputRef={register({
                         required: true,
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                          message: "invalid",
-                        }
                       })}
                       InputProps={{
                         className: classes.input
                         //style:{ background: 'black' }
                       }}
                     />
-                    {errors.emailAddress && errors.emailAddress.type === "required" && <p className="error">Email address is required.</p>}
-                    {errors.emailAddress && errors.emailAddress.type === "pattern" && <p className="error">Invalid Email Address.</p>}
                   </Grid>
                 </Grid>
-                <Grid
-                  item
-                  container
-                  direction="row"
-                  spacing={3}
-                >
-                  <Grid item xs={6}>
-                    <Typography>
-                      What shelter will you provide for this individual?
-              </Typography>
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      name="shelter"
-                      className={classes.root}
-                      multiline={true}
-                      inputRef={register({
-                        required: true
-                      })}
-                      rows={4}
-                      variant="outlined"
-                    />
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  container
-                  direction="row"
-                  spacing={3}
-                >
-                  <Grid item xs={6}>
-                    <Typography>
+                {/* <Typography>
                       What is your relationship to this individual?
               </Typography>
                   </Grid>
@@ -148,6 +117,30 @@ function EmailForm(props) {
                       className={classes.root}
                     />
                   </Grid>
+                 */}
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  spacing={3}
+                >
+                  <Grid item xs={7}>
+                    <Typography>
+                      What is you relation to the inmate?
+              </Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      name="relation"
+                      className={classes.root}
+                      multiline={true}
+                      inputRef={register({
+                        required: true
+                      })}
+                      rows={2}
+                      variant="outlined"
+                    />
+                  </Grid>
                 </Grid>
                 <Grid
                   item
@@ -155,14 +148,200 @@ function EmailForm(props) {
                   direction="row"
                   spacing={3}
                 >
-                  <Grid item xs={6}>
+                  <Grid item xs={7}>
                     <Typography>
-                      What can you say to vouch for this person's character?
+                    Please write three reasons why [fill in prisoner name] should be considered for [Release mechanism] (e.g. institutional record, medical condition, family responsibilities). Please write in complete sentences.
               </Typography>
                   </Grid>
                   <Grid item>
                     <TextField
-                      name="character"
+                      name="reasonsWhy"
+                      className={classes.root}
+                      multiline={true}
+                      inputRef={register({
+                        required: true
+                      })}
+                      rows={4}
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  spacing={3}
+                >
+                  <Grid item xs={7}>
+                    <Typography>
+                      Who will the prisoner be staying with?
+              </Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      className={classes.root}
+                      name="personName"
+                      size="small"
+                      variant="outlined"
+                      inputRef={register({
+                        required: true,
+                      })}
+                      InputProps={{
+                        className: classes.input
+                        //style:{ background: 'black' }
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  spacing={3}
+                >
+                  <Grid item xs={7}>
+                    <Typography>
+                      What is their phone number?
+              </Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      className={classes.root}
+                      name="personPhone"
+                      size="small"
+                      variant="outlined"
+                      inputRef={register({
+                        required: true,
+                      })}
+                      InputProps={{
+                        className: classes.input
+                        //style:{ background: 'black' }
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  spacing={3}
+                >
+                  <Grid item xs={7}>
+                    <Typography>
+                      What is the address of where the inmate will be staying?
+              </Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      name="relation"
+                      className={classes.root}
+                      multiline={true}
+                      inputRef={register({
+                        required: true
+                      })}
+                      rows={2}
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  spacing={3}
+                >
+                  <Grid item xs={7}>
+                    <Typography>
+                    Please write 3 sentences on how [fill in prisoner name]’s incarceration has affected family or a community. Also speak on how he/she will contribute positively upon release.
+              </Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      name="community"
+                      className={classes.root}
+                      multiline={true}
+                      inputRef={register({
+                        required: true
+                      })}
+                      rows={4}
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  spacing={3}
+                >
+                  <Grid item xs={7}>
+                    <Typography>
+                    What email or phonenumber would you like to be contacted at?
+              </Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      className={classes.root}
+                      name="contactInfo"
+                      size="small"
+                      variant="outlined"
+                      inputRef={register({
+                        required: true,
+                      })}
+                      InputProps={{
+                        className: classes.input
+                        //style:{ background: 'black' }
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  spacing={3}
+                >
+                  <Grid item xs={7}>
+                    <Typography>
+                      Will the prisoner recieve support in the form of 
+              </Typography>
+                  </Grid>
+                  <Grid item>
+                    <div className={classes.inputs}>
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
+                    <label class="form-check-label" for="defaultCheck1">
+                    Assistance complying with parole requirements
+                    </label>
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
+                    <label class="form-check-label" for="defaultCheck1">
+                    Groceries
+                    </label>
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
+                    <label class="form-check-label" for="defaultCheck1">
+                      Job placement
+                    </label>
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
+                    <label class="form-check-label" for="defaultCheck1">
+                      Job placement
+                    </label>
+                    assistance meeting medical needs
+                    </div>
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  spacing={3}
+                >
+                  <Grid item xs={7}>
+                    <Typography>
+                    For each support please list the contact information for who will provide.
+              </Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      name="supportContactInfo"
                       className={classes.root}
                       multiline={true}
                       inputRef={register({
