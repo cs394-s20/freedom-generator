@@ -9,10 +9,14 @@ function Modal(props){
     let emailContent = "Dear {warden variable} \n\n {prisoner name}, " + props.data.idocData["IDOC_Number"] + ", is my " + props.data.relationship + 
                        ", and is eligible for transfer to home detention pursuant to {statutory provision variable}." + 
                        "I am writing to urge you to place " + "{prisoner name}" + " on home detention as soon as possible." + 
-                       " {prisoner name} " + " is an ideal candidate for home detention because " + " {three reasons} " + " If " +
+                       " {prisoner name} " + " is an ideal candidate for home detention because " + " {three reasons} " + "\n\n If " +
                        " {prisoner name} " + " is transferred to home detention, s/he can live with " + " {user's name} " + props.data.relationship + 
                        " {phone number and address}. " + "{prisoner name} " + "will receive support in the form of " + "{balabala}" + 
-                       " from the following individuals/entities " + " {list support and contact information}. "
+                       " from the following individuals/entities " + " {list support and contact information}. \n\n" + "{three reason}\n" +
+                       "\n\nIf I can provide you with any further information about this request for transfer to home detention, please contact me at " +
+                       props.data.emailAddress + " or " + "{phone number}." + 
+                       "I will contact your office to set a time to discuss this request within the next week. \n\n" +
+                       "Thank you for your consideration. \n\n" + "{name of submitter}";
 
 
     return(
