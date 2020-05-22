@@ -4,7 +4,8 @@ const MechanismList = [
     {
         text: 'Medical furlough',
         conditions: [[
-            ConditionChecker.eligibleForMedicalFurlough
+            ConditionChecker.eligibleForMedicalFurlough,
+            ConditionChecker.isNotExcludedOffense
         ]]
     },
     {

@@ -1,3 +1,5 @@
+import ExcludedOffenses from "./excluded_offenses";
+
 function getRidofQuote(str){
     var i;
     var fixed = "";
@@ -122,6 +124,8 @@ export default class ConditionChecker {
             text: 'Is not an excluded offense'
         }
         // Write code to check against new guidelines here
+        out.passed=!ExcludedOffenses.isExcluded(data);
+        console.log(out.passed)
         return out;
     }
     static convictedOfClassOffense(data) {
