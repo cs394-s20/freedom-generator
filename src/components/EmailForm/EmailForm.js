@@ -205,7 +205,7 @@ function EmailForm(props) {
                   </Grid>
                   <Grid item xs={5}>
                     <TextField
-                      name="relation"
+                      name="address"
                       className="input"
                       multiline={true}
                       inputRef={register({

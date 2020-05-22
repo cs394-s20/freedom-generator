@@ -4,16 +4,17 @@ import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
 function Modal(props){
+    var name = props.data.name;
 
      let emailContent = "Dear " + props.data.wardenName + "\n\n" +  props.data.idocData.name + ", " + props.data.idocData["IDOC_Number"] + ", is my " + props.data.relation + 
-    ", and is eligible for transfer to home detention pursuant to {statutory provision variable}." + 
-    "I am writing to urge you to place " + props.data.idocData.name + " on home detention as soon as possible." + 
+    ", and is eligible for transfer to home detention pursuant to {statutory provision variable}. " + 
+    " I am writing to urge you to place " + props.data.idocData.name + " on home detention as soon as possible. " + 
     props.data.idocData.name + " is an ideal candidate for home detention because " + props.data.reasonsWhy + "\n\n If " +
     props.data.idocData.name + " is transferred to home detention, s/he can live with " + props.data.personName + ", " + props.data.relation + 
-    props.data.contactInfo + ", " + props.data.idocData.name + "will receive support in the form of " + "{balabala}" +
+    props.data.contactInfo + ", " + props.data.idocData.name + " will receive support in the form of " + "Assistance complying with parole requirements, Groceries, Job placement, Assistance meeting medical needs" +
     " from the following individuals/entities " + props.data.supportContactInfo + ". \n\n" + props.data.community + "\n" +
     "\n\nIf I can provide you with any further information about this request for transfer to home detention, please contact me at " +
-    props.data.contactInfo + "I will contact your office to set a time to discuss this request within the next week. \n\n" +
+    props.data.contactInfo + ". I will contact your office to set a time to discuss this request within the next week. \n\n" +
     "Thank you for your consideration. \n\n" + props.data.personName;
 
 
