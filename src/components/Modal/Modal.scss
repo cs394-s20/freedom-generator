@@ -1,6 +1,6 @@
 .modal{
     background-color: white;
-    height: 350px;
+    height: 400px;
     // width: 550px;
     width: 44%;
     position: fixed;
@@ -25,6 +25,10 @@
     margin-right: 10px;
     font-size: 20px;
     cursor: pointer;
+}
+
+.title{
+    text-align: center;
 }
 
 p{
