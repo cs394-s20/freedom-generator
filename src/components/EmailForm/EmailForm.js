@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Button, Grid, Typography, Select, MenuItem } from '@material-ui/core';
+import { Button, Grid, Typography, Switch, Select, MenuItem, Checkbox } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
@@ -11,6 +11,7 @@ import '../../styles/styles.scss';
 
 function EmailForm(props) {
   let location = useLocation();
+  console.log(location);
   const defaultValues = {
     relationship: "",
 
@@ -20,7 +21,7 @@ function EmailForm(props) {
   const [data, setData] = useState(null);
 
   const onSubmit = data => {
-    data.idocData = location.state;
+    data.idocData = location.state.computeData;
 
     // modal for email preview
     setData(data);
@@ -41,7 +42,7 @@ function EmailForm(props) {
     document.getElementById("overlay").style.opacity = 1;
 
   }
-  
+
   return (
     <div>
       <div id="overlay">
@@ -51,7 +52,7 @@ function EmailForm(props) {
             <div></div>
             <form class="emailForm" onSubmit={handleSubmit(onSubmit)}>
               <h3>Email Form</h3>
-              <Grid
+              {/* <Grid
                 container
                 justify="flex-start"
                 direction="column"
@@ -103,22 +104,6 @@ function EmailForm(props) {
                       variant="outlined"
                     />
                   </Grid>
-                  {/* <Grid item>
-                    <Controller
-                      as={
-                        <Select>
-                          <MenuItem value="Mother">Mother</MenuItem>
-                          <MenuItem value="Father">Father</MenuItem>
-                          <MenuItem value="Sister">Sister</MenuItem>
-                          <MenuItem value="Brother">Brother</MenuItem>
-                          <MenuItem value="Brother">Friend</MenuItem>
-                          <MenuItem value="Brother">Other</MenuItem>                          
-                        </Select>
-                      }
-                      name="relationship"
-                      control={control}
-                    />
-                  </Grid> */}
                 </Grid>
                 <Grid
                   item
@@ -325,7 +310,64 @@ function EmailForm(props) {
                     />
                   </Grid>
                 </Grid>
+              </Grid> */}
+              
+              <br />
+              <br />
+              <Grid container direction="row" alignItems="center">
+                <Grid><Typography>Dear&nbsp;</Typography></Grid>
+                <Grid><TextField name="wardenName" placeholder="Warden Name" inputRef={register({required: true})} /></Grid>
               </Grid>
+              <br />
+              <br />
+              <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2}}>
+                {location.state.computeData.name}, {location.state.computeData.idocNumber}, is my&nbsp;
+                <TextField name="relation" placeholder="relation to writer" inputRef={register({required: true})} />
+                and is eligible for transfer to home detention pursuant to&nbsp;
+                <TextField name="statutory" placeholder="statutory provision" inputRef={register({required: true})} />
+                I am writing to urge you to place {location.state.computeData.name} on home detention as soon as possible.&nbsp;
+                {location.state.computeData.name} is an ideal candidate for home detention because &nbsp;
+                <TextField name="reason1" style={{width: 300}} placeholder="reasons related to institutional record" inputRef={register({required: true})}/>,&nbsp;
+                <TextField name="reason2" style={{width: 300}} placeholder="reasons related to medical condition" inputRef={register({required: true})}/>,&nbsp;
+                <TextField name="reason3" style={{width: 300}} placeholder="reasons related to family responsibilities" inputRef={register({required: true})}/>.
+                
+              </Grid>
+              <Grid><br /></Grid>
+              <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2}}>
+                If {location.state.computeData.name} is transferred to home detention, s/he can live with&nbsp;
+                <TextField name="liveWith" placeholder="name" inputRef={register({required: true})}/>,&nbsp;
+                <TextField name="relationLiveWith" placeholder="relation to prisoner" inputRef={register({required: true})}/>,&nbsp;
+                <TextField name="phoneLiveWith" placeholder="Phone Number" inputRef={register({required: true})}/>,&nbsp;
+                <TextField name="addressLiveWith" placeholder="Address" inputRef={register({required: true})}/>.&nbsp;
+                {location.state.computeData.name} will receive support in the form of
+                <label style={{fontWeight: "bold"}}>Assistance complying with parole requirements</label>
+                <Checkbox name="parole" inputRef={register} />
+                <label style={{fontWeight: "bold"}}>Groceries</label>
+                <Checkbox name="groceries" inputRef={register} />
+                <label style={{fontWeight: "bold"}}>Job placement</label>
+                <Checkbox name="job" inputRef={register} />
+                <label style={{fontWeight: "bold"}}>Assistance meeting medical needs</label>
+                <Checkbox name="medical" inputRef={register} />
+                from the following individuals/entities&nbsp; <TextField name="supportAndContact" style={{width: 300}} placeholder="Support and Contact Information" inputRef={register({required: true})}/>.
+              </Grid>
+              
+              <Grid><br /></Grid>
+              <Grid container alignItems="center" justify="center" style={{ lineHeight: 2}}>
+                <TextField name="threeSentences" style={{width:600}} multiline inputRef={register({required: true})} rows={4} variant="outlined" placeholder="Three Sentences here regarding how prisoner’s incarceration has affected family members and community and why/how prisoner will contribute positively to the community upon release. "/>
+              </Grid>
+
+              <Grid><br /></Grid>
+              <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2}}>
+                If I can provide you with any further information about this request for transfer to home detention, please contact me at&nbsp;
+                <TextField name="email" placeholder="Email" inputRef={register({required: true})}/>&nbsp;or&nbsp;
+                <TextField name="phone" placeholder="Phone Number" inputRef={register({required: true})}/>
+                I will contact your office to set a time to discuss this request within the next week. 
+              </Grid>
+
+              <Grid container alignItems="center" justify="flex-start"><br />Thank you for your consideration. </Grid>
+              
+              <Grid><br /></Grid>
+              <Grid container alignItems="center" justify="flex-start"><TextField name="submitter" placeholder="Name of Submitter" inputRef={register({required: true})}/></Grid>
               <br />
               <br />
               <Button type="submit" variant="contained" color="primary">Preview Email</Button>
