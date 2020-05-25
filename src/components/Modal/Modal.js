@@ -7,9 +7,6 @@ import { useForm, Controller } from 'react-hook-form';
 function Modal(props) {
     var name = props.data.name;
 
-
-
-
     let emailContent = "Dear " + props.data.wardenName + "\n\n" + props.data.idocData.name + ", " + props.data.idocData["IDOC_Number"] + ", is my " + props.data.relation +
         ", and is eligible for transfer to home detention pursuant to {statutory provision variable}. " +
         " I am writing to urge you to place " + props.data.idocData.name + " on home detention as soon as possible. " +
@@ -25,6 +22,9 @@ function Modal(props) {
 
     const onSubmit = data => {
         console.log(data.emailContent)
+
+        const templateId = 'template_id';
+        sendFeedback(templateId, {message_html: data.emailContent, from_name: props.data.personName, reply_to: "petersenea12@gmail.com"})
         
     }
 
