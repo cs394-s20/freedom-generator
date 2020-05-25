@@ -19,6 +19,17 @@
   }
 }
 
+.Email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // text-align: center;
+
+  &--small{
+    height: 100vh;
+  }
+}
+
 #overlay {
     position: absolute;   
     top: 0;                  

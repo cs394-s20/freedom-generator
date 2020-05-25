@@ -29,8 +29,11 @@ export default function Home() {
     get_idocData(formData["IDOC_Number"]).then(response => {
       response.text().then(t => {
         var data = JSON.parse(t);
-        data.highRisk = formData["medical_furlough"];
-        setComputeData({data: Mechanisms.compute(data)});
+        console.log(data); // this line can be delete
+        data.highRisk = formData["medical_furlough"]; 
+        setComputeData({name: data.name, idocNumber: formData["IDOC_Number"], data: Mechanisms.compute(data)});
+        console.log("computeData:")
+        console.log(computeData);
         setLoading(false);
       });
     });
@@ -87,7 +90,7 @@ export default function Home() {
               <div>
                 <Link to={{
                   pathname: "/email",
-                  state: computeData
+                  state: { computeData}
                 }}>
                   <Button type="submit" variant="contained" color="primary">Draft Petition</Button>
                 </Link>
