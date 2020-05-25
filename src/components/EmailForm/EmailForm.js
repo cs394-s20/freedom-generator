@@ -49,7 +49,7 @@ function EmailForm(props) {
   return (
     <div>
       <div id="overlay">
-        <div className="Home">
+        <div className="Email">
           <div className="emailFormBg">
             <h1>Freedom Generator</h1>
             <div></div>
