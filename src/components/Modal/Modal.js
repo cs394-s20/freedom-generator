@@ -4,19 +4,28 @@ import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { useForm, Controller } from 'react-hook-form';
 
-function Modal(props) {
-    var name = props.data.name;
 
-    let emailContent = "Dear " + props.data.wardenName + "\n\n" + props.data.idocData.name + ", " + props.data.idocData["IDOC_Number"] + ", is my " + props.data.relation +
-        ", and is eligible for transfer to home detention pursuant to {statutory provision variable}. " +
-        " I am writing to urge you to place " + props.data.idocData.name + " on home detention as soon as possible. " +
-        props.data.idocData.name + " is an ideal candidate for home detention because " + props.data.reasonsWhy + "\n\n If " +
-        props.data.idocData.name + " is transferred to home detention, s/he can live with " + props.data.personName + ", " + props.data.relation +
-        props.data.contactInfo + ", " + props.data.idocData.name + " will receive support in the form of " + "Assistance complying with parole requirements, Groceries, Job placement, Assistance meeting medical needs" +
-        " from the following individuals/entities " + props.data.supportContactInfo + ". \n\n" + props.data.community + "\n" +
+function Modal(props) {
+    var parole = props.data.parole ? "Assistance complying with parole requirements" : null;
+    var groceries = props.data.groceries ? "Groceries" : null;
+    var job = props.data.job ? "Job Placement" : null;
+    var medical = props.data.medical ? "Assistance meeting medical needs" : null;
+    var checkboxContent = "";
+    var nameArr = props.data.idocData.name.split(', ');
+    var inmateName = nameArr[1] + " " + nameArr[0];
+
+    checkboxContent += parole + (props.data.groceries ? ", groceries" : "") + (props.data.job ? ", job placement" : "") + (props.data.medical ? ", assistance meeting medical needs" : "");
+
+    let emailContent = "Dear " + props.data.wardenName + "\n\n" + inmateName + " (" + props.data.idocData["idocNumber"] + ") is my " + props.data.relation +
+        " and is eligible for transfer to home detention pursuant to " + props.data.statutory + "." +
+        " I am writing to urge you to place " + inmateName + " on home detention as soon as possible. " +
+        inmateName + " is an ideal candidate for home detention because " + props.data.reason1 + ", " + props.data.reason2 + ", and " + props.data.reason3 + "." + "\n\nIf " +
+        inmateName + " is transferred to home detention, they can live with " + props.data.liveWith + ", " + props.data.relationLiveWith + ", " +
+        props.data.phoneLiveWith + ", " + props.data.addressLiveWith + ". " + inmateName + " will receive support in the form of " + checkboxContent +
+        " from the following individuals/entities: " + props.data.supportAndContact + ". \n\n" + props.data.threeSentences +
         "\n\nIf I can provide you with any further information about this request for transfer to home detention, please contact me at " +
-        props.data.contactInfo + ". I will contact your office to set a time to discuss this request within the next week. \n\n" +
-        "Thank you for your consideration. \n\n" + props.data.personName;
+        props.data.email + " or " + props.data.phone + ". I will contact your office to set a time to discuss this request within the next week. \n\n" +
+        "Thank you for your consideration. \n\n" + props.data.submitter;
 
     const { register, handleSubmit } = useForm();
 
@@ -24,25 +33,11 @@ function Modal(props) {
         console.log(data.emailContent)
 
         const templateId = 'template_id';
-        sendFeedback(templateId, {message_html: data.emailContent, from_name: props.data.personName, reply_to: "petersenea12@gmail.com"})
-        
+        sendFeedback(templateId, { message_html: data.emailContent, from_name: props.data.personName, reply_to: "petersenea12@gmail.com" });
     }
 
-    return (
-        // <div className="modal">
-        //     <div className="modal__close">
-        //         <span className="x" onClick={()=>props.setModalOpen(false)}>x</span>
-        //     </div>
-        //     <p><strong>To:</strong> idoc@idoc.com</p>
-        //     <p><strong>From: </strong> {props.data.emailAddress}</p>
-        //     <p><strong>Shelter: </strong>{props.data.shelter}</p>
-        //     <p><strong>Relationship: </strong>{props.data.relationship}</p>
-        //     <p><strong>Character: </strong>{props.data.character}</p>
-        //     <br/>
-        //     <br/>
-        //     <Button variant="contained" color="secondary" className="export-button">Export</Button>
-        // </div>
 
+    return (
         <div className="modal">
             <div className="modal__close">
                 <span className="x" onClick={() => props.setModalOpen(false)}>x</span>
@@ -60,7 +55,7 @@ function Modal(props) {
                     fullWidth
                     inputRef={register({
                         required: true
-                      })}
+                    })}
                 />
                 <br />
                 <br />
