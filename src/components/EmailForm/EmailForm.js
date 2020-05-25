@@ -23,8 +23,7 @@ function EmailForm(props) {
   const onSubmit = data => {
 
     data.idocData = location.state;
-
-    // data.idocData = location.state.computeData;
+    data.idocData = location.state.computeData;
     // modal for email preview
     setData(data);
     setModalOpen(true);
