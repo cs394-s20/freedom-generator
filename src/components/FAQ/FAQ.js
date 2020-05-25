@@ -14,8 +14,14 @@ export default function FAQ() {
                             <br />
                             <Grid item >Answer</Grid>
                         </Grid> */}
-                        <p style={{fontWeight: "bold"}}>Question</p>
-                        <p>Answer</p>
+                        <p class="question">Q:  What is an IDOC number?</p>
+                        <p class="answer">Every prisoner in Illinois has a unique id called an IDOC number. You can find any prisoner's IDOC number on the <a href="https://www2.illinois.gov/idoc/Offender/pages/inmatesearch.aspx">illinois.gov</a> website.</p>
+                        <p class="question">Q:  What is an IDOC number?</p>
+                        <p class="answer">Every prisoner in Illinois has a unique id called an IDOC number. You can find any prisoner's IDOC number on the <a href="https://www2.illinois.gov/idoc/Offender/pages/inmatesearch.aspx">illinois.gov</a> website.</p>
+                        <p class="question">Q:  What is an IDOC number?</p>
+                        <p class="answer">Every prisoner in Illinois has a unique id called an IDOC number. You can find any prisoner's IDOC number on the <a href="https://www2.illinois.gov/idoc/Offender/pages/inmatesearch.aspx">illinois.gov</a> website.</p>
+                        <p class="question">Q:  What is an IDOC number?</p>
+                        <p class="answer">Every prisoner in Illinois has a unique id called an IDOC number. You can find any prisoner's IDOC number on the <a href="https://www2.illinois.gov/idoc/Offender/pages/inmatesearch.aspx">illinois.gov</a> website.</p>
                     </div>
                 </div>
             </div>
