@@ -9,19 +9,23 @@ function Modal(props){
     var job = props.data.job ? "Job Placement" : null;
     var medical = props.data.medical ? "Assistance meeting medical needs" : null;
     var checkboxContent = "";
-    checkboxContent += parole + (props.data.groceries ? ", Groceries" : "") + (props.data.job ? ", Job Placement" : "") + (props.data.medical ? ", Assistance meeting medical needs" : "");
+    var nameArr = props.data.idocData.name.split(', ');
+    var inmateName = nameArr[1] + " " + nameArr[0];
 
-    let emailContent = "Dear " + props.data.wardenName + "\n\n" +  props.data.idocData.name + ", " + props.data.idocData["idocNumber"] + ", is my " + props.data.relation + 
-    ", and is eligible for transfer to home detention pursuant to " + props.data.statutory + "." + 
-    " I am writing to urge you to place " + props.data.idocData.name + " on home detention as soon as possible. " + 
-    props.data.idocData.name + " is an ideal candidate for home detention because " + props.data.reason1 + ", " + props.data.reason2 + ", " + props.data.reason3 + "." + "\n\n If " +
-    props.data.idocData.name + " is transferred to home detention, s/he can live with " + props.data.liveWith + ", " + props.data.relationLiveWith + ", " +
-    props.data.phoneLiveWith + ", " + props.data.addressLiveWith + ". " + props.data.idocData.name + " will receive support in the form of " + checkboxContent +
-    " from the following individuals/entities " + props.data.supportAndContact + ". \n\n" + props.data.threeSentences +
+    checkboxContent += parole + (props.data.groceries ? ", groceries" : "") + (props.data.job ? ", job placement" : "") + (props.data.medical ? ", assistance meeting medical needs" : "");
+
+    let emailContent = "Dear " + props.data.wardenName + "\n\n" +  inmateName + " (" + props.data.idocData["idocNumber"] + ") is my " + props.data.relation + 
+    " and is eligible for transfer to home detention pursuant to " + props.data.statutory + "." + 
+    " I am writing to urge you to place " + inmateName + " on home detention as soon as possible. " + 
+    inmateName + " is an ideal candidate for home detention because " + props.data.reason1 + ", " + props.data.reason2 + ", and " + props.data.reason3 + "." + "\n\n If " +
+    inmateName + " is transferred to home detention, they can live with " + props.data.liveWith + ", " + props.data.relationLiveWith + ", " +
+    props.data.phoneLiveWith + ", " + props.data.addressLiveWith + ". " + inmateName + " will receive support in the form of " + checkboxContent +
+    " from the following individuals/entities: " + props.data.supportAndContact + ". \n\n" + props.data.threeSentences +
     "\n\nIf I can provide you with any further information about this request for transfer to home detention, please contact me at " +
     props.data.email + " or " + props.data.phone + ". I will contact your office to set a time to discuss this request within the next week. \n\n" +
     "Thank you for your consideration. \n\n" + props.data.submitter;
 
+    
 
     return(
         <div className="modal">

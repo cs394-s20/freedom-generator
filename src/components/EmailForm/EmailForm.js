@@ -43,8 +43,8 @@ function EmailForm(props) {
 
   }
 
-  var nameArr = location.state.computeData.name.split(',')
-  var inmateName = nameArr[1] + " " + nameArr[0]
+  var nameArr = location.state.computeData.name.split(',');
+  var inmateName = nameArr[1] + " " + nameArr[0];
 
   return (
     <div>
@@ -78,7 +78,6 @@ function EmailForm(props) {
                   name="statutory"
                   placeholder='statutory provision'
                   control={control}
-                // inputRef={register({ required: true })}
                 />
                 .
               </Grid>
@@ -93,7 +92,7 @@ function EmailForm(props) {
               </Grid>
               <Grid><br /></Grid>
               <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                If {inmateName} is transferred to home detention, s/he can live with&nbsp;
+                If {inmateName} is transferred to home detention, they can live with&nbsp;
                 <TextField name="liveWith" placeholder="name" inputRef={register({ required: true })} />,&nbsp;
                 <TextField name="relationLiveWith" placeholder="relation to inmate" inputRef={register({ required: true })} />,&nbsp;
                 <TextField name="phoneLiveWith" placeholder="phone number" inputRef={register({ required: true })} />,&nbsp;
