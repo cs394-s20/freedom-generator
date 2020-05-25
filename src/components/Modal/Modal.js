@@ -7,9 +7,9 @@ import { useForm, Controller } from 'react-hook-form';
 
 function Modal(props) {
     var parole = props.data.parole ? "Assistance complying with parole requirements" : null;
-    var groceries = props.data.groceries ? "Groceries" : null;
-    var job = props.data.job ? "Job Placement" : null;
-    var medical = props.data.medical ? "Assistance meeting medical needs" : null;
+    // var groceries = props.data.groceries ? "Groceries" : null;
+    // var job = props.data.job ? "Job Placement" : null;
+    // var medical = props.data.medical ? "Assistance meeting medical needs" : null;
     var checkboxContent = "";
     var nameArr = props.data.idocData.name.split(', ');
     var inmateName = nameArr[1] + " " + nameArr[0];
@@ -32,9 +32,10 @@ function Modal(props) {
     const onSubmit = data => {
         console.log(data.emailContent)
 
-        const templateId = 'template_id';
-        sendFeedback(templateId, { message_html: data.emailContent, from_name: props.data.personName, reply_to: "petersenea12@gmail.com" });
+        // THIS IS WHERE WE WILL PROBABLY WRITE THE CODE TO SEND THE EMAIL
     }
+
+    
 
 
     return (
