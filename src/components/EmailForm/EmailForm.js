@@ -9,6 +9,7 @@ import { white, green, red } from '@material-ui/core/colors';
 import Modal from '../Modal/Modal.js';
 import '../../styles/styles.scss';
 
+
 function EmailForm(props) {
   let location = useLocation();
   console.log(location);
