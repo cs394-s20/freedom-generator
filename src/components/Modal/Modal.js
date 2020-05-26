@@ -1,13 +1,85 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Modal.scss';
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import { gapi }  from 'gapi-script';
+import { Base64 }  from 'js-base64'
+
+const CLIENT_ID = '599434271054-0r34mipsobtakroniq4brsr99a6tlrls.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyA1eRqEnxINz0ZwtqPVpkiHp7Phds54G5Y';
+const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
+const SCOPES = 'https://www.googleapis.com/auth/gmail.compose';
+
+function createEmail(to, from, subject, message) {
+    let email = ["Content-Type: text/plain; charset=\"UTF-8\"\n",
+      "MIME-Version: 1.0\n",
+      "Content-Transfer-Encoding: 7bit\n",
+      "to: ", to, "\n",
+      "from: ", from, "\n",
+      "subject: ", subject, "\n\n",
+      message
+    ].join('');
+  
+    return Base64.encodeURI(email);
+}
+
+function loadClient() {
+    gapi.load('client:auth2', initClient);
+}
+
+function initClient(){
+    gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES
+      }).then(function () {
+        // Listen for sign-in state changes.
+        console.log("Google API initialized");
+      }, function(error) {
+        console.log("error initializing api");
+      });
+}
+loadClient();
 
 function Modal(props){
+
+    const [isSignedIn, setIsSignedIn] = useState(false);
+    console.log(isSignedIn);
+    function signIn() {
+        gapi.auth2.getAuthInstance().isSignedIn.listen(setIsSignedIn);
+        if (gapi.auth2.getAuthInstance().isSignedIn.get()){
+            setIsSignedIn(true);
+        } else {
+            gapi.auth2.getAuthInstance().signIn()
+        }
+        
+    }
+    function exportDraft(){
+        const userId = gapi.auth2.getAuthInstance().currentUser.get().getId();
+
+        gapi.client.gmail.users.getProfile({'userId': userId}).execute((response) => {
+            var request = gapi.client.gmail.users.drafts.create({
+                'userId': userId,
+                'resource': {
+                    'message': {
+                        'raw': createEmail(
+                            response.emailAddress, 
+                            response.emailAddress, 
+                            "IDOC Petition", 
+                            emailContent
+                        )
+                    }
+                }
+            });
+            request.execute((response) => {
+                gapi.auth2.getAuthInstance().signOut();
+            })
+        })
+        
+    }
+
     var parole = props.data.parole ? "Assistance complying with parole requirements" : null;
-    var groceries = props.data.groceries ? "Groceries" : null;
-    var job = props.data.job ? "Job Placement" : null;
-    var medical = props.data.medical ? "Assistance meeting medical needs" : null;
     var checkboxContent = "";
     var nameArr = props.data.idocData.name.split(', ');
     var inmateName = nameArr[1] + " " + nameArr[0];
@@ -24,7 +96,9 @@ function Modal(props){
     "\n\nIf I can provide you with any further information about this request for transfer to home detention, please contact me at " +
     props.data.email + " or " + props.data.phone + ". I will contact your office to set a time to discuss this request within the next week. \n\n" +
     "Thank you for your consideration. \n\n" + props.data.submitter;
-
+    
+    
+    
     
 
     return(
@@ -43,7 +117,8 @@ function Modal(props){
             />
             <br />
             <br />
-            <Button variant="contained" color="secondary" className="export-button">Export</Button>
+            {!isSignedIn && <Button id="sign-in" variant="contained" color="secondary" className="export-button" onClick={signIn}>Sign in to Google</Button>}
+            {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={exportDraft}>Export</Button> }
         </div>
     )
 }
