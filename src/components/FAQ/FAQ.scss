@@ -9,6 +9,12 @@
   }
 }
 
+ul{
+  text-align: left;
+  margin-left: 25px;
+  margin-right: 20px;
+}
+
 .FAQcontent {
     background-color: #b2c8d9;
     margin-bottom: 20px;
@@ -32,9 +38,10 @@
 .question{
   font-weight: bold;
   font-size: large;
-  line-height: 5%;
 }
 
 .answer{
   padding-left: 25px;
+  padding-right: 25px;
+  margin-right: 1px;
 }
