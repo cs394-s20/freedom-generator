@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './components/Home/Home.js';
 import WelcomePage from './components/WelcomePage/WelcomePage.js';
 import IDOCPage from './components/IDOCPage/IDOCPage.js';
+import EligibilityPage from './components/EligibilityPage/EligibilityPage.js';
 import CustomizedInputs from './components/EmailForm/EmailForm';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import FAQ from './components/FAQ/FAQ';
@@ -19,6 +20,7 @@ function App() {
         <Route path="/example" component={ExampleEmail} />
         <Route path="/idoc" component={IDOCPage} />
         <Route path="/home" component={Home} />
+        <Route path="/eligibility" component={EligibilityPage}/>
       </Switch>
     </Router>
   );

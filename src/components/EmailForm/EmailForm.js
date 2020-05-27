@@ -12,6 +12,7 @@ import '../../styles/styles.scss';
 
 function EmailForm(props) {
   let location = useLocation();
+  console.log("this")
   console.log(location);
   const defaultValues = {
     relationship: "",

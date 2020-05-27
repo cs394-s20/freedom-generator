@@ -4,7 +4,7 @@ import { TextField, Button, Checkbox, Grid, FormControlLabel } from '@material-u
 import InfoIcon from '@material-ui/icons/Info';
 import ReactTooltip from "react-tooltip";
 import { Link } from 'react-router-dom';
-import {get_idocData} from '../../stub-idoc';
+import { get_idocData } from '../../stub-idoc';
 import ReleaseMechanismButton from '../ReleaseMechanismButton';
 import Mechanisms from '../../Mechanisms';
 
@@ -13,45 +13,58 @@ function EmailForm(props) {
     const { register, handleSubmit, errors } = useForm();
     const [loading, setLoading] = useState(false);
     const [computeData, setComputeData] = useState(null);
-  
+
     var mechanisms = <div></div>;
     if (computeData != null) {
-      mechanisms = computeData.data.map((rm, index) => {
-        
-        return (
-          <ReleaseMechanismButton key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text}/>
-        )
-      });
+        mechanisms = computeData.data.map((rm, index) => {
+
+            return (
+                <ReleaseMechanismButton key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text} />
+            )
+        });
     }
+    // const makeThing = t => {
+    //     var data = JSON.parse(t)
+    //     return (
+    //         {name: data.name, idocNumber: formData["IDOC_Number"], data: Mechanisms.compute()}
+    //     )
+    // }
     const onSubmit = formData => {
         setLoading(true);
         setComputeData(null);
         get_idocData(formData["IDOC_Number"]).then(response => {
-          response.text().then(t => {
-            var data = JSON.parse(t);
-            console.log(data); // this line can be delete
-            data.highRisk = formData["medical_furlough"]; 
-            setComputeData({name: data.name, idocNumber: formData["IDOC_Number"], data: Mechanisms.compute(data)});
-            console.log("computeData:")
-            console.log(computeData);
-            setLoading(false);
-          });
+            response.text().then(t => {
+                var data = JSON.parse(t);
+                console.log(data); // this line can be delete
+                data.highRisk = formData["medical_furlough"];
+                var thing = { name: data.name, idocNumber: formData["IDOC_Number"], data: Mechanisms.compute(data) };
+                console.log("computeData:")
+                // console.log(thing);
+                setComputeData(thing);
+                setLoading(false);
+                return (
+                    thing
+                ).then(thing => {
+                    console.log("stuff: "+ thing)
+                })
+            });
         });
-      };
+        
+    };
     let popup = (
         <React.Fragment>
-          <div className="infoIconWrapper">
-            Eligible for medical furlough?
+            <div className="infoIconWrapper">
+                Eligible for medical furlough?
             <a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-at-higher-risk.html" target="_blank" data-tip data-for='popup'> <InfoIcon className="infoIcon" /> </a>
-          </div>
-          <ReactTooltip id='popup' type='error'>
-            <span>Click to see who qualifies as eligible.</span>
-          </ReactTooltip>
+            </div>
+            <ReactTooltip id='popup' type='error'>
+                <span>Click to see who qualifies as eligible.</span>
+            </ReactTooltip>
         </React.Fragment>
-      )
+    )
     return (
         <div>
-            <p>Please input the IDOC Number to search if this individual is eligible for early release.</p>
+            <p>Please input the IDOC Number to determine if an individual is eligible for early release.</p>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container justify="center">
                     <Grid item>
@@ -73,11 +86,20 @@ function EmailForm(props) {
                         />
                     </Grid>
                 </Grid>
-                <Button type="submit" variant="contained" onClick={() => setLoading(true)}>View Eligibility</Button>
+                <Button type="submit" variant="contained">Load Data</Button>
+
+                <div>
+                    <Link to={{
+                        pathname: "/eligibility",
+                        state: { computeData }
+                    }}>
+                        <Button type="submit" variant="contained">View Eligibility</Button>
+                    </Link>
+                </div>
                 <br />
                 <br />
-                {loading && <div id="Loading">Loading...</div>}
-                <br />
+                {/* {loading && <div id="Loading">Loading...</div>} */}
+                {/* <br />
                 <br />
                 {computeData != null &&
                     mechanisms
@@ -91,7 +113,7 @@ function EmailForm(props) {
                             <Button type="submit" variant="contained" color="primary">Draft Petition</Button>
                         </Link>
                     </div>
-                }
+                } */}
             </form>
         </div>
     );

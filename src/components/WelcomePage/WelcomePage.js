@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 
 
 
-function EmailForm(props) {
+function WelcomePage(props) {
 
     return (
         <div>
@@ -23,4 +23,4 @@ function EmailForm(props) {
 
 }
 
-export default EmailForm;
+export default WelcomePage;
