@@ -52,7 +52,7 @@ function EmailForm(props) {
       <div id="overlay">
         <div className="Email">
           <div className="emailFormBg">
-            <h1>Freedom Generator</h1>
+            <h1>Freedom Link</h1>
             <div></div>
             <form class="emailForm" onSubmit={handleSubmit(onSubmit)}>
               <h3>Email Form</h3>
