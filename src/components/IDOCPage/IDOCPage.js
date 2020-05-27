@@ -63,9 +63,11 @@ function EmailForm(props) {
         </React.Fragment>
     )
     return (
-        <div>
-            <p>Please input the IDOC Number to determine if an individual is eligible for early release.</p>
+        <div className="IDOCPage">
             <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="formContainer">
+                <p className="bold">Please input the IDOC Number to determine if an individual is eligible for early release.</p>
+                <div>
                 <Grid container justify="center">
                     <Grid item>
                         <FormControlLabel
@@ -86,18 +88,18 @@ function EmailForm(props) {
                         />
                     </Grid>
                 </Grid>
-                <Button type="submit" variant="contained">Load Data</Button>
+                </div>
 
-                <div>
+                <div className="flexCenter">
+                    <Button type="submit" variant="contained" color="primary">Load Data</Button>
                     <Link to={{
                         pathname: "/eligibility",
                         state: { computeData }
                     }}>
-                        <Button type="submit" variant="contained">View Eligibility</Button>
+                        <Button type="submit" variant="contained" color="primary">View Eligibility</Button>
                     </Link>
                 </div>
-                <br />
-                <br />
+
                 {/* {loading && <div id="Loading">Loading...</div>} */}
                 {/* <br />
                 <br />
@@ -114,6 +116,7 @@ function EmailForm(props) {
                         </Link>
                     </div>
                 } */}
+                </div>
             </form>
         </div>
     );
