@@ -5,7 +5,7 @@ export default function ExampleEmail() {
         <div>
             <div className="ExampleEmail">
                 <div className="ExampleEmailcontentBg">
-                    <h1>Freedom Generator</h1>
+                    <h1>Freedom Link</h1>
                     <h5 class="instructions">Feel free to use this sample email to be sent to your warden. Don't know where to find the information needed in this email? Don't worry: you can refer to our <a href="./faq" style={{color: 'powderblue'}}>FAQs page</a>.</h5>
                     <div class="ExampleEmailcontent">
                         <h3>Example Email</h3>

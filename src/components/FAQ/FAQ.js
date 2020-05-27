@@ -6,7 +6,7 @@ export default function FAQ() {
         <div>
             <div className="FAQ">
                 <div className="FAQcontentBg">
-                    <h1>Freedom Generator</h1>
+                    <h1>Freedom Link</h1>
                     <div class="FAQcontent">
                         <h2>FAQ</h2>
                         {/* <Grid container direction="column" alignItems="flex-start" justify="flex-start">
@@ -14,7 +14,7 @@ export default function FAQ() {
                             <br />
                             <Grid item >Answer</Grid>
                         </Grid> */}
-                        <p class="question">Q:  What is Freedom Generator?</p>
+                        <p class="question">Q:  What is Freedom Link?</p>
                         <p class="answer">Freedom Link connects people with loved ones in the custody of the Illinois Department of Corrections with information and access regarding Illinois Home Detention Program. Freedom Link will help you: 1) determine if your loved one is eligible for home detention; 2) draft a Request for Home Detention; and 3) distribute the request to the appropriate IDOC officials’ email. </p>
                         <p class="answer">Freedom Link is a joint project between Northwestern computer science students and The Community Justice and Civil Rights Clinic at the Northwestern Pritzker School of Law, the Illinois Prison Project </p>
                         <p class="question">Q:  What is Illinois Home Detention Program</p>
@@ -23,7 +23,7 @@ export default function FAQ() {
                         <p class="answer">Under 730 ILCS 5/5-8A-3(d), <b>People over age 55 with 12 months or less</b> to serve who have served at least 25% of their sentenced prison term, and are serving a sentence for conviction of an offense other than for certain sex offenses. </p>
                         <p class="answer">Under 730 ILCS 5/5-8A-3(e), a <b>person of any age serving a sentence for conviction of a Class 2, 3, or 4</b> felony offense other than for certain sex offenses</p>
                         <p class="question">Q:  How can someone apply for home detention?</p>
-                        <p class="answer">At this point, there is no official application. Though Freedom Generator, you can make IDOC officials aware that your loved one is eligible for this program and explain why your loved one should come home. </p>
+                        <p class="answer">At this point, there is no official application. Though Freedom Link, you can make IDOC officials aware that your loved one is eligible for this program and explain why your loved one should come home. </p>
                         <p class="question">Q:  What information do I need to use Freedom Link? </p>
                         <p class="answer">In order to determine your loved one’s eligibility, you need their IDOC number.</p>
                         <p class="answer">A strong request for home detention should include the following information:</p>
@@ -34,7 +34,7 @@ export default function FAQ() {
                             <li>Any other information you think IDOC officials may need to fully understand why your loved one should return home. For example, is a family member sick? Does your loved one have young children to care for? Does your loved one live with addiction and/or mental illness that is better treated in his or her home community? </li>
                         </ul>
                         <p class="answer">You are not required to have all this information—but the more information you have the stronger your application will be.</p>
-                        <p class="question">Q:  What happens after I submit a request for Home Detention through Freedom Generator?</p>
+                        <p class="question">Q:  What happens after I submit a request for Home Detention through Freedom Link?</p>
                         <p class="answer">A request for home detention does not mean that the IDOC will grant your request. Once your request is submitted IDOC should consider it and respond back directly to you and your loved one.</p>
                         <p class="question">Q:  What is the difference between clemency, commutation and home detention?</p>
                         <p class="answer">Clemency is the power of the Governor to change a criminal conviction or criminal sentence imposed by a court. Commutation is a type of clemency, specifically the modification of a sentence. If someone’s sentence is commuted, that means that it is changed, often to “time served” so that the person can be released.</p>
