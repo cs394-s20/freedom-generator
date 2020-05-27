@@ -5,7 +5,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import ReactTooltip from "react-tooltip";
 import { Link } from 'react-router-dom';
 import {get_idocData} from '../../stub-idoc';
-import ReleaseMechanism from '../ReleaseMechanism';
+import ReleaseMechanismExpand from '../ReleaseMechanismExpand';
 import Mechanisms from '../../Mechanisms';
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
     mechanisms = computeData.data.map((rm, index) => {
       
       return (
-        <ReleaseMechanism key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text}/>
+        <ReleaseMechanismExpand key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text}/>
       )
     });
   }
