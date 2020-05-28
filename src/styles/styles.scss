@@ -1,3 +1,4 @@
+@import './fonts.scss';
 @import './inputs.scss';
 
 
@@ -5,3 +6,13 @@
 @import '../components/EmailForm/EmailForm.scss';
 @import '../components/FAQ/FAQ.scss';
 @import '../components/ExampleEmail/ExampleEmail.scss';
+@import '../components/IDOCPage/IDOCPage.scss';
+@import '../components/WelcomePage/WelcomePage.scss';
+
+
+.flexCenter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
