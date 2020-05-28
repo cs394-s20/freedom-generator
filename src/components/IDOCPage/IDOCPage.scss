@@ -1,0 +1,14 @@
+.IDOCPage{
+    @extend .flexCenter;
+    height: 100vh;
+    padding: 30px;
+    & p{
+        text-align: center !important;
+    }
+}
+
+.formContainer{
+    @extend .flexCenter;
+    height: 120%;
+    justify-content: space-between !important;
+}

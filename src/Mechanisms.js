@@ -2,7 +2,7 @@ import ConditionChecker from './ConditionChecker';
 
 const MechanismList = [
     {
-        text: 'Medical furlough',
+        text: 'Medical Furlough',
         conditions: [[
             ConditionChecker.eligibleForMedicalFurlough,
             ConditionChecker.isNotExcludedOffense

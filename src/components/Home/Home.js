@@ -5,7 +5,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import ReactTooltip from "react-tooltip";
 import { Link } from 'react-router-dom';
 import {get_idocData} from '../../stub-idoc';
-import ReleaseMechanism from '../ReleaseMechanism';
+import ReleaseMechanism from '../ReleaseMechanisms/ReleaseMechanism';
 import Mechanisms from '../../Mechanisms';
 
 export default function Home() {
