@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { TextField, Button, Checkbox, Grid, FormControlLabel } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import ReactTooltip from "react-tooltip";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { get_idocData } from '../../stub-idoc';
 import ReleaseMechanismButton from '../ReleaseMechanismButton';
 import Mechanisms from '../../Mechanisms';
@@ -14,15 +14,15 @@ function EmailForm(props) {
     const [loading, setLoading] = useState(false);
     const [computeData, setComputeData] = useState(null);
 
-    var mechanisms = <div></div>;
-    if (computeData != null) {
-        mechanisms = computeData.data.map((rm, index) => {
+    // var mechanisms = <div></div>;
+    // if (computeData != null) {
+    //     mechanisms = computeData.data.map((rm, index) => {
 
-            return (
-                <ReleaseMechanismButton key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text} />
-            )
-        });
-    }
+    //         return (
+    //             <ReleaseMechanismButton key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text} />
+    //         )
+    //     });
+    // }
     // const makeThing = t => {
     //     var data = JSON.parse(t)
     //     return (
@@ -30,26 +30,27 @@ function EmailForm(props) {
     //     )
     // }
     const onSubmit = formData => {
-        setLoading(true);
+        // setLoading(true);
         setComputeData(null);
         get_idocData(formData["IDOC_Number"]).then(response => {
             response.text().then(t => {
                 var data = JSON.parse(t);
                 console.log(data); // this line can be delete
                 data.highRisk = formData["medical_furlough"];
-                var thing = { name: data.name, idocNumber: formData["IDOC_Number"], data: Mechanisms.compute(data) };
+                var computeData = { name: data.name, idocNumber: formData["IDOC_Number"], data: Mechanisms.compute(data) };
                 console.log("computeData:")
                 // console.log(thing);
-                setComputeData(thing);
-                setLoading(false);
+                // setComputeData(thing);
+                // setLoading(false);
                 return (
-                    thing
-                ).then(thing => {
-                    console.log("stuff: "+ thing)
-                })
+                    computeData
+                )
+            }).then(computeData => {
+                console.log(computeData)
+                setComputeData(computeData);
             });
         });
-        
+
     };
     let popup = (
         <React.Fragment>
@@ -86,15 +87,22 @@ function EmailForm(props) {
                         />
                     </Grid>
                 </Grid>
-                <Button type="submit" variant="contained">Load Data</Button>
-
+                <Button type="submit" variant="contained">View Eligibility</Button>
+                {computeData != null &&
+                    <Redirect
+                        push
+                        to={{
+                            pathname: "/eligibility",
+                            state: { computeData }
+                        }}
+                    />
+                }
                 <div>
-                    <Link to={{
+                    {/* <Link to={{
                         pathname: "/eligibility",
                         state: { computeData }
                     }}>
-                        <Button type="submit" variant="contained">View Eligibility</Button>
-                    </Link>
+                    </Link> */}
                 </div>
                 <br />
                 <br />
