@@ -67,66 +67,44 @@ function EmailForm(props) {
         <div className="IDOCPage">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="formContainer">
-                <p className="bold">Please input the IDOC Number to determine if an individual is eligible for early release.</p>
-                <div>
-                <Grid container justify="center">
-                    <Grid item>
-                        <FormControlLabel
-                            control={<TextField InputProps={{ style: { background: 'white', paddingLeft: 10 } }} name="IDOC_Number" inputRef={register({ required: true })} />}
-                            label="IDOC Number: &nbsp;"
-                            labelPlacement="start"
-                            Props={{ style: { color: "white" } }}
-                        />
-                        {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
-                    </Grid>
-                </Grid>
-                <Grid container justify="center">
-                    <Grid item>
-                        <FormControlLabel
-                            control={<Checkbox name="medical_furlough" inputRef={register} inputProps={{ 'aria-label': 'Checkbox A' }} />}
-                            label={popup}
-                            labelPlacement="start"
-                        />
-                    </Grid>
-                </Grid>
-
-                <div className="flexCenter">
-                <Button type="submit" variant="contained">View Eligibility</Button>
-                {computeData != null &&
-                    <Redirect
-                        push
-                        to={{
-                            pathname: "/eligibility",
-                            state: { computeData }
-                        }}
-                    />
-                }
-                </div>
-                <div>
-                    {/* <Link to={{
-                        pathname: "/eligibility",
-                        state: { computeData }
-                    }}>
-                    </Link> */}
-                </div>
-
-                {/* {loading && <div id="Loading">Loading...</div>} */}
-                {/* <br />
-                <br />
-                {computeData != null &&
-                    mechanisms
-                }
-                {computeData != null &&
+                    <p className="bold">Please input the IDOC Number to determine if an individual is eligible for early release.</p>
                     <div>
-                        <Link to={{
-                            pathname: "/email",
-                            state: { computeData }
-                        }}>
-                            <Button type="submit" variant="contained" color="primary">Draft Petition</Button>
-                        </Link>
+                        <Grid container justify="center">
+                            <Grid item>
+                                <FormControlLabel
+                                    control={<TextField InputProps={{ style: { background: 'white', paddingLeft: 10 } }} name="IDOC_Number" inputRef={register({ required: true })} />}
+                                    label="IDOC Number: &nbsp;"
+                                    labelPlacement="start"
+                                    Props={{ style: { color: "white" } }}
+                                />
+                                {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
+                            </Grid>
+                        </Grid>
+                        <Grid container justify="center">
+                            <Grid item>
+                                <FormControlLabel
+                                    control={<Checkbox name="medical_furlough" inputRef={register} inputProps={{ 'aria-label': 'Checkbox A' }} />}
+                                    label={popup}
+                                    labelPlacement="start"
+                                />
+                            </Grid>
+                        </Grid>
+
+                        <div className="flexCenter">
+                            <Button type="submit" variant="contained">View Eligibility</Button>
+                            {computeData != null &&
+                                <Redirect
+                                    push
+                                    to={{
+                                        pathname: "/eligibility",
+                                        state: { computeData }
+                                    }}
+                                />
+                            }
+                        </div>
                     </div>
-                } */}
                 </div>
+
             </form>
         </div>
     );
