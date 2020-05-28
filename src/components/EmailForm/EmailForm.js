@@ -50,24 +50,20 @@ function EmailForm(props) {
 
   return (
     <div>
-      <Grid container direction="row" alignItems="center">
-        <Tabs computeData={location.state.computeData}/>
-      </Grid>
-      <Grid container direction="row" alignItems="center">
-        <div>
 
-          <div id="overlay">
-            <div className="Email">
-              <div className="emailFormBg">
-                <h1>Freedom Generator</h1>
-                <div></div>
-                <form class="emailForm" onSubmit={handleSubmit(onSubmit)}>
-                  <h3>Email Form</h3>
-                  <br />
-                  <br />
-                  <Grid container direction="row" alignItems="center">
-                    <Grid><Typography>Dear&nbsp;</Typography></Grid>
-                    <Grid><TextField name="wardenName" placeholder="warden name" inputRef={register({ required: true })} /></Grid>,
+      <Tabs computeData={location.state.computeData}/>
+      <div id="overlay">
+        <div className="Email">
+          <div className="emailFormBg">
+            <h1>Freedom Link</h1>
+            <div></div>
+            <form class="emailForm" onSubmit={handleSubmit(onSubmit)}>
+              <h3>Email Form</h3>
+              <br />
+              <br />
+              <Grid container direction="row" alignItems="center">
+                <Grid><Typography>Dear&nbsp;</Typography></Grid>
+                <Grid><TextField name="wardenName" placeholder="warden name" inputRef={register({ required: true })} /></Grid>,
               </Grid>
                   <br />
                   <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
@@ -145,7 +141,6 @@ function EmailForm(props) {
           </div>
           {modal}
         </div >
-      </Grid>
     </div>
   );
 }
