@@ -16,7 +16,7 @@ function ConditionList(props) {
     return (<div>{conditions}</div>)
 }
 
-export default function ReleaseMechanismExpand(props) {
+export default function ReleaseMechanismExpanded(props) {
     const conditions = props.conditions;
     const description = props.description;
     const isPassed = props.isPassed;

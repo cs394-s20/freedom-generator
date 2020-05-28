@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReleaseMechanismExpand from '../ReleaseMechanismExpand';
+import ReleaseMechanismExpanded from '../ReleaseMechanisms/ReleaseMechanismExpanded';
 
 
 
@@ -16,7 +16,7 @@ function EligibilityCriteria(props) {
             <div>
                 {computeData.data.map((rm, index) => {
                     return (
-                        <ReleaseMechanismExpand key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text} />
+                        <ReleaseMechanismExpanded key={index} isPassed={rm.passed} conditions={rm.conditions} description={rm.text} />
                     )
                 })}
             </div>
