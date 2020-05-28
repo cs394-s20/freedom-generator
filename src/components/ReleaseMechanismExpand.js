@@ -20,7 +20,7 @@ export default function ReleaseMechanismExpand(props) {
     const conditions = props.conditions;
     const description = props.description;
     const isPassed = props.isPassed;
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = React.useState(true);
     const toggleExpanded = function(){
         setExpanded(!expanded);
     }
@@ -38,10 +38,9 @@ export default function ReleaseMechanismExpand(props) {
 
 
     return (
-        <div className="ReleaseMechanism" onClick={toggleExpanded}>
+        <div className="ReleaseMechanism">
             <div className="criteria">
                 <div className="criterion">
-                    <ExpandMoreIcon/>
                     {description}
                     {isPassed ? <CheckCircleIcon style={{ color: green[500] }} /> : <CloseRoundedIcon style={{ color: red[500] }} />}
                 
