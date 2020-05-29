@@ -1,11 +1,19 @@
 .IDOCPage{
-    @extend .flexCenter;
+    margin-left: 7vw;
+    margin-right: 5.5vw;
     height: 100vh;
     padding: 30px;
+    font-size: 3vh !important;
     & p{
-        text-align: center !important;
-        font-size: 30px;
-        
+        text-align: start;
+        font-size: 3vh;
+        font-weight: normal;
+        margin-top: -2vh;
+    }
+    & h1{
+        font-size: 7vh;
+        color: cornflowerblue;
+        text-align: start !important;
     }
 }
 

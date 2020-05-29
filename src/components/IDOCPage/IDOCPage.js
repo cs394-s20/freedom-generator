@@ -6,6 +6,7 @@ import ReactTooltip from "react-tooltip";
 import { Redirect } from 'react-router-dom';
 import { get_idocData } from '../../stub-idoc';
 import Mechanisms from '../../Mechanisms';
+import '../../styles/styles.scss';
 
 
 function EmailForm(props) {
@@ -44,21 +45,24 @@ function EmailForm(props) {
     )
     return (
         <div className="IDOCPage">
+            <h1>Step 1 of 3</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="formContainer">
                     <p className="bold">Please input the IDOC Number to determine if an individual is eligible for early release.</p>
+                    <br/>
                     <div>
                         <Grid container justify="center">
                             <Grid item>
                                 <FormControlLabel
-                                    control={<TextField InputProps={{ style: { background: 'white', paddingLeft: 10 } }} name="IDOC_Number" inputRef={register({ required: true })} />}
+                                    control={<TextField InputProps={{ style: { background: 'white', fontSize:'3vh', paddingLeft: 10 } }} name="IDOC_Number" inputRef={register({ required: true })} />}
                                     label="IDOC Number: &nbsp;"
                                     labelPlacement="start"
-                                    Props={{ style: { color: "white" } }}
+                                    Props={{ style: { color: "white", fontSize: '3vh' } }}
                                 />
                                 {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
                             </Grid>
                         </Grid>
+                        <br/>
                         <Grid container justify="center">
                             <Grid item>
                                 <FormControlLabel
@@ -68,7 +72,7 @@ function EmailForm(props) {
                                 />
                             </Grid>
                         </Grid>
-
+                        <br/>
                         <div className="flexCenter">
                             <Button type="submit" variant="contained">View Eligibility</Button>
                             {computeData != null &&
@@ -81,6 +85,7 @@ function EmailForm(props) {
                                 />
                             }
                         </div>
+                        <br/>
                     </div>
                 </div>
 
