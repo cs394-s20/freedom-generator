@@ -1,0 +1,30 @@
+.eligibilityCriteria{
+    margin-left: 7vw;
+    margin-right: 5.5vw;
+    margin-bottom: 50px;
+}
+
+.criteria {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 5%;
+    padding-top: 2%;
+    padding-bottom: 0%;
+    text-align: left;
+    cursor: grab;
+  }
+  
+  
+  .criterion {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .sub-criterion {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }

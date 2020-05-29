@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import {get_idocData} from '../../stub-idoc';
 import ReleaseMechanism from '../ReleaseMechanisms/ReleaseMechanism';
 import Mechanisms from '../../Mechanisms';
+import '../../styles/styles.scss';
 
 export default function Home() {
   const { register, handleSubmit, errors } = useForm();

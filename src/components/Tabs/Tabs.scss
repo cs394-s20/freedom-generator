@@ -1,0 +1,16 @@
+.tabs-fullscreen{
+    background-color: $blue;
+    text-align: right;
+    padding: 10px 0px;
+}
+
+.tabs-button{
+    font-size: 25px;
+    text-decoration: none;
+    color:white;
+    padding: 10px 20px;
+
+    &:hover{
+        background-color: $darkblue;
+    }
+}

@@ -55,13 +55,9 @@ function EmailForm(props) {
 
         <div id="overlay">
           <div className="Email">
-            <div className="emailFormBg">
-              <h1>Freedom Link</h1>
-              <div></div>
-              <form class="emailForm" onSubmit={handleSubmit(onSubmit)}>
-                <h3>Email Form</h3>
-                <br />
-                <br />
+            <div>
+              <h1>Email Form</h1>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container direction="row" alignItems="center">
                   <Grid><Typography>Dear&nbsp;</Typography></Grid>
                   <Grid><TextField name="wardenName" placeholder="warden name" inputRef={register({ required: true })} /></Grid>,
@@ -129,12 +125,10 @@ function EmailForm(props) {
                   I will contact your office to set a time to discuss this request within the next week.
               </Grid>
                 <Grid container alignItems="center" justify="flex-start"><br />Thank you for your consideration. </Grid>
-
-                <Grid><br /></Grid>
                 <Grid container alignItems="center" justify="flex-start"><TextField name="submitter" placeholder="name of submitter" inputRef={register({ required: true })} /></Grid>
-                <br />
-                <br />
-                <Button type="submit" variant="contained" color="primary">Preview Email</Button>
+                <div className="marginTop">
+                <Button className="button" type="submit" variant="contained" color="primary">Preview Email</Button>
+                </div>
               </form>
             </div>
           </div>

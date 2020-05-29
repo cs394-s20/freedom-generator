@@ -1,0 +1,14 @@
+.flexCenter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.margin{
+    margin: 25px;
+
+    &Top{
+        margin-top: 25px;
+    }
+}
