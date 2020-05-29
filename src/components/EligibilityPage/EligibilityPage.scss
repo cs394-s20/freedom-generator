@@ -1,0 +1,38 @@
+.eligibilityPage{
+    margin-left: 7vw;
+    margin-right: 5.5vw;
+}
+
+.eligibilityPage h1{
+    font-size: 7vh;
+    color: cornflowerblue;
+}
+
+.eligibilityPage h2{
+    font-size: 3vh;
+    font-weight: normal;
+    margin-top: -2vh;
+}
+
+.eligibilityContent{
+    // padding-left: 3vw;
+}
+
+#draftButton{
+    text-align: center;
+}
+
+.options{
+    // background-color: darkcyan;
+    padding-top: 10px;
+    display: flex;
+    padding-left: 3vw;
+    height: 30px;
+}
+
+#criteria{
+    padding-left: 10px;
+    background-color: white;
+    width: 70vw;
+    // padding-top: 8px;
+}

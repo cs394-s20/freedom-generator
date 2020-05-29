@@ -4,7 +4,8 @@ import Tabs from '../Tabs/Tabs';
 import { Button, RadioGroup, Radio, Checkbox, FormControlLabel } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
-import ReleaseMechanismExpanded from '../ReleaseMechanisms/ReleaseMechanismExpanded'
+import ReleaseMechanismExpanded from '../ReleaseMechanisms/ReleaseMechanismExpanded';
+import '../../styles/styles.scss';
 
 
 
@@ -18,6 +19,7 @@ function EligibilityPage(props) {
     const { register, handleSubmit, errors, control } = useForm();
     var [statuteNumber, setStatuteNumber] = useState(null);
     var [submitClicked, setSubmitClicked] = useState(false);
+    var [checked, setChecked] = useState(false);
 
     var getStatuteNumber = (index, conditions) => {
         var statnum = null;
@@ -48,37 +50,53 @@ function EligibilityPage(props) {
     return (
         <div>
             <Tabs computeData={computeData} />
-            <div>
-                {computeData.data.map((rm, index) => {
-                    return (
-                        <div>
-                            {rm.text}
-                            <Button
-                                id={index}
-                                onClick={() => {
-                                    var statnum = getStatuteNumber(index, rm.conditions);
-                                    setStatuteNumber(statnum);
-                                    document.getElementById(index).style.backgroundColor = "gray";
+            <div class="eligibilityPage">
+                <h1>Step 2 of 3</h1>
+                <h2>Please select one of the following release mechanisms. If an option is unselectable, that means this individual is ineligible. Click on ‘Eligibility Criteria’ above for more information.</h2>
+                <h2></h2>
+                <br/>
+                <br/>
+                <div class="eligibilityContent">
+                    {computeData.data.map((rm, index) => {
+                        return (
+                            <div class = "options">
+                                <Checkbox
+                                    id={index}
+                                    variant = "contained"
+                                    color = "primary"
+                                    onClick={() => {
+                                        var statnum = getStatuteNumber(index, rm.conditions);
+                                        setStatuteNumber(statnum);
+                                        document.getElementById(index).style.backgroundColor = "gray";
+                                        if (!checked){setChecked(true)};
+                                        if (checked){setChecked(false)};
+                                    }}
+                                    disabled={!rm.passed}>
+                                    Select
+                                </Checkbox>
+                                <h3 id="criteria">{rm.text}</h3>
+                            </div>
+                        )
+                    })}
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div id="draftButton">
+                        <Button disabled={!checked}variant="contained" color="primary" onClick={() => setSubmitClicked(true)}>Draft Email</Button>
+                        {submitClicked &&
+                            <Redirect
+                                to={{
+                                    pathname: "/email",
+                                    state: {
+                                        computeData: computeData,
+                                        statuteNumber: statuteNumber
+                                    }
                                 }}
-                                disabled={!rm.passed}>
-                                Select
-                            </Button>
-                        </div>
-                    )
-                })}
-
-                <Button variant="contained" color="primary" onClick={() => setSubmitClicked(true)}>Draft Email</Button>
-                {submitClicked &&
-                    <Redirect
-                        to={{
-                            pathname: "/email",
-                            state: {
-                                computeData: computeData,
-                                statuteNumber: statuteNumber
-                            }
-                        }}
-                    />
-                }
+                            />
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     )
