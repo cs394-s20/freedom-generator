@@ -1,18 +1,7 @@
 .welcomeContainer{
-    display: flex;
-    flex-direction: column;
+    @extend .flexCenter;
     text-align: center;
     height: 80vh;
-    align-items: center;
-    justify-content: center;
-    & p {
-        font-size: 25px;
-        margin-left: 5%;
-        text-align: center;
-    }
-    & h1 {
-        font-size: 40px;
-    }
 }
 
 .getStarted {
@@ -21,9 +10,4 @@
 
 .getStartedLink {
     text-decoration: none;
-}
-
-.getStartedButton {
-    font-size: 20px!important;
-    text-transform: none!important;
 }

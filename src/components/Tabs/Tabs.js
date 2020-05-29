@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Grid, Menu, MenuItem } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
-import './Tabs.scss';
+import '../../styles/styles.scss';
 
 
 function Tabs(props) {

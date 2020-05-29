@@ -1,0 +1,20 @@
+.eligibilityPage{
+    margin-left: 7vw;
+    margin-right: 5.5vw;
+
+    & h2{
+        margin-top: -2vh;
+    }
+}
+
+.options{
+    display: flex;
+    padding: 10px 0 0 3vw;
+    height: 30px;
+}
+
+#criteria{
+    padding-left: 10px;
+    background-color: white;
+    width: 70vw;
+}

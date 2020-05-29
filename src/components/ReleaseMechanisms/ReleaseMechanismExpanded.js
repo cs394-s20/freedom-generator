@@ -4,6 +4,7 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { green, red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from '@material-ui/core';
+import '../../styles/styles.scss';
 
 function ConditionList(props) {
     const conditions = props.condition.map((c, index) => {
