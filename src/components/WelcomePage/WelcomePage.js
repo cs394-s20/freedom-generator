@@ -9,13 +9,13 @@ function WelcomePage(props) {
 
     return (
         <div className="welcomeContainer">
-            <h1>Freedom Generator</h1>
+            <h1>Freedom Link</h1>
             <p>A simple way to advocate for the early release of a loved one from the Illinois Department of Corrections.</p>
-            <div className="getStartedButton">
-                <Link to={{
+            <div className="getStarted">
+                <Link className="getStartedLink" to={{
                     pathname: "/idoc"
                 }}>
-                    <Button variant="contained" color="primary">Get Started</Button>
+                    <Button className="getStartedButton" variant="contained" color="primary">Get Started</Button>
                 </Link>
             </div>
         </div>
