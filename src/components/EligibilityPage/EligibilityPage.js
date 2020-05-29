@@ -9,8 +9,6 @@ import '../../styles/styles.scss';
 
 
 
-
-
 function EligibilityPage(props) {
 
     let location = useLocation();
@@ -82,7 +80,7 @@ function EligibilityPage(props) {
                     <br/>
                     <br/>
                     <br/>
-                    <div id="draftButton">
+                    <div className="flexCenter">
                         <Button disabled={!checked}variant="contained" color="primary" onClick={() => setSubmitClicked(true)}>Draft Email</Button>
                         {submitClicked &&
                             <Redirect

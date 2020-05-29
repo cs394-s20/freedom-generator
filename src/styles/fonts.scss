@@ -2,6 +2,18 @@
 
 .error{
     color: red;
+    font-size: 12px;
+    text-align: center;
+}
+
+h1{
+    font-size: 50px;
+    color: cornflowerblue;
+}
+
+h2{
+    font-weight: normal;
+    font-size: 25px;
 }
 
 h3{
@@ -15,4 +27,13 @@ h3{
 
 .bold{
     font-weight: bold;
+}
+
+a{
+    text-decoration: none;
+}
+
+.button{
+    font-size: 20px!important;
+    text-transform: none!important;
 }

@@ -1,21 +1,16 @@
+@import './colors.scss';
+@import './utilities.scss';
 @import './fonts.scss';
 @import './inputs.scss';
 
 
 @import '../components/Home/Home.scss';
 @import '../components/EmailForm/EmailForm.scss';
-@import '../components/FAQ/FAQ.scss';
 @import '../components/ExampleEmail/ExampleEmail.scss';
+@import '../components/FAQ/FAQ.scss';
 @import '../components/IDOCPage/IDOCPage.scss';
 @import '../components/WelcomePage/WelcomePage.scss';
 @import '../components/EligibilityPage/EligibilityPage.scss';
 @import '../components/EligibilityCriteria/EligibilityCriteria.scss';
 @import '../components/ReleaseMechanisms/ReleaseMechanismExpanded.scss';
-
-
-.flexCenter{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+@import '../components/Tabs/Tabs.scss';

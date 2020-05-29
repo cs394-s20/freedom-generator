@@ -48,33 +48,33 @@ function EmailForm(props) {
             <h1>Step 1 of 3</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="formContainer">
-                    <p className="bold">Please input the IDOC Number to determine if an individual is eligible for early release.</p>
-                    <br/>
-                    <div>
-                        <Grid container justify="center">
-                            <Grid item>
-                                <FormControlLabel
-                                    control={<TextField InputProps={{ style: { background: 'white', fontSize:'3vh', paddingLeft: 10 } }} name="IDOC_Number" inputRef={register({ required: true })} />}
-                                    label="IDOC Number: &nbsp;"
-                                    labelPlacement="start"
-                                    Props={{ style: { color: "white", fontSize: '3vh' } }}
-                                />
-                                {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
+                    <h2>Please input the IDOC Number to determine if an individual is eligible for early release.</h2>
+                    <div className="inputContainer">
+                        <div className="inputContainer__input">
+                            <Grid container justify="center">
+                                <Grid item>
+                                    <FormControlLabel
+                                        className="label"
+                                        control={<TextField className="error" name="IDOC_Number" inputRef={register({ required: true })} />}
+                                        label="IDOC Number: &nbsp;"
+                                        labelPlacement="start"
+                                        Props={{ style: { color: "white", fontSize: '3vh' } }}
+                                    />
+                                    {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        <br/>
-                        <Grid container justify="center">
-                            <Grid item>
-                                <FormControlLabel
-                                    control={<Checkbox name="medical_furlough" inputRef={register} inputProps={{ 'aria-label': 'Checkbox A' }} />}
-                                    label={popup}
-                                    labelPlacement="start"
-                                />
+                            <Grid container justify="center">
+                                <Grid item>
+                                    <FormControlLabel
+                                        control={<Checkbox name="medical_furlough" inputRef={register} inputProps={{ 'aria-label': 'Checkbox A' }} />}
+                                        label={popup}
+                                        labelPlacement="start"
+                                    />
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        <br/>
-                        <div className="flexCenter">
-                            <Button type="submit" variant="contained">View Eligibility</Button>
+                        </div>
+                        <div className="flexCenter margin">
+                            <Button className="button" type="submit" variant="contained" color="primary">View Eligibility</Button>
                             {computeData != null &&
                                 <Redirect
                                     push
@@ -85,7 +85,6 @@ function EmailForm(props) {
                                 />
                             }
                         </div>
-                        <br/>
                     </div>
                 </div>
 
