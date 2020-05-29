@@ -1,13 +1,40 @@
 .welcomeContainer{
-    @extend .flexCenter;
+    background-color: cornflowerblue;
+    height: 70vh;
+    padding-left: 7vw;
+    padding-right: 7vw;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    height: 80vh;
+    // align-items: center;
+    justify-content: center;
+    & p {
+        font-size: 2.3vh;
+        text-align: center;
+        margin-top: -10vw;
+        color: black;
+    }
+    & h1 {
+        font-size: 12vw;
+        color: #001c4c;
+    }
+
+    #welcomeText{
+        display: inline-block;
+    }
 }
 
+
 .getStarted {
-    margin: 5%;
+    padding-top: 5vh;
+    text-align: center;
 }
 
 .getStartedLink {
     text-decoration: none;
+}
+
+.getStartedButton {
+    font-size: 20px!important;
+    text-transform: none!important;
 }
