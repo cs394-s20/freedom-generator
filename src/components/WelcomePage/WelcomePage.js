@@ -4,17 +4,20 @@ import { Button } from '@material-ui/core';
 import '../../styles/styles.scss';
 
 
+
 function WelcomePage(props) {
 
     return (
-        <div className="welcomeContainer">
-            <h1>Freedom Link</h1>
-            <h2>A simple way to advocate for the early release of a loved one from the Illinois Department of Corrections.</h2>
+        <div>
+            <div className="welcomeContainer">
+                <h1>Freedom Link</h1>
+                <p>A simple way to advocate for the early release of a loved one from the Illinois Department of Corrections.</p>
+            </div>
             <div className="getStarted">
                 <Link className="getStartedLink" to={{
                     pathname: "/idoc"
                 }}>
-                    <Button className="button" variant="contained" color="primary">Get Started</Button>
+                    <Button className="getStartedButton" variant="contained" color="primary">Get Started</Button>
                 </Link>
             </div>
         </div>
