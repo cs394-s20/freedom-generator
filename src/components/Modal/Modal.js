@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Modal.scss';
-import { Button } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { gapi }  from 'gapi-script';
 import { Base64 }  from 'js-base64'
@@ -45,6 +45,8 @@ loadClient();
 function Modal(props){
 
     const [isSignedIn, setIsSignedIn] = useState(false);
+    // add by Zhu
+    const [sendEmailConfirmationOpen, setSendEmailConfirmationOpen] = useState(false);
     console.log(isSignedIn);
     function signIn() {
         gapi.auth2.getAuthInstance().isSignedIn.listen(setIsSignedIn);
@@ -77,6 +79,20 @@ function Modal(props){
             })
         })
         
+    }
+
+    function handleSendEmailConfirmationOpen() {
+        setSendEmailConfirmationOpen(true);
+    }
+
+    function handleSendEmailConfirmationProceed() {
+        // send email here
+        setSendEmailConfirmationOpen(false);
+    }
+
+    function handleSendEmailConfirmationCancel() {
+        // cancel
+        setSendEmailConfirmationOpen(false);
     }
 
     var parole = props.data.parole ? "Assistance complying with parole requirements" : null;
@@ -119,6 +135,24 @@ function Modal(props){
             <br />
             {!isSignedIn && <Button id="sign-in" variant="contained" color="secondary" className="export-button" onClick={signIn}>Sign in to Google</Button>}
             {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={exportDraft}>Export</Button> }
+            {" "}
+            {isSignedIn && <Button id="send-button" variant="contained" color="secondary" className="export-button" onClick={handleSendEmailConfirmationOpen}>Send</Button>}
+            <Dialog open={sendEmailConfirmationOpen} onClose={handleSendEmailConfirmationOpen} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-title">{"Send Email Conformation"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        This email will be sent to the warden. Do you want to proceed?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={handleSendEmailConfirmationCancel} color="primary">
+                    Cancel
+                </Button>
+                <Button onClick={handleSendEmailConfirmationProceed} color="primary" autoFocus>
+                    Proceed
+                </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }
