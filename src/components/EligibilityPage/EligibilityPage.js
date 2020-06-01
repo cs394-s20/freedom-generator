@@ -83,7 +83,7 @@ function EligibilityPage(props) {
                     <br/>
                     <br/>
                     <div className="flexCenter">
-                        <Button disabled={!checked}variant="contained" color="primary" onClick={() => setSubmitClicked(true)}>Draft Email</Button>
+                        <Button className="button" disabled={!checked}variant="contained" color="primary" onClick={() => setSubmitClicked(true)}>Draft Email</Button>
                         {submitClicked &&
                             <Redirect
                                 to={{

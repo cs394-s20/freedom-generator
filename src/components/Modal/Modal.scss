@@ -21,6 +21,10 @@
         display: flex;
         justify-content: flex-end;
     }
+
+    & p{
+        text-align: left;
+    }
 }
 
 .x{
@@ -33,9 +37,3 @@
     text-align: center;
 }
 
-p{
-    text-align: left;
-}
-.export-button{
-    
-}

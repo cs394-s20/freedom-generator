@@ -6,7 +6,7 @@ export default function FAQ() {
     return (
         <div>
             <div className="FAQ">
-                    <h1>Frequently Asked Questions</h1>
+                    <h1 className="marginTop">Frequently Asked Questions</h1>
                     <div className="FAQ__content">
                         <div className="questionContainer">
                             <p class="question">Q:  What is Freedom Link?</p>
