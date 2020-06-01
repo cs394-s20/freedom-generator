@@ -1,11 +1,16 @@
 .Email{
   margin-left: 7vw;
   margin-right: 5.5vw;
+  margin-top: 3vh;
   font-size: 20px;
   padding-bottom: 2vh;
 
+  & h1{
+    margin-bottom: 0px !important;
+  }
+
   & h2{
-    margin-top: -2vh;
+    margin-top: 3vh !important;
   }
   & label{
     width: 80%;
