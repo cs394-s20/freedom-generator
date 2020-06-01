@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { Button, Grid, Menu, MenuItem } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import '../../styles/styles.scss';
+import MenuIcon from '@material-ui/icons/Menu';
 
 
 function Tabs(props) {
     var computeData = props.computeData;
     var criteria = props.criteria;
     console.log(window.screen.width);
+    const [screenWidth, setScreenWidth] = useState(document.body.clientWidth);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -19,10 +21,14 @@ function Tabs(props) {
         setAnchorEl(null);
     };
 
+    window.addEventListener("resize", (event) => {
+        setScreenWidth(document.body.clientWidth);
+    })
+
 
     return (
         <div>
-            {window.screen.width > 412 ?
+            {screenWidth > 550 ?
                 <Grid className="tabs-fullscreen" direction="row">
 
                     {/* COMPONENT is EligibilityCriteria.js */}
@@ -53,8 +59,8 @@ function Tabs(props) {
                 </Grid>
                 :
                 <div>
-                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                        Open Menu
+                    <Button className="menu-button" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                        <MenuIcon fontSize="large" />
                     </Button>
                     <Menu
                         id="simple-menu"
@@ -64,7 +70,7 @@ function Tabs(props) {
                         onClose={handleClose}
                     >
                         <MenuItem >
-                            <Link to={{
+                            <Link className="menu-button" to={{
                                 pathname: "/criteria" + "?computeData=" + JSON.stringify(computeData)
                             }}
                                 target="_blank">
@@ -72,7 +78,7 @@ function Tabs(props) {
                             </Link>
                         </MenuItem>
                         <MenuItem >
-                            <Link to={{
+                            <Link className="menu-button" to={{
                                 pathname: "/example"
                             }}
                                 target="_blank">
@@ -80,7 +86,7 @@ function Tabs(props) {
                             </Link>
                         </MenuItem>
                         <MenuItem >
-                            <Link to={{
+                            <Link className="menu-button" to={{
                                 pathname: "/faq"
                             }}
                                 target="_blank">
