@@ -26,7 +26,8 @@ function EmailForm(props) {
                     computeData
                 )
             }).then(computeData => {
-                console.log(computeData)
+                console.log("Computed Data");
+                console.log(computeData);
                 setComputeData(computeData);
             });
         });
