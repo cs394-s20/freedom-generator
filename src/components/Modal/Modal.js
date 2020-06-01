@@ -129,19 +129,39 @@ function Modal(props){
         setSendEmailConfirmationOpen(false);
     }
 
-    var parole = props.data.parole ? "Assistance complying with parole requirements" : null;
+    var parole = props.data.parole ? "Assistance complying with parole requirements" : "";
     var checkboxContent = "";
     var nameArr = props.data.idocData.name.split(', ');
     var inmateName = nameArr[1] + " " + nameArr[0];
 
-    checkboxContent += parole + (props.data.groceries ? ", groceries" : "") + (props.data.job ? ", job placement" : "") + (props.data.medical ? ", assistance meeting medical needs" : "");
+    var checkedCount = 0;
+    // checkboxContent += (props.data.parole ? "assistance complying with parole requirements" : "") + (props.data.groceries ? ", groceries" : "") + (props.data.job ? ", job placement" : "") + (props.data.medical ? ", assistance meeting medical needs" : "");
+    if (props.data.parole){
+        checkboxContent += "assistance complying with parole requirements";
+        checkedCount += 1;
+    }
+    if(props.data.groceries){
+        if (checkedCount>=1) checkboxContent += ", ";
+        checkboxContent += "groceries";
+        checkedCount += 1;
+    }
+    if (props.data.job){
+        if (checkedCount>=1) checkboxContent += ", ";
+        checkboxContent += "job placement";
+        checkedCount += 1;
+    }
+    if (props.data.medical){
+        if (checkedCount>=1) checkboxContent += ", ";
+        checkboxContent += "assistance meeting medical needs";
+        checkedCount += 1;
+    }
 
-    let emailContent = "Dear " + props.data.wardenName + "\n\n" +  inmateName + " (" + props.data.idocData["idocNumber"] + ") is my " + props.data.relation + 
+    let emailContent = "Dear " + props.data.wardenName + ",\n\n" +  inmateName + " (" + props.data.idocData["idocNumber"] + ") is my " + props.data.relation + 
     " and is eligible for transfer to home detention pursuant to " + props.data.statuteNumber + "." + 
     " I am writing to urge you to place " + inmateName + " on home detention as soon as possible. " + 
     inmateName + " is an ideal candidate for home detention because " + props.data.reason1 + ", " + props.data.reason2 + ", and " + props.data.reason3 + "." + "\n\nIf " +
     inmateName + " is transferred to home detention, they can live with " + props.data.liveWith + ", " + props.data.relationLiveWith + ", " +
-    props.data.phoneLiveWith + ", " + props.data.addressLiveWith + ". " + inmateName + " will receive support in the form of " + checkboxContent +
+    " whose phone number is " + props.data.phoneLiveWith + ", and address is " + props.data.addressLiveWith + ". " + inmateName + " will receive support in the form of " + checkboxContent +
     " from the following individuals/entities: " + props.data.supportAndContact + ". \n\n" + props.data.threeSentences +
     "\n\nIf I can provide you with any further information about this request for transfer to home detention, please contact me at " +
     props.data.email + " or " + props.data.phone + ". I will contact your office to set a time to discuss this request within the next week. \n\n" +
@@ -157,11 +177,12 @@ function Modal(props){
                 <span className="x" onClick={()=>props.setModalOpen(false)}>x</span>
             </div>
             <div className="title">Email Draft</div>
+            <br/>
             <TextField
                 id="previewEmailTextField"
                 multiline
                 variant="outlined"
-                rows={13}
+                rows={17}
                 defaultValue={emailContent}
                 fullWidth
             />

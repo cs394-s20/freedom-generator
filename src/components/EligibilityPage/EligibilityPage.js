@@ -50,6 +50,8 @@ function EligibilityPage(props) {
             <Tabs computeData={computeData} />
             <div class="eligibilityPage">
                 <h1>Step 2 of 3</h1>
+                <div id= "name"><h2>Found data for: <b style={{color: 'black'}}>{computeData.name}</b></h2></div>
+                <br/>
                 <h2>Please select one of the following release mechanisms. If an option is unselectable, that means this individual is ineligible. Click on ‘Eligibility Criteria’ above for more information.</h2>
                 <h2></h2>
                 <br/>
@@ -81,7 +83,7 @@ function EligibilityPage(props) {
                     <br/>
                     <br/>
                     <div className="flexCenter">
-                        <Button disabled={!checked}variant="contained" color="primary" onClick={() => setSubmitClicked(true)}>Draft Email</Button>
+                        <Button className="button" disabled={!checked}variant="contained" color="primary" onClick={() => setSubmitClicked(true)}>Draft Email</Button>
                         {submitClicked &&
                             <Redirect
                                 to={{

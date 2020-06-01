@@ -1,6 +1,7 @@
 .eligibilityPage{
+    @extend .IDOCPage;
     margin-left: 7vw;
-    margin-right: 5.5vw;
+    margin-right: 7vw;
 
     & h2{
         margin-top: -2vh;
@@ -17,4 +18,9 @@
     padding-left: 10px;
     background-color: white;
     width: 70vw;
+}
+
+#name{
+    text-align: left;
+    width: 100%;
 }
