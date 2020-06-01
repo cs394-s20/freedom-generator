@@ -196,8 +196,8 @@ function Modal(props){
                 <DialogTitle id="alert-dialog-title">{"Send Email Conformation"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        This email will be sent to the warden. Do you want to proceed?
-                        <Typography caption style={{fontSize: 11}}>Note: If you would like to upload attachments to this email, please press "Cancel" and choose export instead. You can upload your attachments from your Gmail Inbox.</Typography>
+                        This email will be sent to an IDOC official. Do you want to proceed?
+                        <Typography caption style={{fontSize: 13}}>Note: If you would like to upload attachments to this email, please press "Cancel" and select "Export to Draft" instead. You can upload your attachments and send the email from your Gmail Drafts folder.</Typography>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
