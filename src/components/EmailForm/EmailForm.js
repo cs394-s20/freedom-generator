@@ -56,7 +56,9 @@ function EmailForm(props) {
         <div id="overlay">
           <div className="Email">
             <div>
-              <h1>Email Form</h1>
+              <h1>Step 3 of 3</h1>
+              <h2>Fill in the form below to generate an email petitioning for early release.</h2>
+              <br/>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container direction="row" alignItems="center">
                   <Grid><Typography>Dear&nbsp;</Typography></Grid>
@@ -91,19 +93,19 @@ function EmailForm(props) {
                   {inmateName} will receive support in the form of
               </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  <Checkbox name="parole" inputRef={register} />
+                  <Checkbox name="parole" inputRef={register} color="primary"/>
                   <label style={{ fontWeight: "bold" }}>Assistance complying with parole requirements</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  <Checkbox name="groceries" inputRef={register} />
+                  <Checkbox name="groceries" inputRef={register} color="primary"/>
                   <label style={{ fontWeight: "bold" }}>Groceries</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  <Checkbox name="job" inputRef={register} />
+                  <Checkbox name="job" inputRef={register} color="primary"/>
                   <label style={{ fontWeight: "bold" }}>Job placement</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  <Checkbox name="medical" inputRef={register} />
+                  <Checkbox name="medical" inputRef={register} color="primary"/>
                   <label style={{ fontWeight: "bold" }}>Assistance meeting medical needs</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>

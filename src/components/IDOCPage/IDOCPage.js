@@ -67,7 +67,7 @@ function EmailForm(props) {
                             <Grid container justify="center">
                                 <Grid item>
                                     <FormControlLabel
-                                        control={<Checkbox name="medical_furlough" inputRef={register} inputProps={{ 'aria-label': 'Checkbox A' }} />}
+                                        control={<Checkbox name="medical_furlough" color="primary" inputRef={register} inputProps={{ 'aria-label': 'Checkbox A' }} />}
                                         label={popup}
                                         labelPlacement="start"
                                     />

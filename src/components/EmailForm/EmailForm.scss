@@ -1,10 +1,16 @@
 .Email{
-  margin: 5%;
-  width: 90%;
+  margin-left: 7vw;
+  margin-right: 5.5vw;
   font-size: 20px;
+  padding-bottom: 2vh;
+
+  & h2{
+    margin-top: -2vh;
+  }
 }
 
 #overlay {
+    margin-top: 50px;
     position: absolute;   
     top: 0;                  
     right: 0;                
