@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Modal.scss';
-import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, Typography, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { gapi }  from 'gapi-script';
 import { Base64 }  from 'js-base64'
@@ -81,12 +81,46 @@ function Modal(props){
         
     }
 
+    function sendEmail(){
+        const userId = gapi.auth2.getAuthInstance().currentUser.get().getId();
+
+        gapi.client.gmail.users.getProfile({'userId': userId}).execute((response) => {
+            var request = gapi.client.gmail.users.drafts.create({
+                'userId': userId,
+                'resource': {
+                    'message': {
+                        'raw': createEmail(
+                            response.emailAddress, 
+                            response.emailAddress, 
+                            "IDOC Petition", 
+                            emailContent
+                        )
+                    }
+                }
+            });
+            request.execute((response) => {
+                var request2 = gapi.client.gmail.users.drafts.send({
+                    'userId': userId,
+                    'resource': {
+                        'id': response.id
+                    }
+                });
+                request2.execute((resp2) => {
+                    gapi.auth2.getAuthInstance().signOut();
+                })
+                
+            })
+        })
+        
+    }
+
     function handleSendEmailConfirmationOpen() {
         setSendEmailConfirmationOpen(true);
     }
 
     function handleSendEmailConfirmationProceed() {
         // send email here
+        sendEmail();
         setSendEmailConfirmationOpen(false);
     }
 
@@ -134,7 +168,7 @@ function Modal(props){
             <br />
             <br />
             {!isSignedIn && <Button id="sign-in" variant="contained" color="secondary" className="export-button" onClick={signIn}>Sign in to Google</Button>}
-            {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={exportDraft}>Export</Button> }
+            {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={exportDraft}>Export to Draft</Button> }
             {" "}
             {isSignedIn && <Button id="send-button" variant="contained" color="secondary" className="export-button" onClick={handleSendEmailConfirmationOpen}>Send</Button>}
             <Dialog open={sendEmailConfirmationOpen} onClose={handleSendEmailConfirmationOpen} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
@@ -142,6 +176,7 @@ function Modal(props){
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         This email will be sent to the warden. Do you want to proceed?
+                        <Typography caption style={{fontSize: 11}}>Note: If you would like to upload attachments to this email, please press "Cancel" and choose export instead. You can upload your attachments from your Gmail Inbox.</Typography>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
