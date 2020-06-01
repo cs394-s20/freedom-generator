@@ -56,7 +56,9 @@ function EmailForm(props) {
         <div id="overlay">
           <div className="Email">
             <div>
-              <h1>Email Form</h1>
+              <h1>Step 3 of 3</h1>
+              <h2>Fill in the form below to generate an email petitioning for early release.</h2>
+              <br/>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container direction="row" alignItems="center">
                   <Grid><Typography>Dear&nbsp;</Typography></Grid>
@@ -65,7 +67,7 @@ function EmailForm(props) {
                 <br />
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
                   {inmateName} ({location.state.computeData.idocNumber}) is my&nbsp;
-                <TextField name="relation" placeholder="relation to writer" inputRef={register({ required: true })} />
+                <TextField style={{marginLeft:'10px'}} name="relation" placeholder="relation to writer" inputRef={register({ required: true })} />
                 and is eligible for transfer to home detention pursuant to {location.state.statuteNumber}.
               </Grid>
                 <br />
@@ -73,7 +75,7 @@ function EmailForm(props) {
                   I am writing to urge you to place {inmateName} on home detention as soon as possible.&nbsp;
                 {inmateName} is an ideal candidate for home detention because &nbsp;
                 <TextField name="reason1" style={{ width: 300 }} placeholder="first reason for release" inputRef={register({ required: true })} />,&nbsp;
-                <TextField name="reason2" style={{ width: 300 }} placeholder="second reason for release" inputRef={register({ required: true })} />, and&nbsp;
+                <TextField name="reason2" style={{ width: 300 }} placeholder="second reason for release" inputRef={register({ required: true })} />, and &nbsp;
                 <TextField name="reason3" style={{ width: 300 }} placeholder="third reason for release" inputRef={register({ required: true })} />.
 
               </Grid>
@@ -91,23 +93,23 @@ function EmailForm(props) {
                   {inmateName} will receive support in the form of
               </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  <Checkbox name="parole" inputRef={register} />
+                  <Checkbox name="parole" inputRef={register} color="primary"/>
                   <label style={{ fontWeight: "bold" }}>Assistance complying with parole requirements</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  <Checkbox name="groceries" inputRef={register} />
+                  <Checkbox name="groceries" inputRef={register} color="primary"/>
                   <label style={{ fontWeight: "bold" }}>Groceries</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  <Checkbox name="job" inputRef={register} />
+                  <Checkbox name="job" inputRef={register} color="primary"/>
                   <label style={{ fontWeight: "bold" }}>Job placement</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  <Checkbox name="medical" inputRef={register} />
+                  <Checkbox name="medical" inputRef={register} color="primary"/>
                   <label style={{ fontWeight: "bold" }}>Assistance meeting medical needs</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  from the following individuals/entities:&nbsp; <TextField name="supportAndContact" style={{ width: 300 }} placeholder="name(s) and contact information" inputRef={register({ required: true })} />.
+                  from the following individuals / entities:&nbsp; <TextField name="supportAndContact" style={{ width: 300 }} placeholder="name(s) and contact information" inputRef={register({ required: true })} />.
               </Grid>
                 <Grid><br /></Grid>
                 <Grid container alignItems="center" justify="center" style={{ lineHeight: 2 }}>

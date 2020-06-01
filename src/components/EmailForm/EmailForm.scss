@@ -1,10 +1,22 @@
 .Email{
-  margin: 5%;
-  width: 90%;
-  font-size: 25px;
+  margin-left: 7vw;
+  margin-right: 5.5vw;
+  font-size: 20px;
+  padding-bottom: 2vh;
+
+  & h2{
+    margin-top: -2vh;
+  }
+  & label{
+    width: 80%;
+  }
+//   margin: 5%;
+//   width: 90%;
+//   font-size: 25px;
 }
 
 #overlay {
+    margin-top: 50px;
     position: absolute;   
     top: 0;                  
     right: 0;                
@@ -12,3 +24,7 @@
     left: 0;
     opacity: 1;
   }
+
+TextField{
+  padding-left: 5px;
+}
