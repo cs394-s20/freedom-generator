@@ -1,10 +1,7 @@
 .eligibilityPage{
+    @extend .IDOCPage;
     margin-left: 7vw;
     margin-right: 5.5vw;
-
-    & h2{
-        margin-top: -2vh;
-    }
 }
 
 .options{

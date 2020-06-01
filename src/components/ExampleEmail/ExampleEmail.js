@@ -4,7 +4,7 @@ import '../../styles/styles.scss';
 export default function ExampleEmail() {
     return (
         <div className="ExampleEmail">
-            <h1>Freedom Link</h1>
+            <h1 className="marginTop">Freedom Link</h1>
             <h2>Feel free to use this sample email to be sent to your warden. Don't know where to find the information needed in this email? Don't worry: you can refer to our <a href="./faq">FAQs page</a>.</h2>
             <div class="ExampleEmail__content">
                 <p>Dear IDOC officials,</p>
