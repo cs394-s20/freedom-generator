@@ -67,7 +67,7 @@ function EmailForm(props) {
                 <br />
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
                   {inmateName} ({location.state.computeData.idocNumber}) is my&nbsp;
-                <TextField name="relation" placeholder="relation to writer" inputRef={register({ required: true })} />
+                <TextField style={{marginLeft:'10px'}} name="relation" placeholder="relation to writer" inputRef={register({ required: true })} />
                 and is eligible for transfer to home detention pursuant to {location.state.statuteNumber}.
               </Grid>
                 <br />
@@ -75,7 +75,7 @@ function EmailForm(props) {
                   I am writing to urge you to place {inmateName} on home detention as soon as possible.&nbsp;
                 {inmateName} is an ideal candidate for home detention because &nbsp;
                 <TextField name="reason1" style={{ width: 300 }} placeholder="first reason for release" inputRef={register({ required: true })} />,&nbsp;
-                <TextField name="reason2" style={{ width: 300 }} placeholder="second reason for release" inputRef={register({ required: true })} />, and&nbsp;
+                <TextField name="reason2" style={{ width: 300 }} placeholder="second reason for release" inputRef={register({ required: true })} />, and &nbsp;
                 <TextField name="reason3" style={{ width: 300 }} placeholder="third reason for release" inputRef={register({ required: true })} />.
 
               </Grid>
@@ -109,7 +109,7 @@ function EmailForm(props) {
                   <label style={{ fontWeight: "bold" }}>Assistance meeting medical needs</label>
                 </Grid>
                 <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                  from the following individuals/entities:&nbsp; <TextField name="supportAndContact" style={{ width: 300 }} placeholder="name(s) and contact information" inputRef={register({ required: true })} />.
+                  from the following individuals / entities:&nbsp; <TextField name="supportAndContact" style={{ width: 300 }} placeholder="name(s) and contact information" inputRef={register({ required: true })} />.
               </Grid>
                 <Grid><br /></Grid>
                 <Grid container alignItems="center" justify="center" style={{ lineHeight: 2 }}>

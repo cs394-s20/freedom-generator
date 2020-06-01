@@ -7,6 +7,9 @@
   & h2{
     margin-top: -2vh;
   }
+  & label{
+    width: 80%;
+  }
 }
 
 #overlay {
@@ -18,3 +21,7 @@
     left: 0;
     opacity: 1;
   }
+
+TextField{
+  padding-left: 5px;
+}
