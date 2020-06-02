@@ -12,8 +12,10 @@ import '../../styles/styles.scss';
 function EmailForm(props) {
     const { register, handleSubmit, errors } = useForm();
     const [computeData, setComputeData] = useState(null);
+    const [loadingText, setLoadingText] = useState("");
 
     const onSubmit = formData => {
+        setLoadingText("Loading...");
         setComputeData(null);
         get_idocData(formData["IDOC_Number"]).then(response => {
             response.text().then(t => {
@@ -86,6 +88,7 @@ function EmailForm(props) {
                                 />
                             }
                         </div>
+                        <div style={{textAlign: "center", color: '#303F9F', fontWeight: 'bold'}}>{loadingText}</div>
                     </div>
                 </div>
 
