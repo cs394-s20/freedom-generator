@@ -57,8 +57,10 @@ function EmailForm(props) {
         <Tabs computeData={location.state.computeData} />
         <div className="Email">
           <div>
-            <h1>Step 3 of 3</h1>
+            <div id="heading"><h1 class="marginTop">Step 3 of 3</h1></div>
             <h2>Fill in the form below to generate an email petitioning for early release.</h2>
+            <br />
+            <br />
             <br />
             <form onSubmit={handleSubmit(onSubmit)}>
               <Grid container direction="row" alignItems="center">
@@ -114,7 +116,7 @@ function EmailForm(props) {
               </Grid>
               <Grid><br /></Grid>
               <Grid container alignItems="center" justify="center" style={{ lineHeight: 2 }}>
-                <TextField name="threeSentences" style={{ width: 600 }} multiline inputRef={register({ required: true })} rows={4} variant="outlined" placeholder="Three Sentences here regarding how prisoner’s incarceration has affected family members and community and why/how prisoner will contribute positively to the community upon release. " />
+                <TextField name="threeSentences" style={{ width: 600 }} multiline inputRef={register({ required: true })} rows={4} variant="outlined" placeholder="Three Sentences here regarding how prisoner’s incarceration has affected family members and community and why/how prisoner will contribute positively to the community upon release." helperText="Three Sentences here regarding how prisoner’s incarceration has affected family members and community and why/how prisoner will contribute positively to the community upon release. " />
               </Grid>
 
               <Grid><br /></Grid>
@@ -129,7 +131,7 @@ function EmailForm(props) {
               </Grid>
               <Grid container alignItems="center" justify="flex-start"><br />Thank you for your consideration. </Grid>
               <Grid container alignItems="center" justify="flex-start"><TextField name="submitter" placeholder="name of submitter" inputRef={register({ required: true })} /></Grid>
-              <div className="marginTop">
+              <div className="marginTop" id="buttonCenter">
                 <Button className="button" type="submit" variant="contained" color="primary">Preview Email</Button>
               </div>
             </form>
