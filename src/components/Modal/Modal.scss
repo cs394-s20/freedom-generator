@@ -1,12 +1,13 @@
 .modal{
+    display: block;
     background-color: white;
     height: 70%;
     // width: 550px;
     width: 80%;
     position: fixed;
     top: 15%;
-    left: 7.5%;
-    right: 10%;
+    margin-left: 8.5%;
+    margin-right: auto;
 
     border-radius: 15px;
     border: 1px solid grey;
@@ -37,3 +38,4 @@
     text-align: center;
     font-size: 25px;
 }
+

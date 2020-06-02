@@ -2,12 +2,17 @@
   @extend .flexCenter;
   width: 90%;
   margin: 0 5%;
-  font-size: 25px;
+  font-size: 20px;
   overflow: hidden;
+}
+
+.FAQ__content{
+  margin-top: -5vh;
 }
 
 .question{
   font-weight: bold;
+  font-size: 25px;
 
   &Container{
     margin: 40px 0;

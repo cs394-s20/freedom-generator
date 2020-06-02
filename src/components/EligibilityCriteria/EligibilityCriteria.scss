@@ -1,7 +1,12 @@
 .eligibilityCriteria{
     margin-left: 7vw;
-    margin-right: 5.5vw;
+    margin-right: 7vw;
     margin-bottom: 50px;
+    margin-top: 4vh;
+
+    & h1{
+      // text-align: center;
+    }
 }
 
 .criteria {
@@ -12,7 +17,6 @@
     padding-top: 2%;
     padding-bottom: 0%;
     text-align: left;
-    cursor: grab;
   }
   
   

@@ -1,23 +1,31 @@
 .Email{
+  // @extend .flexCenter;
+  // margin: 0 5%;
   margin-left: 7vw;
-  margin-right: 5.5vw;
-  margin-top: 3vh;
-  font-size: 20px;
-  padding-bottom: 2vh;
+  margin-right: 7vw;
+  // margin-top: 7vh;
+  font-size: 18px;
+  padding-bottom: 3vw;
+
+  #heading{
+    text-align: center;
+  }
 
   & h1{
-    margin-bottom: 0px !important;
+    // margin-bottom: 0px !important;
   }
 
   & h2{
-    margin-top: 3vh !important;
+    // margin-top: 2.5vh !important;
   }
   & label{
     width: 80%;
   }
-//   margin: 5%;
-//   width: 90%;
-//   font-size: 25px;
+
+  #buttonCenter{
+    text-align: center;
+  }
+
 }
 
 #overlay {
@@ -30,6 +38,7 @@
     pointer-events: auto;
   }
 
-TextField{
-  padding-left: 5px;
+form{
+  margin-left: 3vw;
+  margin-right: 3vw;
 }
