@@ -49,7 +49,13 @@ function EmailForm(props) {
   }
 
   var nameArr = location.state.computeData.name.split(',');
-  var inmateName = nameArr[1] + " " + nameArr[0];
+  var lowerCaseFirst = nameArr[1].toLowerCase();
+  lowerCaseFirst = lowerCaseFirst.charAt(1).toUpperCase() + lowerCaseFirst.slice(2);
+  var lowerCaseLast = nameArr[0].toLowerCase();
+  lowerCaseLast = lowerCaseLast.charAt(0).toUpperCase() + lowerCaseLast.slice(1);
+  
+  
+  var inmateName = lowerCaseFirst + " " + lowerCaseLast;
 
   return (
     <div>
