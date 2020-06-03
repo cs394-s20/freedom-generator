@@ -163,7 +163,7 @@ function Modal(props) {
         checkedCount += 1;
     }
 
-    let emailContent = "Dear " + props.data.wardenName + ",\n\n" + inmateName + " (" + props.data.idocData["idocNumber"] + ") is my " + props.data.relation +
+    let emailContent = "Dear IDOC Officials" + ",\n\n" + inmateName + " (" + props.data.idocData["idocNumber"] + ") is my " + props.data.relation +
         " and is eligible for transfer to home detention pursuant to " + props.data.statuteNumber + "." +
         " I am writing to urge you to place " + inmateName + " on home detention as soon as possible. " +
         inmateName + " is an ideal candidate for home detention because " + props.data.reason1 + ", " + props.data.reason2 + ", and " + props.data.reason3 + "." + "\n\nIf " +
