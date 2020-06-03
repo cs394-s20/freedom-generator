@@ -69,7 +69,7 @@ function Modal(props) {
                             response.emailAddress,
                             response.emailAddress,
                             "IDOC Petition",
-                            emailContent
+                            emailContentState
                         )
                     }
                 }
@@ -93,7 +93,7 @@ function Modal(props) {
                             response.emailAddress,
                             response.emailAddress,
                             "IDOC Petition",
-                            emailContent
+                            emailContentState
                         )
                     }
                 }
@@ -174,6 +174,7 @@ function Modal(props) {
         props.data.email + " or " + props.data.phone + ". I will contact your office to set a time to discuss this request within the next week. \n\n" +
         "Thank you for your consideration. \n\n" + props.data.submitter;
 
+    const [emailContentState, setEmailContentState] = useState(emailContent)
 
 
 
@@ -192,6 +193,7 @@ function Modal(props) {
                 rows={17}
                 defaultValue={emailContent}
                 fullWidth
+                onChange={(event)=> {setEmailContentState(event.target.value)}}
             />
             <br />
             <br />
