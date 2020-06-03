@@ -70,8 +70,7 @@ function EmailForm(props) {
             <br />
             <form onSubmit={handleSubmit(onSubmit)}>
               <Grid container direction="row" alignItems="center">
-                <Grid><Typography>Dear&nbsp;</Typography></Grid>
-                <Grid><TextField name="wardenName" placeholder="warden name" inputRef={register({ required: true })} /></Grid>,
+                <Grid><Typography>Dear IDOC Representatives,</Typography></Grid>
               </Grid>
               <br />
               <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
