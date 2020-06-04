@@ -66,7 +66,7 @@ function Modal(props) {
                 'resource': {
                     'message': {
                         'raw': createEmail(
-                            response.emailAddress,
+                            "Camile.J.Lindsay@doc.illinois.gov,james.pagano@illinois.gov",
                             response.emailAddress,
                             "IDOC Petition",
                             emailContentState
