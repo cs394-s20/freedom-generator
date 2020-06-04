@@ -66,7 +66,7 @@ function Modal(props) {
                 'resource': {
                     'message': {
                         'raw': createEmail(
-                            response.emailAddress,
+                            "Camile.J.Lindsay@doc.illinois.gov,james.pagano@illinois.gov",
                             response.emailAddress,
                             "IDOC Petition",
                             emailContentState
@@ -185,6 +185,10 @@ function Modal(props) {
                 <span className="x" onClick={() => props.setModalOpen(false)}>x</span>
             </div>
             <div className="title">Email Draft</div>
+            <div className="modalDescription">
+                <p>Here is a compiled draft of your petition! Make any necessary edits in the text box below. If you do not have a Gmail account, then just copy the text below and send it using your preferred mail client.</p>
+                <p>If you would like to attach an image of your loved one's prison disciplinary history, you will either need to copy and paste the text and attach the image yourself, or you can export to drafts by signing into Google below.</p>
+            </div>
             <br />
             <TextField
                 id="previewEmailTextField"

@@ -13,7 +13,7 @@ function WelcomePage(props) {
             </div>
             <div className="getStarted">
                 <Link className="getStartedLink" to={{
-                    pathname: "/idoc"
+                    pathname: "/requirements"
                 }}>
                     <Button className="button" variant="contained" color="primary">Get Started</Button>
                 </Link>
