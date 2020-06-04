@@ -9,6 +9,7 @@ import CustomizedInputs from './components/EmailForm/EmailForm';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import FAQ from './components/FAQ/FAQ';
 import ExampleEmail from './components/ExampleEmail/ExampleEmail';
+import Requirements from './components/Requirements/Requirements';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/home" component={Home} />
         <Route path="/eligibility" component={EligibilityPage} />
         <Route path="/criteria" component={EligibilityCriteria} />
+        <Route path="/requirements" component={Requirements} />
       </Switch>
     </Router>
   );
