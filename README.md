@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1>Freedom Link</h1>
 
-## Available Scripts
+<h2>Table of Contents</h2>
 
-In the project directory, you can run:
+ * Introduction
+ * Installation
+   * Front-end
+   * Back-end
+   *Deployment Tools
+ * Development
+ * Deployment
+ * Testing
+ * Troubleshooting
+ * FAQ
+ * Maintainers
+ 
+ <h2>Introduction</h2>
 
-### `yarn start`
+Freedom Link is a web application that helps people through starting the petition process for those seeking early release of loved ones from the Illinois Department of corrections. Currently, the platform is focused on those who may be eligible for release during the COVID-19 pandemic. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2>Installation</h2>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<h4>React front-end</h4>
+In order to begin working on the front end, you'll need to perform the following steps:
 
-### `yarn test`
+1. Install node.js
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. ```git clone https://github.com/cs394-s20/freedom-generator.git```
 
-### `yarn build`
+3. ```cd freedom-generator```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. ```npm i```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h4>Python Lambda Function back-end</h4>
+To begin working on the API:
 
-### `yarn eject`
+1. Install Python >=3.7
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. ```cd freedom-generator/api```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. ```pip install virtualenv```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. ```virtualenv env```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+5. On Windows run:
+  ```env\Scripts\activate```
+  
+  Otherwise run:
+  ```source env/bin/activate```
+  
+6. ```pip install -r requirements.txt```
 
-## Learn More
+<h4>Deployment tools installation</h4>
+Follow the instructions below to gain the ability to deploy the front-end and the back-end
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Get AWS Credentials from the AWS root account owner for this project (see Maintainers). If there is not a maintainer who owns the AWS root account, the AWS resources should be set up as described here.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Set up the AWS Command Line Interface (CLI) using the credentials from step 1
 
-### Code Splitting
+3. ```cd freedom-generator/deploy```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+4. If you have completed the installation for API development, skip to step 7.
 
-### Analyzing the Bundle Size
+5. Install Python >=3.7
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+6. ```pip install virtualenv ```
 
-### Making a Progressive Web App
+7.  ```virtualenv env```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+8. On Windows run:
+  ```env\Scripts\activate```
+  
+  Otherwise run:
+  ```source env/bin/activate```
+  
+9. ```pip install -r requirements.txt```
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+<h2>Development</h2>
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
