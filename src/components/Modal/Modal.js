@@ -45,8 +45,12 @@ loadClient();
 function Modal(props) {
 
     const [isSignedIn, setIsSignedIn] = useState(false);
-    // add by Zhu
+    const [isDraftExported, setIsDraftExported] = useState(false); // changes to true when draft is successfully exported
+    
+    // keep track of if confirmation dialogues are open
     const [sendEmailConfirmationOpen, setSendEmailConfirmationOpen] = useState(false);
+    const [exportDraftConfirmationOpen, setExportDraftConfirmationOpen] = useState(false);
+
     console.log(isSignedIn);
     function signIn() {
         gapi.auth2.getAuthInstance().isSignedIn.listen(setIsSignedIn);
@@ -78,7 +82,7 @@ function Modal(props) {
                 gapi.auth2.getAuthInstance().signOut();
             })
         })
-
+        setIsDraftExported(true);
     }
 
     function sendEmail() {
@@ -114,20 +118,34 @@ function Modal(props) {
 
     }
 
+    // handlers for email and draft confirmation-------------------------
+
     function handleSendEmailConfirmationOpen() {
         setSendEmailConfirmationOpen(true);
     }
-
     function handleSendEmailConfirmationProceed() {
         // send email here
         sendEmail();
         setSendEmailConfirmationOpen(false);
     }
-
     function handleSendEmailConfirmationCancel() {
         // cancel
         setSendEmailConfirmationOpen(false);
     }
+
+    function handleExportDraftConfirmationOpen() {
+        setExportDraftConfirmationOpen(true);
+    }
+    function handleExportDraftConfirmationProceed() {
+        // send email here
+        exportDraft();
+        setExportDraftConfirmationOpen(false);
+    }
+    function handleExportDraftConfirmationCancel() {
+        // cancel
+        setExportDraftConfirmationOpen(false);
+    }
+    //--------------------------------------------------------------------
 
     var parole = props.data.parole ? "Assistance complying with parole requirements" : "";
     var checkboxContent = "";
@@ -176,9 +194,6 @@ function Modal(props) {
 
     const [emailContentState, setEmailContentState] = useState(emailContent)
 
-
-
-
     return (
         <div className="modal">
             <div className="modal__close">
@@ -201,12 +216,34 @@ function Modal(props) {
             />
             <br />
             <br />
+
+            {/* FUNCTIONALITY FOR "EXPORT TO DRAFTS" BUTTON */}
             {!isSignedIn && <Button id="sign-in" variant="contained" color="secondary" className="export-button" onClick={signIn}>Sign in to Google</Button>}
-            {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={exportDraft}>Export to Draft</Button>}
-            {" "}
+            {isDraftExported ? <p className="confirmationMessage">Draft has been successfully exported!</p> : ""}
+            {/* {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={exportDraft}>Export to Draft</Button>} */}
+            {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={handleExportDraftConfirmationOpen}>Export to Draft</Button>}
+            <Dialog open={exportDraftConfirmationOpen} onClose={handleExportDraftConfirmationOpen} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-title">{"Export Draft Confirmation"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        This draft will be exported. Do you want to proceed?
+                        {/* <Typography caption style={{ fontSize: 13 }}>Note: If you would like to upload attachments to this email, please press "Cancel" and select "Export to Draft" instead. You can upload your attachments and send the email from your Gmail Drafts folder.</Typography> */}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleExportDraftConfirmationCancel} color="primary">
+                        Cancel
+                </Button>
+                    <Button onClick={handleExportDraftConfirmationProceed} color="primary" autoFocus>
+                        Proceed
+                </Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* FUNCTIONALITY FOR "SEND" BUTTON */}
             {isSignedIn && <Button id="send-button" variant="contained" color="secondary" className="export-button" onClick={handleSendEmailConfirmationOpen}>Send</Button>}
             <Dialog open={sendEmailConfirmationOpen} onClose={handleSendEmailConfirmationOpen} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                <DialogTitle id="alert-dialog-title">{"Send Email Conformation"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{"Send Email Confirmation"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         This email will be sent to an IDOC official. Do you want to proceed?
