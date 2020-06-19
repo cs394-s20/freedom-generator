@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Modal.scss';
-import { Button, Dialog, DialogTitle, Typography, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, Typography, DialogContent, DialogContentText, DialogActions, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { gapi } from 'gapi-script';
 import { Base64 } from 'js-base64'
@@ -46,7 +46,7 @@ function Modal(props) {
 
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [isDraftExported, setIsDraftExported] = useState(false); // changes to true when draft is successfully exported
-    
+    const [sendDraftConfirmation, setSendDraftConfirmation] = useState(false);
     // keep track of if confirmation dialogues are open
     const [sendEmailConfirmationOpen, setSendEmailConfirmationOpen] = useState(false);
     const [exportDraftConfirmationOpen, setExportDraftConfirmationOpen] = useState(false);
@@ -218,10 +218,26 @@ function Modal(props) {
             <br />
 
             {/* FUNCTIONALITY FOR "EXPORT TO DRAFTS" BUTTON */}
-            {!isSignedIn && <Button id="sign-in" variant="contained" color="secondary" className="export-button" onClick={signIn}>Sign in to Google</Button>}
-            {isDraftExported ? <p className="confirmationMessage">Draft has been successfully exported!</p> : ""}
-            {/* {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={exportDraft}>Export to Draft</Button>} */}
-            {isSignedIn && <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={handleExportDraftConfirmationOpen}>Export to Draft</Button>}
+            {!isSignedIn && 
+            <Grid container direction="row" justify="space-evenly">
+                <Grid item>
+                    <Button id="sign-in" variant="contained" color="secondary" className="export-button" onClick={signIn}>Sign in to Google</Button>
+                </Grid>
+            </Grid>        
+            }
+
+            {isSignedIn && 
+            <Grid container direction="column" justify="space-evenly" spacing={2}>
+                <Grid item>
+                    <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={handleExportDraftConfirmationOpen}>Export to Draft</Button>
+                </Grid>
+                <Grid item>
+                    <Button id="send-button" variant="contained" color="secondary" className="export-button" onClick={handleSendEmailConfirmationOpen}>Send</Button>
+                </Grid>
+            </Grid>        
+            }
+            
+            
             <Dialog open={exportDraftConfirmationOpen} onClose={handleExportDraftConfirmationOpen} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">{"Export Draft Confirmation"}</DialogTitle>
                 <DialogContent>
@@ -241,7 +257,7 @@ function Modal(props) {
             </Dialog>
 
             {/* FUNCTIONALITY FOR "SEND" BUTTON */}
-            {isSignedIn && <Button id="send-button" variant="contained" color="secondary" className="export-button" onClick={handleSendEmailConfirmationOpen}>Send</Button>}
+            
             <Dialog open={sendEmailConfirmationOpen} onClose={handleSendEmailConfirmationOpen} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">{"Send Email Confirmation"}</DialogTitle>
                 <DialogContent>
@@ -258,6 +274,17 @@ function Modal(props) {
                         Proceed
                 </Button>
                 </DialogActions>
+            </Dialog>
+            <Dialog open={isDraftExported}>
+                <DialogTitle>Draft Sent Confirmation</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Draft exported successfully!
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions><Button onClick={()=>{
+                    setIsDraftExported(false);
+                }}>Proceed</Button></DialogActions>
             </Dialog>
         </div>
     )

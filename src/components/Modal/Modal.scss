@@ -1,7 +1,7 @@
 .modal{
     display: block;
     background-color: white;
-    height: 70%;
+    padding-bottom: 2%;
     // width: 550px;
     width: 80%;
     position: fixed;
@@ -47,4 +47,9 @@
 .confirmationMessage{
     text-align: center !important;
     margin: 6px 0 0 0;
+}
+
+.export-button {
+    margin-left: 1em;
+    margin-right: 1em;
 }
