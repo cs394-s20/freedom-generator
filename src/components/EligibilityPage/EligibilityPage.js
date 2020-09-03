@@ -19,6 +19,7 @@ function EligibilityPage(props) {
     var [submitClicked, setSubmitClicked] = useState(false);
     var [checked, setChecked] = useState(false);
 
+
     var getStatuteNumber = (index, conditions) => {
         var statnum = null;
         if (index === 0) {
@@ -52,7 +53,8 @@ function EligibilityPage(props) {
                 <h1>Step 2 of 3</h1>
                 <div id= "name"><h2>Found data for: <b style={{color: 'black'}}>{computeData.name}</b></h2></div>
                 <br/>
-                <h2>Please select one of the following release mechanisms. If an option is unselectable, that means this individual is ineligible. Click on ‘Eligibility Criteria’ above for more information.</h2>
+                { <h2> They <span style={{color: 'green'}}> are eligible</span> for the electronic home detention program.</h2>}
+                <h2>Click on ‘Eligibility Criteria’ above for more information.</h2>
                 <h2></h2>
                 <br/>
                 <br/>
