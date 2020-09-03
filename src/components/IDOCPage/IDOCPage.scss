@@ -9,6 +9,19 @@
     height: 120%;
     justify-content: space-between !important;
 }
+.formLike{
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+.results {
+    margin: 3vw;
+}
+
+.resultContainer {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
 
 .inputContainer{
     height: 200px;
@@ -24,4 +37,8 @@
 
 .infoIcon{
     color: $blue;
+}
+
+.button {
+    margin: 2%;
 }
