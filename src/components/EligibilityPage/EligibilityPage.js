@@ -53,8 +53,8 @@ function EligibilityPage(props) {
                 <h1>Step 2 of 3</h1>
                 <div id= "name"><h2>Found data for: <b style={{color: 'black'}}>{computeData.name}</b></h2></div>
                 <br/>
-                { <h2> They <span style={{color: 'green'}}> are eligible</span> for the electronic home detention program.</h2>}
-                <h2>Click on ‘Eligibility Criteria’ above for more information.</h2>
+                {computeData.data[0].passed && <h2> They <span style={{color: 'green'}}> are eligible</span> for the electronic monitoring or home detention program. Select the box below to draft your application.</h2> ||
+                <h2> They <span style={{color: 'red'}}> are not eligible</span> for the electronic monitoring or home detention program. Click on ‘Eligibility Criteria’ above for more information.</h2>}
                 <h2></h2>
                 <br/>
                 <br/>
