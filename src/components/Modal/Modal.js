@@ -189,7 +189,7 @@ function Modal(props) {
         " whose phone number is " + props.data.phoneLiveWith + ", and address is " + props.data.addressLiveWith + ". " + inmateName + " will receive support in the form of " + checkboxContent +
         " from the following individuals/entities: " + props.data.supportAndContact + ". \n\n" + props.data.threeSentences +
         "\n\nIf I can provide you with any further information about this request for transfer to home detention, please contact me at " +
-        props.data.email + " or " + props.data.phone + ". I will contact your office to set a time to discuss this request within the next week. \n\n" +
+        props.data.email + " or " + props.data.phone + ".\n\n" +
         "Thank you for your consideration. \n\n" + props.data.submitter;
 
     const [emailContentState, setEmailContentState] = useState(emailContent)

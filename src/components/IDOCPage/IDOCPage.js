@@ -111,15 +111,6 @@ function EmailForm(props) {
                                     {errors.IDOC_Number && <p className="error">IDOC Number is required.</p>}
                                 </Grid>
                             </Grid>
-                            <Grid container justify="center">
-                                <Grid item>
-                                    <FormControlLabel
-                                        control={<Checkbox name="medical_furlough" color="primary" inputRef={register} inputProps={{ 'aria-label': 'Checkbox A' }} />}
-                                        label={popup}
-                                        labelPlacement="start"
-                                    />
-                                </Grid>
-                            </Grid>
                         </div>
                         <div className="flexCenter margin">
                             {computeData === null && <Button className="button" type="submit" variant="contained" color="primary">View Eligibility</Button>}

@@ -4,6 +4,7 @@ import { Button, Grid, Menu, MenuItem } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import '../../styles/styles.scss';
 import MenuIcon from '@material-ui/icons/Menu';
+import StartOverIcon from '@material-ui/icons/Replay';
 
 
 function Tabs(props) {
@@ -30,7 +31,15 @@ function Tabs(props) {
         <div>
             {screenWidth > 550 ?
                 <Grid className="tabs-fullscreen" direction="row">
-
+                    {/* COMPONENT is WelcomePage.js */}
+                    <Link className="tabs-so-button" to={{
+                        pathname: "/"
+                    }}>
+                        <StartOverIcon fontSize="large" />
+                        Start Over
+                    </Link>
+                    
+                    <Grid className="nav-tabs-fullscreen" direction="row">
                     {/* COMPONENT is EligibilityCriteria.js */}
                     <Link className="tabs-button" to={{
                         pathname: "/criteria" + "?computeData=" + JSON.stringify(computeData)
@@ -56,6 +65,7 @@ function Tabs(props) {
                         target="_blank">
                         FAQ
                     </Link>
+                    </Grid>
                 </Grid>
                 :
                 <div>

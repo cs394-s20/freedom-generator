@@ -1,13 +1,13 @@
 import ConditionChecker from './ConditionChecker';
 
 const MechanismList = [
-    {
-        text: 'Medical Furlough',
-        conditions: [[
-            ConditionChecker.eligibleForMedicalFurlough,
-            ConditionChecker.isNotExcludedOffense
-        ]]
-    },
+    // {
+    //     text: 'Medical Furlough',
+    //     conditions: [[
+    //         ConditionChecker.eligibleForMedicalFurlough,
+    //         ConditionChecker.isNotExcludedOffense
+    //     ]]
+    // },
     {
         text: 'Electronic Monitoring or Home Detention',
         conditions: [

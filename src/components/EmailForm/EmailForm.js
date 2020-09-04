@@ -132,7 +132,6 @@ function EmailForm(props) {
               </Grid>
               <br />
               <Grid container alignItems="center" justify="flex-start" style={{ lineHeight: 2 }}>
-                I will contact your office to set a time to discuss this request within the next week.
               </Grid>
               <Grid container alignItems="center" justify="flex-start"><br />Thank you for your consideration. </Grid>
               <Grid container alignItems="center" justify="flex-start"><TextField name="submitter" placeholder="name of submitter" inputRef={register({ required: true })} /></Grid>
