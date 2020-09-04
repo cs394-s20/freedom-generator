@@ -43,7 +43,6 @@ function initClient() {
 loadClient();
 
 function Modal(props) {
-
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [isDraftExported, setIsDraftExported] = useState(false); // changes to true when draft is successfully exported
     const [sendDraftConfirmation, setSendDraftConfirmation] = useState(false);
@@ -60,6 +59,31 @@ function Modal(props) {
             gapi.auth2.getAuthInstance().signIn()
         }
 
+    }
+    function copyEmail(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+  
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+
+        document.body.removeChild(textArea);
+        alert("Copied to Clipboard!");
+        
     }
     function exportDraft() {
         const userId = gapi.auth2.getAuthInstance().currentUser.get().getId();
@@ -219,20 +243,27 @@ function Modal(props) {
 
             {/* FUNCTIONALITY FOR "EXPORT TO DRAFTS" BUTTON */}
             {!isSignedIn && 
-            <Grid container direction="row" justify="space-evenly">
+            <Grid container direction="column" justify="space-evenly" spacing={1}>
                 <Grid item>
-                    <Button id="sign-in" variant="contained" color="secondary" className="export-button" onClick={signIn}>Sign in to Google</Button>
+                    <Button id="copy-email" variant="contained" color="secondary" className="export-button" onClick={() => {copyEmail(emailContent)}}>Copy Email</Button>
                 </Grid>
+                <Grid item>
+                    <Button id="sign-in" variant="contained" color="secondary" className="export-button" onClick={() => {signIn()}}>Sign in to Google</Button>
+                </Grid>
+                    
             </Grid>        
             }
 
             {isSignedIn && 
-            <Grid container direction="column" justify="space-evenly" spacing={2}>
+            <Grid container direction="column" justify="space-evenly" spacing={1}>
                 <Grid item>
-                    <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={handleExportDraftConfirmationOpen}>Export to Draft</Button>
+                    <Button id="copy-email" variant="contained" color="secondary" className="export-button" onClick={() => {copyEmail(emailContent)}}>Copy Email</Button>
                 </Grid>
                 <Grid item>
-                    <Button id="send-button" variant="contained" color="secondary" className="export-button" onClick={handleSendEmailConfirmationOpen}>Send</Button>
+                    <Button id="export-button" variant="contained" color="secondary" className="export-button" onClick={() => {handleExportDraftConfirmationOpen()}}>Export to Draft</Button>
+                </Grid>
+                <Grid item>
+                    <Button id="send-button" variant="contained" color="secondary" className="export-button" onClick={() => {handleSendEmailConfirmationOpen()}}>Send</Button>
                 </Grid>
             </Grid>        
             }
